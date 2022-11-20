@@ -1,0 +1,32 @@
+.th-fake-icon {
+    opacity: 0;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.th-icon {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+th {
+    cursor: pointer;
+    position: relative;
+}
+
+th::after {
+    content: '';
+    background-color: rgba(145, 158, 171, 0.4);
+    position: absolute;
+    left: 100%;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    border-radius: 0.25rem;
+    width: 0.1875rem;
+}
+
+th>* {
+    display: inline-flex;
+    vertical-align: middle;
+    column-gap: 0.5rem;
+}

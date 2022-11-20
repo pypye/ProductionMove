@@ -1,0 +1,10 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    background-color: rgb(255, 255, 255);
+    padding: 1.25rem;   
+    box-sizing: border-box;
+    box-shadow: rgb(145, 158, 171, 0.2) 0px 0px 2px 0px, rgb(145, 158, 171, 0.2) 0px 12px 24px -4px;
+    border-radius: 1rem;
+}

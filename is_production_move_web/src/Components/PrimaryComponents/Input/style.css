@@ -1,0 +1,55 @@
+.input {
+    border: 0.125rem solid rgb(145, 158, 171);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    display: block;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1rem 1.375rem;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: rgb(33, 43, 54);
+    outline: none;
+}
+
+.input.error {
+    border-color: red;
+}
+
+.label {
+    background-color: rgb(255, 255, 255);
+    color: rgb(145, 158, 171);
+    position: absolute;
+    pointer-events: none;
+    padding: 0 0.5rem;
+    transform: translate(0.875rem, 1rem);
+    transform-origin: left;
+    transition: color 200ms ease-in-out 0ms,
+        transform 200ms ease-in-out 0ms;
+    z-index: 1;
+}
+
+.label[disabled] {
+    background-color: rgb(250, 250, 250);
+}
+
+.label.focus {
+    transform: translate(0.875rem, -0.5625rem) scale(0.75);
+    padding: 0 0.625rem;
+    color: rgb(33, 43, 54);
+}
+
+.label.error {
+    color: red;
+}
+
+p.error {
+    display: block;
+    color: red;
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    margin-left: 1.325rem;
+}
