@@ -1,5 +1,5 @@
-import { Form } from "../../Components/NestedComponents";
-import { Button } from "../../Components/PrimaryComponents";
+import { Form } from "../../components/NestedComponents";
+import { Button } from "../../components/PrimaryComponents";
 
 export default function Login() {
     const validUsername = (input) => {

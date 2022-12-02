@@ -1,4 +1,5 @@
 import React from 'react';
+import { Checkbox } from '../../Checkbox';
 import { TableIcon } from '../TableIcon/TableIcon';
 import './style.css'
 const fakeIconComponent = function () {
@@ -20,16 +21,21 @@ function TableHeaderCell(props) {
     }
 
     return (
-        <th ref={thRef} onMouseOver={() => displayFakeIcon(true)} onMouseOut={() => displayFakeIcon(false)}>
-            <span>{props.label}</span>
-            <div className="th-icon">
-                {(props.order.sortColumn === thRef.current ? (
-                    props.order.sortOrder === 1 ? <TableIcon.SortAsc /> : (
-                        props.order.sortOrder === 2 ? <TableIcon.SortDesc /> : fakeIconComponent()
-                    ))
-                    : fakeIconComponent()
-                )}
-            </div>
-        </th>
+        (props.checkbox) ?
+            <th>
+                <Checkbox checked={props.checked} onClick={props.onClick}/>
+            </th>
+            :
+            <th ref={thRef} onMouseOver={() => displayFakeIcon(true)} onMouseOut={() => displayFakeIcon(false)}>
+                <span>{props.label}</span>
+                <div className="th-icon">
+                    {((props.order && props.order.sortColumn === thRef.current) ? (
+                        props.order.sortOrder === 1 ? <TableIcon.SortAsc /> : (
+                            props.order.sortOrder === 2 ? <TableIcon.SortDesc /> : fakeIconComponent()
+                        ))
+                        : fakeIconComponent()
+                    )}
+                </div>
+            </th>
     );
 } export { TableHeaderCell };

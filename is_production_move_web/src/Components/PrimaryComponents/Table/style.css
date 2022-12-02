@@ -1,9 +1,37 @@
+.table-container {
+    box-shadow: rgb(145, 158, 171, 0.2) 0px 0px 2px 0px, rgb(145, 158, 171, 0.2) 0px 12px 24px -4px;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.table-container .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding-left: 1rem;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+}
+
 .table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     box-sizing: border-box;
     font-size: 1rem;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(255, 255, 255);
 }
 
 th,
@@ -13,6 +41,26 @@ td {
     text-align: left;
 }
 
-tbody tr:hover{
+tbody tr:hover {
     background-color: rgba(145, 158, 171, 0.08);
+}
+
+.selected-row {
+    background-color: rgba(0, 171, 85, 0.08);
+}
+
+.selected-row:hover {
+    background-color: rgba(0, 171, 85, 0.16);
+}
+
+.page-pagination {
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 0 1rem;
 }
