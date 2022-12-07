@@ -1,4 +1,4 @@
-import { Input } from '../../PrimaryComponents';
+import { Input } from '../Input';
 import './style.css'
 function Form(props){
     return (

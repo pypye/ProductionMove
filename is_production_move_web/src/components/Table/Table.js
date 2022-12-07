@@ -3,6 +3,7 @@ import React from 'react'
 import { TableNavigation } from './TableNavigation/TableNavigation';
 import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
 import { Checkbox } from '../Checkbox';
+import { TableIcon } from './TableIcon/TableIcon';
 
 export default function Table(props) {
     const tableRef = React.useRef(null);
@@ -128,8 +129,8 @@ export default function Table(props) {
                     <option>100</option>
                 </select>
                 {(tablePage.page - 1) * tablePage.pageSize + 1}-{Math.min((tablePage.page - 1) * tablePage.pageSize + tablePage.pageSize, props.data.length)} of {props.data.length}
-                <button onClick={() => onChangePagePagination(-1)}>Previous</button>
-                <button onClick={() => onChangePagePagination(1)}>Next</button>
+                <div onClick={() => onChangePagePagination(-1)}> <TableIcon.PaginationPrev /></div>
+                <div onClick={() => onChangePagePagination(1)}> <TableIcon.PaginationNext /></div>
             </div>
         </div>
     );

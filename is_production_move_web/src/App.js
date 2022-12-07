@@ -1,27 +1,24 @@
 import React from 'react';
-import { Table } from './components/PrimaryComponents';
-import { Login } from './pages';
+import { Table } from './components';
+import { Layout } from './layouts';
+
 
 function App() {
-    const tableData = [
-        { id: 1, name: 'John', age: 19 },
-        { id: 2, name: 'Jane', age: 20 },
-        { id: 3, name: 'Joe', age: 21 },
-        { id: 4, name: 'Jack', age: 22 },
-        { id: 5, name: 'Jill', age: 23 },
-        { id: 6, name: 'Jen', age: 24 },
-        { id: 7, name: 'Jenny', age: 25 },
-        { id: 8, name: 'Jenny', age: 26 },
-        { id: 9, name: 'Jenny', age: 27 },
-        { id: 10, name: 'Jenny', age: 28 },
-        { id: 11, name: 'Jenny', age: 29 },
-        { id: 12, name: 'Jenny', age: 30 },
-        { id: 13, name: 'Jenny', age: 31 },
-    ];
+    const fakeData = [
+        {id: 1,name: 'Duc', age: 20,},
+        {id: 2,name: 'Tran', age: 21,},
+        {id: 3,name: 'Duc', age: 22,},
+        {id: 4,name: 'Tran', age: 23,},
+        {id: 5,name: 'Duc', age: 24,},
+        {id: 6,name: 'Tran', age: 25,},
+        {id: 7,name: 'Duc', age: 26,},
+        {id: 8,name: 'Tran', age: 27,},
+    ]
     return (
         <div className="App">
-            <Table width='80rem' height='35rem' data={tableData} />
-            {/* <Login /> */}
+            <Layout>
+                <Table data={fakeData}/>
+            </Layout>
         </div>
     );
 }
