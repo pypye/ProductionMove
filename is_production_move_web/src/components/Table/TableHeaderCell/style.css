@@ -5,8 +5,8 @@
 }
 
 .th-icon {
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 th {
@@ -14,7 +14,7 @@ th {
     position: relative;
 }
 
-th::after {
+th:not(:last-child)::after {
     content: '';
     background-color: rgba(145, 158, 171, 0.4);
     position: absolute;
