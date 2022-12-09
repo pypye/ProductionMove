@@ -33,7 +33,7 @@ public class ApplicationUser extends BaseEntity {
   private boolean status;
 
   @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "role_id", referencedColumnName = "id")
+  @JoinColumn(name = "role_id")
   private Role role;
 
   public void setCreateAccountRequest(CreateAccountRequest createAccountRequest) {
@@ -43,4 +43,3 @@ public class ApplicationUser extends BaseEntity {
     this.status = false;
   }
 }
-
