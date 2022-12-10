@@ -11,8 +11,9 @@ import "./style.css";
 export default function Button(props) {
     return (
         <button
-            className={`btn ${props.type}`}
+            className={`btn ${props.type} ` + (props.validation() ? 'disabled' : '')}
             onClick={props.onClick}
+            disabled={props.validation() }
         >
             {props.children}
         </button>

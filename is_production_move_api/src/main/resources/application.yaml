@@ -18,8 +18,8 @@ spring:
     port: 6379
 
   mail:
-    username: invitacmcapp2021@gmail.com
-    password: invitacmcapp_Password
+    username: vlxx2022tv@gmail.com
+    password: qxzdvjbeetfzoqwk
 server:
   port: 8088
   servlet:

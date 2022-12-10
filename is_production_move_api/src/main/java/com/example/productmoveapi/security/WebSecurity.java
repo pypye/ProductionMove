@@ -67,8 +67,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .antMatchers("/auth/*").permitAll()
 //        .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
 //        .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, FORGOT_PASSWORD_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, RESET_PASSWORD_URL).permitAll()
+        .antMatchers(HttpMethod.POST, FORGOT_PASSWORD_URL).permitAll()
+        .antMatchers(HttpMethod.POST, RESET_PASSWORD_URL).permitAll()
 //        .antMatchers(HttpMethod.POST, VERIFY_URL).permitAll()
 //        .antMatchers(HttpMethod.POST, LOGOUT_URL).permitAll()
         .anyRequest().authenticated();
@@ -85,7 +85,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     final CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
-    config.addAllowedOrigin("*");
+    config.addAllowedOriginPattern("*");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
     source.registerCorsConfiguration("/**",config);

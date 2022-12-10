@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from './components';
 import { Layout } from './layouts';
+import Login from './Pages/Login/Login';
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
     ]
     return (
         <div className="App">
-            <Layout>
+            <Login/>
+            {/* <Layout>
                 <Table data={fakeData}/>
-            </Layout>
+            </Layout> */}
         </div>
     );
 }
