@@ -21,6 +21,8 @@ spring:
     username: vlxx2022tv@gmail.com
     password: qxzdvjbeetfzoqwk
 server:
-  port: 8088
+  address: localhost
+  port: 3001
   servlet:
     context-path: /backend
+

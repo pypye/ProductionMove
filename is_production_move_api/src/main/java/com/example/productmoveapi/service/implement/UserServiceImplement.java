@@ -140,6 +140,7 @@ public class UserServiceImplement implements UserService {
         userDetailsImplement.getEmail()
     );
     return ResponseFactory.success(loginResponse, LoginResponse.class);
+//    return ResponseFactory.success(loginRequest.getUsername());
   }
 
   private ResponseEntity<GeneralResponse<Object>> validateSignUp(CreateAccountRequest createAccountRequest){
