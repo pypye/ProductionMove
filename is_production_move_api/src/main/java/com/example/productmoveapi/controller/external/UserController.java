@@ -48,14 +48,14 @@ public class UserController {
 
   @PostMapping("/forgot")
   public ResponseEntity<GeneralResponse<Object>> forgotPassword(
-      @RequestBody ForgotPasswordRequest forgotPasswordRequest,
+      @Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest,
       HttpServletRequest httpServletRequest) {
     return userService.forgotPassword(forgotPasswordRequest, httpServletRequest);
   }
 
   @PostMapping("/reset")
   public ResponseEntity<GeneralResponse<Object>> resetPassword(
-      @RequestBody ResetPasswordRequest resetPasswordRequest) {
+      @Valid @RequestBody ResetPasswordRequest resetPasswordRequest) {
     return userService.resetPassword(resetPasswordRequest);
   }
 }

@@ -14,7 +14,6 @@ import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.security.filter.JWT.JwtUtils;
 import com.example.productmoveapi.security.filter.service.UserDetailsImplement;
 import com.example.productmoveapi.service.UserService;
-import com.example.productmoveapi.service.valid.ValidationService;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import javax.servlet.http.HttpServletRequest;
@@ -48,8 +47,6 @@ public class UserServiceImplement implements UserService {
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  private final ValidationService validationService;
-
   private final IRedisCaching iRedisCaching;
 
   private final AuthenticationManager authenticationManager;
@@ -60,12 +57,11 @@ public class UserServiceImplement implements UserService {
 
   @Autowired
   public UserServiceImplement(ApplicationUserRepository applicationUserRepository,
-      BCryptPasswordEncoder bCryptPasswordEncoder, ValidationService validationService,
+      BCryptPasswordEncoder bCryptPasswordEncoder,
       IRedisCaching iRedisCaching, AuthenticationManager authenticationManager, JwtUtils jwtUtils,
       EmailService emailService) {
     this.applicationUserRepository = applicationUserRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    this.validationService = validationService;
     this.iRedisCaching = iRedisCaching;
     this.authenticationManager = authenticationManager;
     this.jwtUtils = jwtUtils;
@@ -75,32 +71,14 @@ public class UserServiceImplement implements UserService {
   private ResponseEntity<GeneralResponse<Object>> checkAccount(LoginRequest loginRequest) {
     ApplicationUser applicationUser = applicationUserRepository.findByUsername(
         loginRequest.getUsername());
-    if (applicationUser == null) {
-      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_EXIST);
-    }
-    if (new BCryptPasswordEncoder().matches(loginRequest.getPassword(),
-        applicationUser.getPassword())) {
-      return null;
+    if (applicationUser != null) {
+      if (new BCryptPasswordEncoder().matches(loginRequest.getPassword(),
+          applicationUser.getPassword())) {
+        return null;
+      }
     }
     return ResponseFactory.error(HttpStatus.valueOf(403),
-        ResponseStatusEnum.WRONG_USERNAME_OR_PASSWORD);
-  }
-
-  public static String getRandomNumberString() {
-    Random rnd = new Random();
-    int number = rnd.nextInt(999999);
-
-    return String.format("%06d", number);
-  }
-
-  private void sendMail(String mail, String token) {
-    CompletableFuture.runAsync(() ->
-        emailService.sendEmail(username,
-            mail,
-            "Password Reset Request",
-            "Type this verify code on our app:\n" + token)
-    );
-    log.info("Mail has been sent!");
+        ResponseStatusEnum.WRONG_INFORMATION);
   }
 
   @Override
@@ -124,13 +102,30 @@ public class UserServiceImplement implements UserService {
     return ResponseFactory.success(loginResponse, LoginResponse.class);
   }
 
+  public static String getRandomNumberString() {
+    Random rnd = new Random();
+    int number = rnd.nextInt(999999);
+
+    return String.format("%06d", number);
+  }
+
+  private void sendMail(String mail, String token) {
+    CompletableFuture.runAsync(() ->
+        emailService.sendEmail(username,
+            mail,
+            "Password Reset Request",
+            "Type this verify code on our app:\n" + token)
+    );
+    log.info("Mail has been sent!");
+  }
+
   @Override
   public ResponseEntity<GeneralResponse<Object>> forgotPassword(
       ForgotPasswordRequest forgotPasswordRequest, HttpServletRequest request) {
     ApplicationUser applicationUser = applicationUserRepository.findByEmail(
         forgotPasswordRequest.getEmail());
     if (applicationUser == null) {
-      return ResponseFactory.error(HttpStatus.valueOf(400), ResponseStatusEnum.NOT_EXIST);
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
     String token = getRandomNumberString();
     iRedisCaching.addOpsValue(token, applicationUser.getId(), ttl);
@@ -144,16 +139,16 @@ public class UserServiceImplement implements UserService {
     String token = resetPasswordRequest.getToken();
     String userId = (String) iRedisCaching.getFromOpsValue(token);
     if (userId == null) {
-      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.UNKNOWN_ERROR);
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
-    ResponseEntity<GeneralResponse<Object>> validateResult = validationService.validateChangePassword(
-        resetPasswordRequest.getPassword(), resetPasswordRequest.getRetypePassword());
-    if (validateResult != null) {
-      return validateResult;
+
+    if (!resetPasswordRequest.getRetypePassword().equals(resetPasswordRequest.getPassword())) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
+
     ApplicationUser applicationUser = applicationUserRepository.findById(userId).orElse(null);
     if (applicationUser == null) {
-      return ResponseFactory.error(HttpStatus.valueOf(400), ResponseStatusEnum.NOT_EXIST);
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
     applicationUser.setPassword(bCryptPasswordEncoder.encode(resetPasswordRequest.getPassword()));
     applicationUserRepository.save(applicationUser);

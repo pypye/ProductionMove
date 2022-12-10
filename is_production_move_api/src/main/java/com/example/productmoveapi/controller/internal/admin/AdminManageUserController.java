@@ -3,6 +3,7 @@ package com.example.productmoveapi.controller.internal.admin;
 import com.example.productmoveapi.dto.request.CreateAccountRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.AdminManageUserService;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class AdminManageUserController {
 
   @PostMapping("/sign-up")
   public ResponseEntity<GeneralResponse<Object>> signUp(
-      @RequestBody CreateAccountRequest createAccountRequest) {
+      @Valid @RequestBody CreateAccountRequest createAccountRequest) {
     return adminManageUserService.signupAccount(createAccountRequest);
   }
 

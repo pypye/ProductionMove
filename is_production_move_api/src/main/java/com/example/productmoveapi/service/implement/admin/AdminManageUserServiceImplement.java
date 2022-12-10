@@ -9,7 +9,6 @@ import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.service.AdminManageUserService;
-import com.example.productmoveapi.service.valid.ValidationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,45 +27,31 @@ public class AdminManageUserServiceImplement implements AdminManageUserService {
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  private final ValidationService validationService;
-
   private final RoleRepository roleRepository;
 
   @Autowired
   public AdminManageUserServiceImplement(
       ApplicationUserRepository applicationUserRepository,
       BCryptPasswordEncoder bCryptPasswordEncoder,
-      ValidationService validationService,
       RoleRepository roleRepository) {
     this.applicationUserRepository = applicationUserRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    this.validationService = validationService;
     this.roleRepository = roleRepository;
-  }
-
-  private ResponseEntity<GeneralResponse<Object>> validateSignUp(
-      CreateAccountRequest createAccountRequest) {
-    if (!validationService.checkRetypePassword(createAccountRequest.getRetypePassword(),
-        createAccountRequest.getPassword())) {
-      return ResponseFactory.error(HttpStatus.valueOf(400), ResponseStatusEnum.RETYPE_ERROR);
-    }
-    return validationService.validRequest(
-        createAccountRequest.getUsername(),
-        createAccountRequest.getPassword(),
-        createAccountRequest.getEmail());
   }
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> signupAccount(
       CreateAccountRequest createAccountRequest) {
-    ResponseEntity<GeneralResponse<Object>> validateResult = validateSignUp(createAccountRequest);
-    if (validateResult != null) {
-      return validateResult;
+    if (!createAccountRequest.getRetypePassword().equals(createAccountRequest.getPassword())) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
-    validateResult = validationService.validExist(createAccountRequest.getUsername(),
-        createAccountRequest.getEmail());
-    if (validateResult != null) {
-      return validateResult;
+
+    if (applicationUserRepository.findByUsername(createAccountRequest.getUsername()) != null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
+    }
+
+    if (applicationUserRepository.findByEmail(createAccountRequest.getEmail()) != null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
     }
 
     createAccountRequest.setPassword(
