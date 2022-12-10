@@ -7,10 +7,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class ProductMoveApiApplication {
+
   @Bean
-  public BCryptPasswordEncoder bCryptPasswordEncoder(){
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
     return new BCryptPasswordEncoder();
   }
+
   public static void main(String[] args) {
     SpringApplication.run(ProductMoveApiApplication.class, args);
   }

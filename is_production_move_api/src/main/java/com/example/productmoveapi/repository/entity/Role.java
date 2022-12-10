@@ -1,5 +1,6 @@
 package com.example.productmoveapi.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,12 +14,13 @@ import lombok.Getter;
 @Entity
 @Getter
 @Table(name = "role")
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
 
   private static final long serialVersionUID = 6015628554509474412L;
   @Column(name = "name")
   private String role;
 
   @OneToMany(mappedBy = "role")
+  @JsonIgnore
   private Collection<ApplicationUser> applicationUser;
 }

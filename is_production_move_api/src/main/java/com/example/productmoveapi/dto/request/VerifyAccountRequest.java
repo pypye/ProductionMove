@@ -9,5 +9,6 @@ import lombok.Data;
 @Data
 @NotBlank
 public class VerifyAccountRequest {
+
   private String token;
 }

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author Binh Nguyen Thai at 10:19 on 05/12/2022
  */
 public class UserDetailsImplement implements UserDetails {
+
   private static final long serialVersionUID = 4030000316478277980L;
   private final String id;
   private final String username;
@@ -20,9 +21,10 @@ public class UserDetailsImplement implements UserDetails {
 
   @JsonIgnore
   private final String password;
-  private final Collection<? extends  GrantedAuthority> authorities;
+  private final Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailsImplement(String id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+  public UserDetailsImplement(String id, String username, String email, String password,
+      Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
     this.username = username;
     this.email = email;

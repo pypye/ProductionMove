@@ -8,15 +8,16 @@ import lombok.Data;
  */
 @Data
 public class CreateAccountRequest {
+
   @NotBlank
   private String username;
   @NotBlank
   private String password;
   @NotBlank
-  private String retypePassword;
+    private String retypePassword;
   @NotBlank
-  private  String displayName;
+  private String email;
   @NotBlank
-  private  String email;
+  private String role_id;
 
 }

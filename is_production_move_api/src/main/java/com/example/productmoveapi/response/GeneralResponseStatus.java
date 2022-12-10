@@ -4,12 +4,11 @@ package com.example.productmoveapi.response;
  * @author Binh Nguyen Thai at 22:31 on 28/11/2022
  */
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.io.Serializable;
 
 @Getter
 @Setter
