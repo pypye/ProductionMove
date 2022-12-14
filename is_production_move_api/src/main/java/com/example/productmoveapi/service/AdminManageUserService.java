@@ -9,8 +9,5 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AdminManageUserService {
 
-  //  ResponseEntity<GeneralResponse<Object>> logoutAccount();
-//  ResponseEntity<GeneralResponse<Object>> verifySignUp(VerifyAccountRequest verifyAccountRequest);
-//  ResponseEntity<GeneralResponse<Object>> changePassword(ChangePasswordRequest changePasswordRequest);
   ResponseEntity<GeneralResponse<Object>> signupAccount(CreateAccountRequest createAccountRequest);
 }

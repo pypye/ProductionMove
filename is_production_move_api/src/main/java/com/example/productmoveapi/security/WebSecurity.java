@@ -1,9 +1,6 @@
 package com.example.productmoveapi.security;
 
-import static com.example.productmoveapi.security.SecurityConstants.FORGOT_PASSWORD_URL;
-import static com.example.productmoveapi.security.SecurityConstants.LOGIN_URL;
-import static com.example.productmoveapi.security.SecurityConstants.RESET_PASSWORD_URL;
-import static com.example.productmoveapi.security.SecurityConstants.SIGN_UP_URL;
+import static com.example.productmoveapi.security.SecurityConstants.AUTH;
 
 import com.example.productmoveapi.security.filter.JWT.AuthEntryPointJWT;
 import com.example.productmoveapi.security.filter.authorization.JWTAuthorizationFilter;
@@ -63,13 +60,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests()
-        .antMatchers("/auth/binh").hasAnyAuthority("factory")
-        .antMatchers(SIGN_UP_URL).hasAnyAuthority("admin")
-        .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-        .antMatchers(HttpMethod.POST, FORGOT_PASSWORD_URL).permitAll()
-        .antMatchers(HttpMethod.POST, RESET_PASSWORD_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, VERIFY_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, LOGOUT_URL).permitAll()
+        .antMatchers(HttpMethod.POST, AUTH).permitAll()
         .anyRequest().authenticated();
     http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
   }

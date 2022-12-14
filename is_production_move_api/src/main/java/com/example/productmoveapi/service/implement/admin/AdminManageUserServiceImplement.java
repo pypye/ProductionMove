@@ -63,39 +63,4 @@ public class AdminManageUserServiceImplement implements AdminManageUserService {
     return ResponseFactory.success(applicationUser);
   }
 
-//  @Override
-//  public ResponseEntity<GeneralResponse<Object>> changePassword(
-//      ChangePasswordRequest changePasswordRequest) {
-//    ResponseEntity<GeneralResponse<Object>> validateResult = validationService.validateChangePassword(changePasswordRequest.getNewPassword(), changePasswordRequest.getRetypePassword());
-//    if (validateResult != null) return validateResult;
-//    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    String username = userDetails.getUsername();
-//    ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
-//    if (new BCryptPasswordEncoder().matches(changePasswordRequest.getOldPassword(), applicationUser.getPassword())) {
-//      applicationUser.setPassword(bCryptPasswordEncoder.encode(changePasswordRequest.getNewPassword()));
-//      applicationUserRepository.save(applicationUser);
-//      return ResponseFactory.success("Password has changed !");
-//    }
-//    return ResponseFactory.error(HttpStatus.valueOf(400), ResponseStatusEnum.RETYPE_OLD_PASSWORD_ERROR);
-//  }
-
-//  @Override
-//  public ResponseEntity<GeneralResponse<Object>> verifySignUp(
-//      VerifyAccountRequest verifyAccountRequest){
-//    String token = verifyAccountRequest.getToken();
-//    String userId = (String) iRedisCaching.getFromOpsValue(token);
-//    if (userId == null)
-//      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.UNKNOWN_ERROR);
-//    ApplicationUser applicationUser = applicationUserRepository.findById(userId).orElse(null);
-//    if (applicationUser == null) return ResponseFactory.error(HttpStatus.valueOf(400), ResponseStatusEnum.NOT_EXIST);
-//    applicationUser.setStatus(true);
-//    applicationUserRepository.save(applicationUser);
-//    iRedisCaching.removeFromOpsValue(token);
-//    return ResponseFactory.success(applicationUser);
-//  }
-
-//  @Override
-//  public ResponseEntity<GeneralResponse<Object>> logoutAccount(){
-//    return ResponseFactory.success("Logout successfully!");
-//  }
 }
