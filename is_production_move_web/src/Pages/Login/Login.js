@@ -2,12 +2,22 @@ import './style.css'
 import React from 'react';
 import { Form } from "../../components";
 import { Button } from "../../components";
-
+import { fetch, setAuth } from '../../sessions';
+import { useLocation } from 'react-router-dom';
 
 export default function Login() {
-
     const [loginInfo, setLoginInfo] = React.useState({ username: '', password: '' });
     const [error, setError] = React.useState("");
+    const [notify, setNotify] = React.useState(false);
+    const { state } = useLocation();
+
+    React.useEffect(() => {
+        if (state) {
+            setNotify(true);
+            window.history.replaceState({}, document.title)
+        }
+    }, [state])
+
 
     const validUsername = (input) => {
         if (input.length === 0) {
@@ -33,21 +43,14 @@ export default function Login() {
 
     const onLogin = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3001/backend/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: loginInfo.username,
-                password: loginInfo.password
-            })
-        }).then(res => res.json()).then(data => {
+        fetch('/backend/auth/login', 'POST', loginInfo).then(data => {
             if (data.status.code === "SUCCESS") {
-                console.log(data)
-            } else if (data.status.code === "E-011") {
+                setAuth(data.data)
+                window.location.href = "/"
+            } else if (data.status.code === "E-003") {
                 setError("Tên đăng nhập hoặc mật khẩu không đúng")
             } else {
-                alert("Lỗi không xác định")
-                console.log(data)
+                setError("Đã có lỗi xảy ra, vui lòng thử lại sau")
             }
         })
     }
@@ -55,11 +58,13 @@ export default function Login() {
     return (
         <div className='login-container'>
             <Form width='25rem'>
-                <h1>Hệ thống ProductionMove</h1>
+                <h2>Đăng nhập hệ thống ProductionMove</h2>
+                {notify && <p className='notify'>Mật khẩu của bạn đã được đặt lại thành công. Bây giờ, hãy đăng nhập với mật khẩu mới</p>}
                 <Form.Input label="Tên đăng nhập" type="text" validation={validUsername} value={loginInfo.username} onChange={(e) => setLoginInfo({ ...loginInfo, username: e })} />
                 <Form.Input label="Mật khẩu" type="password" validation={validPassword} value={loginInfo.password} onChange={(e) => setLoginInfo({ ...loginInfo, password: e })} />
-                <p style={{"display": error === "" ? "none" : "block"}} className="login-error">{error}</p>
+                <p style={{ "display": error === "" ? "none" : "block" }} className="login-error">{error}</p>
                 <Button onClick={(e) => onLogin(e)} validation={validLogin}>Đăng nhập</Button>
+                <a href='/forgot-password' className='forgot-password'>Quên mật khẩu?</a>
             </Form>
         </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox } from '../../Checkbox';
+import { Checkbox } from '../..';
 import { TableIcon } from '../TableIcon/TableIcon';
 import './style.css'
 const fakeIconComponent = function () {
@@ -23,7 +23,7 @@ function TableHeaderCell(props) {
     return (
         (props.checkbox) ?
             <th>
-                <Checkbox checked={props.checked} onClick={props.onClick}/>
+                <Checkbox checked={props.checked} onClick={props.onClick} />
             </th>
             :
             <th ref={thRef} onMouseOver={() => displayFakeIcon(true)} onMouseOut={() => displayFakeIcon(false)}>

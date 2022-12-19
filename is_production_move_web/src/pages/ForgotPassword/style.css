@@ -1,15 +1,16 @@
-.login-container{
+.forgot-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-.login-container h2{
+.forgot-container h2{
     margin: 0;
    
 }
-.login-container p.notify{
+
+.forgot-container p.notify{
     display: block;
     color: #000;
     background-color: rgb(202, 253, 245);
@@ -21,7 +22,7 @@
     margin: 0;
 }
 
-p.login-error {
+.forgot-container p.login-error {
     display: block;
     color: red;
     background-color: rgb(255, 233, 213);
@@ -33,7 +34,7 @@ p.login-error {
     margin: 0;
 }
 
-a.forgot-password{
+.forgot-container a.login-back{
     color: #000;
     font-size: 1rem;
     text-decoration: underline;
