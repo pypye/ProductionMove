@@ -2,7 +2,6 @@ package com.example.productmoveapi.repository.entity;
 
 import com.example.productmoveapi.dto.request.CreateAccountRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -36,8 +35,7 @@ public class ApplicationUser extends BaseEntity {
   @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  @JsonIgnore
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne
   @JoinColumn(name = "role_id")
   private Role role;
 

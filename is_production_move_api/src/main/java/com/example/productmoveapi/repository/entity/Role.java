@@ -2,6 +2,7 @@ package com.example.productmoveapi.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ public class Role extends BaseEntity {
   @Column(name = "name")
   private String role;
 
-  @OneToMany(mappedBy = "role")
+  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
   @JsonIgnore
   private Collection<ApplicationUser> applicationUser;
 }
