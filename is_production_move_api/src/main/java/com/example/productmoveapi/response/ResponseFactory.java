@@ -1,11 +1,11 @@
 package com.example.productmoveapi.response;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 /**
  * @author Binh Nguyen Thai at 22:32 on 28/11/2022
  */
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 public class ResponseFactory {
 

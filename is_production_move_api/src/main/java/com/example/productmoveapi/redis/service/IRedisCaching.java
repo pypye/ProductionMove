@@ -6,6 +6,7 @@ import java.util.List;
  * @author Binh Nguyen Thai at 11:03 on 05/12/2022
  */
 public interface IRedisCaching {
+
   void addToHash(String key, String hkey, Object hvalue);
 
   void addToHash(String key, String hkey, Object hvalue, long expiredInSecond);

@@ -9,16 +9,17 @@ import lombok.Data;
  */
 @Data
 public class LoginResponse {
+
   private String token;
   private String type = TOKEN_PREFIX;
   private String id;
   private String username;
   private String email;
 
-  public LoginResponse( String token, String id, String username, String email) {
+  public LoginResponse(String token, String id, String username, String email) {
     this.token = token;
     this.id = id;
-    this.username =username;
+    this.username = username;
     this.email = email;
   }
 }

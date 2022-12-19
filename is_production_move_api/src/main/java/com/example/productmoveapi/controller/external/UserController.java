@@ -1,10 +1,8 @@
-package com.example.productmoveapi.controller;
+package com.example.productmoveapi.controller.external;
 
-import com.example.productmoveapi.dto.request.CreateAccountRequest;
 import com.example.productmoveapi.dto.request.ForgotPasswordRequest;
 import com.example.productmoveapi.dto.request.LoginRequest;
 import com.example.productmoveapi.dto.request.ResetPasswordRequest;
-import com.example.productmoveapi.dto.request.VerifyAccountRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.UserService;
 import javax.servlet.http.HttpServletRequest;
@@ -31,32 +29,26 @@ public class UserController {
   private final UserService userService;
 
   @Autowired
-  public UserController(UserService userService){
+  public UserController(UserService userService) {
     this.userService = userService;
   }
 
-//  @PostMapping("/sign-up")
-//  public ResponseEntity<GeneralResponse<Object>> signUp(@RequestBody CreateAccountRequest createAccountRequest, HttpServletRequest request){
-//    return userService.signupAccount(createAccountRequest,request);
-//  }
-//
-//  @PostMapping("/verify")
-//  public ResponseEntity<GeneralResponse<Object>> verify(@RequestBody VerifyAccountRequest verifyAccountRequest){
-//    return userService.verifySignUp(verifyAccountRequest);
-//  }
-
   @PostMapping("/login")
-  public ResponseEntity<GeneralResponse<Object>> login(@Valid @RequestBody LoginRequest loginRequest){
+  public ResponseEntity<GeneralResponse<Object>> login(
+      @Valid @RequestBody LoginRequest loginRequest) {
     return userService.loginAccount(loginRequest);
   }
 
   @PostMapping("/forgot")
-  public ResponseEntity<GeneralResponse<Object>> forgotPassword(@RequestBody ForgotPasswordRequest forgotPasswordRequest, HttpServletRequest httpServletRequest){
-    return userService.forgotPassword(forgotPasswordRequest,httpServletRequest);
+  public ResponseEntity<GeneralResponse<Object>> forgotPassword(
+      @Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest,
+      HttpServletRequest httpServletRequest) {
+    return userService.forgotPassword(forgotPasswordRequest, httpServletRequest);
   }
 
   @PostMapping("/reset")
-  public ResponseEntity<GeneralResponse<Object>> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest){
+  public ResponseEntity<GeneralResponse<Object>> resetPassword(
+      @Valid @RequestBody ResetPasswordRequest resetPasswordRequest) {
     return userService.resetPassword(resetPasswordRequest);
   }
 }

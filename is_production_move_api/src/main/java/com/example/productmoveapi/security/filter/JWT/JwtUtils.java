@@ -23,7 +23,7 @@ public class JwtUtils {
 
   private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-  public String generateJWTByUsername(String username){
+  public String generateJWTByUsername(String username) {
     return Jwts.builder()
         .setHeaderParam("typ", "JWT")
         .setSubject((username))
@@ -33,7 +33,7 @@ public class JwtUtils {
         .compact();
   }
 
-  public String generateJWT(Authentication authentication){
+  public String generateJWT(Authentication authentication) {
 
     UserDetailsImplement userPrincipal = (UserDetailsImplement) authentication.getPrincipal();
     return generateJWTByUsername(userPrincipal.getUsername());

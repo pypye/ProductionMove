@@ -1,10 +1,15 @@
 package com.example.productmoveapi.repository.entity;
 
 import com.example.productmoveapi.dto.request.CreateAccountRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
 import lombok.Setter;
 
 /**
@@ -23,24 +28,21 @@ public class ApplicationUser extends BaseEntity {
   @Column(name = "username", nullable = false, unique = true)
   private String username;
 
+  @JsonIgnore
   @Column(name = "password", nullable = false)
   private String password;
 
   @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  @Column(name = "status", nullable = false)
-  private boolean status;
-
-  @ManyToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "role_id", referencedColumnName = "id")
+  @ManyToOne
+  @JoinColumn(name = "role_id")
   private Role role;
 
-  public void setCreateAccountRequest(CreateAccountRequest createAccountRequest) {
+  public void setCreateAccountRequest(CreateAccountRequest createAccountRequest, Role role) {
     this.username = createAccountRequest.getUsername();
     this.password = createAccountRequest.getPassword();
     this.email = createAccountRequest.getEmail();
-    this.status = false;
+    this.role = role;
   }
 }
-

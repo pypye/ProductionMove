@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RedisCachingService implements IRedisCaching {
+
   private final RedisTemplate<String, Object> redisTemplate;
 
   public RedisCachingService(RedisTemplate<String, Object> redisTemplate) {

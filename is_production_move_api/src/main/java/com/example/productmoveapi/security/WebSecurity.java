@@ -1,11 +1,6 @@
 package com.example.productmoveapi.security;
 
-import static com.example.productmoveapi.security.SecurityConstants.FORGOT_PASSWORD_URL;
-import static com.example.productmoveapi.security.SecurityConstants.LOGIN_URL;
-import static com.example.productmoveapi.security.SecurityConstants.LOGOUT_URL;
-import static com.example.productmoveapi.security.SecurityConstants.RESET_PASSWORD_URL;
-import static com.example.productmoveapi.security.SecurityConstants.SIGN_UP_URL;
-import static com.example.productmoveapi.security.SecurityConstants.VERIFY_URL;
+import static com.example.productmoveapi.security.SecurityConstants.AUTH;
 
 import com.example.productmoveapi.security.filter.JWT.AuthEntryPointJWT;
 import com.example.productmoveapi.security.filter.authorization.JWTAuthorizationFilter;
@@ -35,6 +30,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+
   @Autowired
   UserDetailsServiceImplement userDetailsServiceImplement;
 
@@ -45,7 +41,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
-  public JWTAuthorizationFilter jwtAuthorizationFilter(){
+  public JWTAuthorizationFilter jwtAuthorizationFilter() {
     return new JWTAuthorizationFilter();
   }
 
@@ -58,37 +54,33 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   public AuthEntryPointJWT unauthorizedHandler;
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception{
+  protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests()
-        .antMatchers("/auth/*").permitAll()
-//        .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, LOGIN_URL).permitAll()
-        .antMatchers(HttpMethod.POST, FORGOT_PASSWORD_URL).permitAll()
-        .antMatchers(HttpMethod.POST, RESET_PASSWORD_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, VERIFY_URL).permitAll()
-//        .antMatchers(HttpMethod.POST, LOGOUT_URL).permitAll()
+        .antMatchers(HttpMethod.POST, AUTH).permitAll()
         .anyRequest().authenticated();
     http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
   }
 
   @Override
-  public  void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
-    authenticationManagerBuilder.userDetailsService(userDetailsServiceImplement).passwordEncoder(passwordEncoder());
+  public void configure(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
+    authenticationManagerBuilder.userDetailsService(userDetailsServiceImplement)
+        .passwordEncoder(passwordEncoder());
   }
 
   @Bean
-  CorsConfigurationSource corsConfigurationSource(){
+  CorsConfigurationSource corsConfigurationSource() {
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     final CorsConfiguration config = new CorsConfiguration();
     config.setAllowCredentials(true);
     config.addAllowedOriginPattern("*");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
-    source.registerCorsConfiguration("/**",config);
+    source.registerCorsConfiguration("/**", config);
     return source;
   }
 }

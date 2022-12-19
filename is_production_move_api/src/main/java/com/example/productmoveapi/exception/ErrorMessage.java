@@ -1,10 +1,10 @@
 package com.example.productmoveapi.exception;
 
+import java.util.Date;
+
 /**
  * @author Binh Nguyen Thai at 22:37 on 28/11/2022
  */
-
-import java.util.Date;
 
 public class ErrorMessage {
 
