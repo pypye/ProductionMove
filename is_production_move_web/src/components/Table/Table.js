@@ -2,7 +2,7 @@ import './style.css'
 import React from 'react'
 import { TableNavigation } from './TableNavigation/TableNavigation';
 import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
-import { Checkbox } from '../Checkbox';
+import { Checkbox } from '..';
 import { TableIcon } from './TableIcon/TableIcon';
 
 export default function Table(props) {

@@ -1,26 +1,23 @@
 import React from 'react';
-import { Table } from './components';
-import { Layout } from './layouts';
-import Login from './Pages/Login/Login';
-
+import { Router } from './routes';
+import { BrowserRouter } from "react-router-dom";
+import { getAuth } from './sessions';
 
 function App() {
-    const fakeData = [
-        {id: 1,name: 'Duc', age: 20,},
-        {id: 2,name: 'Tran', age: 21,},
-        {id: 3,name: 'Duc', age: 22,},
-        {id: 4,name: 'Tran', age: 23,},
-        {id: 5,name: 'Duc', age: 24,},
-        {id: 6,name: 'Tran', age: 25,},
-        {id: 7,name: 'Duc', age: 26,},
-        {id: 8,name: 'Tran', age: 27,},
-    ]
+    const [sessions, setSessions] = React.useState(false);
+
+    React.useEffect(() => {
+        const auth = getAuth();
+        if (auth) setSessions(true);
+    }, [])
+
+
     return (
         <div className="App">
-            <Login/>
-            {/* <Layout>
-                <Table data={fakeData}/>
-            </Layout> */}
+            <BrowserRouter>
+                <Router auth={sessions} />
+            </BrowserRouter>
+
         </div>
     );
 }

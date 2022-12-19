@@ -1,4 +1,4 @@
-import { Input } from '../Input';
+import Input from '../Input/Input';
 import './style.css'
 function Form(props){
     return (
@@ -7,6 +7,5 @@ function Form(props){
         </form>
     )
 }
-
 Form.Input = Input;
 export default Form;
