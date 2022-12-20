@@ -11,15 +11,15 @@ import lombok.Data;
 public class CreateAccountRequest {
 
   @NotBlank
-  @Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
+  @Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{7,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
   private String username;
 
   @NotBlank
-  @Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,20}$")
+  @Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
   private String password;
 
   @NotBlank
-  @Pattern(message = "Invalid confirmed password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,20}$")
+  @Pattern(message = "Invalid confirmed password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
   private String retypePassword;
 
   @NotBlank
@@ -30,4 +30,15 @@ public class CreateAccountRequest {
   @Pattern(message = "Invalid role id", regexp = "^[0-9]*$")
   private String role_id;
 
+  @NotBlank
+  @Pattern(message = "Invalid company name", regexp = "^[0-9a-zA-Z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$")
+  private String companyName;
+
+  @NotBlank
+  @Pattern(message = "Invalid address", regexp = "^[0-9a-zA-Z ,/ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$")
+  private String address;
+
+  @NotBlank
+  @Pattern(message = "Invalid phone", regexp = "(84|0[1-9])+([0-9]{8})\\b")
+  private String phone;
 }

@@ -56,6 +56,10 @@ public class AdminManageUserServiceImplement implements AdminManageUserService {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
     }
 
+    if (applicationUserRepository.findByCompanyName(createAccountRequest.getCompanyName()) != null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_COMPANY_NAME);
+    }
+
     createAccountRequest.setPassword(
         bCryptPasswordEncoder.encode(createAccountRequest.getPassword()));
     ApplicationUser applicationUser = new ApplicationUser();
@@ -88,18 +92,31 @@ public class AdminManageUserServiceImplement implements AdminManageUserService {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
 
-    if (applicationUserRepository.findByUsername(updateAccountRequest.getUsername()) != null) {
-      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
+    if (!applicationUser.getUsername().equals(updateAccountRequest.getUsername())) {
+      if (applicationUserRepository.findByUsername(updateAccountRequest.getUsername()) != null) {
+        return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
+      }
     }
 
-    if (applicationUserRepository.findByEmail(updateAccountRequest.getEmail()) != null) {
-      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
+    if (!applicationUser.getEmail().equals(updateAccountRequest.getEmail())) {
+      if (applicationUserRepository.findByEmail(updateAccountRequest.getEmail()) != null) {
+        return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
+      }
+    }
+
+    if (!applicationUser.getCompanyName().equals(updateAccountRequest.getCompanyName())){
+      if (applicationUserRepository.findByCompanyName(updateAccountRequest.getCompanyName()) != null){
+        return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_COMPANY_NAME);
+      }
     }
 
     applicationUser.setUsername(updateAccountRequest.getUsername());
     applicationUser.setPassword(bCryptPasswordEncoder.encode(updateAccountRequest.getPassword()));
     applicationUser.setEmail(updateAccountRequest.getEmail());
     applicationUser.setRole(roleRepository.findRoleById(updateAccountRequest.getRole_id()));
+    applicationUser.setAddress(updateAccountRequest.getAddress());
+    applicationUser.setCompanyName(updateAccountRequest.getCompanyName());
+    applicationUser.setPhone(updateAccountRequest.getPhone());
     applicationUserRepository.save(applicationUser);
     return ResponseFactory.success("update succesfully!");
   }

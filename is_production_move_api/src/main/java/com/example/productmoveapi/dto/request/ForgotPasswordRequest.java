@@ -11,7 +11,7 @@ import lombok.Data;
 public class ForgotPasswordRequest {
 
   @NotBlank
-  @Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
+  @Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{7,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
   private String username;
 
   @NotBlank

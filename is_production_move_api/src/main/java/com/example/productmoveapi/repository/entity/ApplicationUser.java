@@ -39,10 +39,22 @@ public class ApplicationUser extends BaseEntity {
   @JoinColumn(name = "role_id")
   private Role role;
 
+  @Column(name = "company_name", nullable = false, unique = true)
+  private String companyName;
+
+  @Column(name = "address", nullable = false)
+  private String address;
+
+  @Column(name = "phone", nullable = false)
+  private String phone;
+
   public void setCreateAccountRequest(CreateAccountRequest createAccountRequest, Role role) {
     this.username = createAccountRequest.getUsername();
     this.password = createAccountRequest.getPassword();
     this.email = createAccountRequest.getEmail();
     this.role = role;
+    this.companyName = createAccountRequest.getCompanyName();
+    this.address = createAccountRequest.getAddress();
+    this.phone = createAccountRequest.getPhone();
   }
 }

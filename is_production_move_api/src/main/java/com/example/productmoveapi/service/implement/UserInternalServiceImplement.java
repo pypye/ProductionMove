@@ -44,7 +44,8 @@ public class UserInternalServiceImplement implements UserInternalService {
     ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
     UserInfoResponse userInfoResponse = new UserInfoResponse(applicationUser.getId(),
         applicationUser.getUsername(), applicationUser.getEmail(),
-        applicationUser.getRole().getRole());
+        applicationUser.getRole().getRole(), applicationUser.getCompanyName(), applicationUser.getAddress(),
+        applicationUser.getPhone());
     return ResponseFactory.success(userInfoResponse);
   }
 

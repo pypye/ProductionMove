@@ -11,11 +11,11 @@ import lombok.Data;
 public class ResetPasswordRequest {
 
   @NotBlank
-  @Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,20}$")
+  @Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
   private String password;
 
   @NotBlank
-  @Pattern(message = "Invalid confirmed password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,20}$")
+  @Pattern(message = "Invalid confirmed password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
   private String retypePassword;
 
   @NotBlank
