@@ -11,9 +11,13 @@ import "./style.css";
 export default function Button(props) {
     return (
         <button
-            className={`btn ${props.type} ` + (props.validation() ? 'disabled' : '')}
-            onClick={props.onClick}
-            disabled={props.validation() }
+            type="button"
+            className={`btn ${props.type} ` + (props.validation() ? '' : 'disabled')}
+            onClick={(e) => {
+                e.preventDefault();
+                props.onClick()
+            }}
+            disabled={!props.validation()}
         >
             {props.children}
         </button>

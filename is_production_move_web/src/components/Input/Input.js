@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css"
-/*@function FormInput
+/*@function Input
     @param {object} props - Properties for the component
         * @param {boolean} disabled - Boolean to disable the input
         * @param {string} label - Label for the input
@@ -8,7 +8,7 @@ import "./style.css"
         * @param {string} value - Value for the input
         * @param {function} validation - Function to validate the input
 */
-export default function FormInput(props) {
+export default function Input(props) {
     const [error, setError] = React.useState("");
 
     const changeLabelPosition = (event, focus) => {
@@ -26,7 +26,6 @@ export default function FormInput(props) {
     const displayValidation = (event, validation_function) => {
         var result = validation_function(event.target.value);
         var label = event.target.previousSibling;
-        var error = event.target.nextSibling;
         if (result.state === false) {
             label.classList.add("error");
             event.target.classList.add("error");
@@ -45,16 +44,16 @@ export default function FormInput(props) {
             <input
                 className="input"
                 type={props.type}
-                value={props.value}
+                value={props.reference[0]}
                 disabled={props.disabled}
                 onInput={(event) => {
-                    displayValidation(event, props.validation)
-                    props.onChange(event.target.value)
+                    displayValidation(event, props.reference[2])
+                    props.reference[1](event.target.value)
                 }}
                 onFocus={(event) => changeLabelPosition(event, true)}
                 onBlur={(event) => {
                     changeLabelPosition(event, false);
-                    displayValidation(event, props.validation)
+                    displayValidation(event, props.reference[2])
                 }}
             />
             <p style={{ "display": error === "" ? "none" : "block" }} className="error">{error}</p>

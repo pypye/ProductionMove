@@ -1,13 +1,13 @@
 import React from 'react';
 import { Router } from './routes';
 import { BrowserRouter } from "react-router-dom";
-import { getAuth } from './sessions';
+import { UseAuth } from './utils';
 
 function App() {
     const [sessions, setSessions] = React.useState(false);
 
     React.useEffect(() => {
-        const auth = getAuth();
+        const auth = UseAuth.get();
         if (auth) setSessions(true);
     }, [])
 
