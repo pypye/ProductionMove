@@ -4,7 +4,7 @@ import com.example.productmoveapi.dto.request.user_request.ForgotPasswordRequest
 import com.example.productmoveapi.dto.request.user_request.LoginRequest;
 import com.example.productmoveapi.dto.request.user_request.ResetPasswordRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.UserService;
+import com.example.productmoveapi.service.general.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

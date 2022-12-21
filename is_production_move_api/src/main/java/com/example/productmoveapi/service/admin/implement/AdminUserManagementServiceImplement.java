@@ -1,4 +1,4 @@
-package com.example.productmoveapi.service.implement.admin;
+package com.example.productmoveapi.service.admin.implement;
 
 import com.example.productmoveapi.dto.request.user_request.CreateAccountRequest;
 import com.example.productmoveapi.dto.request.user_request.UpdateAccountRequest;

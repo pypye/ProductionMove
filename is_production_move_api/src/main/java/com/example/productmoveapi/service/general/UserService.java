@@ -1,4 +1,4 @@
-package com.example.productmoveapi.service;
+package com.example.productmoveapi.service.general;
 
 import com.example.productmoveapi.dto.request.user_request.ForgotPasswordRequest;
 import com.example.productmoveapi.dto.request.user_request.LoginRequest;

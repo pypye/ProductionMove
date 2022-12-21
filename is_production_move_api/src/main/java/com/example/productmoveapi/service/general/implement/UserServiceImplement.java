@@ -1,4 +1,4 @@
-package com.example.productmoveapi.service.implement;
+package com.example.productmoveapi.service.general.implement;
 
 import com.example.productmoveapi.dto.request.user_request.ForgotPasswordRequest;
 import com.example.productmoveapi.dto.request.user_request.LoginRequest;
@@ -13,7 +13,7 @@ import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.security.filter.JWT.JwtUtils;
 import com.example.productmoveapi.security.filter.service.UserDetailsImplement;
-import com.example.productmoveapi.service.UserService;
+import com.example.productmoveapi.service.general.UserService;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import javax.servlet.http.HttpServletRequest;

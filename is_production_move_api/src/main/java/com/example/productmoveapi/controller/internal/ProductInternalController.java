@@ -1,7 +1,7 @@
 package com.example.productmoveapi.controller.internal;
 
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.ProductInternalService;
+import com.example.productmoveapi.service.general.ProductInternalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

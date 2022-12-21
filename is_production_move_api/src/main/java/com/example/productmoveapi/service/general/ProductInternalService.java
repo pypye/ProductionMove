@@ -1,4 +1,4 @@
-package com.example.productmoveapi.service;
+package com.example.productmoveapi.service.general;
 
 import com.example.productmoveapi.response.GeneralResponse;
 import org.springframework.http.ResponseEntity;

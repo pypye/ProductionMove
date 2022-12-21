@@ -1,4 +1,4 @@
-package com.example.productmoveapi.service.implement;
+package com.example.productmoveapi.service.general.implement;
 
 import com.example.productmoveapi.repository.CategoryRepository;
 import com.example.productmoveapi.repository.ProductRepository;
@@ -6,7 +6,7 @@ import com.example.productmoveapi.repository.entity.Category;
 import com.example.productmoveapi.repository.entity.Product;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
-import com.example.productmoveapi.service.ProductInternalService;
+import com.example.productmoveapi.service.general.ProductInternalService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
