@@ -17,7 +17,8 @@ public enum ResponseStatusEnum {
   WRONG_INFORMATION("E-003", "Something went wrong"),
   REGISTERED_USERNAME("E-004", "Username is already registered"),
   REGISTERED_EMAIL("E-005", "Email is already registered"),
-  REGISTERED_COMPANY_NAME("E-006", "Company name is already registered");
+  REGISTERED_COMPANY_NAME("E-006", "Company name is already registered"),
+  EXISTED_CATEGORY("E-006", "Category is already existed");
 
   private final String code;
   private final String message;

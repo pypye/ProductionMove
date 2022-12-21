@@ -1,17 +1,14 @@
 package com.example.productmoveapi.controller.internal.admin;
 
-import com.example.productmoveapi.dto.request.CreateAccountRequest;
-import com.example.productmoveapi.dto.request.UpdateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.CreateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.UpdateAccountRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.AdminManageUserService;
+import com.example.productmoveapi.service.admin.AdminUserManagementService;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,38 +28,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/admin/user")
 @PreAuthorize("hasAuthority('admin')")
-public class AdminManageUserController {
+public class AdminUserManagementController {
 
-  private final AdminManageUserService adminManageUserService;
+  private final AdminUserManagementService adminUserManagementService;
 
   @Autowired
-  public AdminManageUserController(
-      AdminManageUserService adminManageUserService) {
-    this.adminManageUserService = adminManageUserService;
+  public AdminUserManagementController(
+      AdminUserManagementService adminUserManagementService) {
+    this.adminUserManagementService = adminUserManagementService;
   }
 
   @PostMapping("/sign-up")
   public ResponseEntity<GeneralResponse<Object>> signUp(
       @Valid @RequestBody CreateAccountRequest createAccountRequest) {
-    return adminManageUserService.signupAccount(createAccountRequest);
+    return adminUserManagementService.signupAccount(createAccountRequest);
   }
 
   @GetMapping("/all")
   public ResponseEntity<GeneralResponse<Object>> getAllAccount() {
-    return adminManageUserService.getAllAccount();
+    return adminUserManagementService.getAllAccount();
   }
 
   @DeleteMapping("/delete/{userId:^[0-9]*$}")
-  @Validated
   public ResponseEntity<GeneralResponse<Object>> deleteAccount(
-      @PathVariable(name = "userId") @NotBlank @Pattern(message = "Invalid param", regexp = "^[0-9]*$") String userId) {
-    return adminManageUserService.deleteAccount(userId);
+      @PathVariable(name = "userId") String userId) {
+    return adminUserManagementService.deleteAccount(userId);
   }
 
   @PutMapping("/update/{userId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> updateAccount(
-      @PathVariable(name = "userId") @NotBlank @Pattern(message = "Invalid param", regexp = "^[0-9]*$") String userId,
+      @PathVariable(name = "userId") String userId,
       @Valid @RequestBody UpdateAccountRequest updateAccountRequest) {
-    return adminManageUserService.updateAccount(userId, updateAccountRequest);
+    return adminUserManagementService.updateAccount(userId, updateAccountRequest);
   }
 }

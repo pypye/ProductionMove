@@ -1,14 +1,14 @@
-package com.example.productmoveapi.service;
+package com.example.productmoveapi.service.admin;
 
-import com.example.productmoveapi.dto.request.CreateAccountRequest;
-import com.example.productmoveapi.dto.request.UpdateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.CreateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.UpdateAccountRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import org.springframework.http.ResponseEntity;
 
 /**
  * @author Binh Nguyen Thai at 17:05 on 10/12/2022
  */
-public interface AdminManageUserService {
+public interface AdminUserManagementService {
 
   ResponseEntity<GeneralResponse<Object>> signupAccount(CreateAccountRequest createAccountRequest);
 

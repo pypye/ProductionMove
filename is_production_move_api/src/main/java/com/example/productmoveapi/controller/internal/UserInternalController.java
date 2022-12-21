@@ -1,6 +1,6 @@
 package com.example.productmoveapi.controller.internal;
 
-import com.example.productmoveapi.dto.request.ChangePasswordRequest;
+import com.example.productmoveapi.dto.request.user_request.ChangePasswordRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.UserInternalService;
 import javax.validation.Valid;

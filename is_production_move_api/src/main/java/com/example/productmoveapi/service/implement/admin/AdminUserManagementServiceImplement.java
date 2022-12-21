@@ -1,7 +1,7 @@
 package com.example.productmoveapi.service.implement.admin;
 
-import com.example.productmoveapi.dto.request.CreateAccountRequest;
-import com.example.productmoveapi.dto.request.UpdateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.CreateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.UpdateAccountRequest;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.RoleRepository;
 import com.example.productmoveapi.repository.entity.ApplicationUser;
@@ -9,7 +9,7 @@ import com.example.productmoveapi.repository.entity.Role;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
-import com.example.productmoveapi.service.AdminManageUserService;
+import com.example.productmoveapi.service.admin.AdminUserManagementService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class AdminManageUserServiceImplement implements AdminManageUserService {
+public class AdminUserManagementServiceImplement implements AdminUserManagementService {
 
   private final ApplicationUserRepository applicationUserRepository;
 
@@ -32,7 +32,7 @@ public class AdminManageUserServiceImplement implements AdminManageUserService {
   private final RoleRepository roleRepository;
 
   @Autowired
-  public AdminManageUserServiceImplement(
+  public AdminUserManagementServiceImplement(
       ApplicationUserRepository applicationUserRepository,
       BCryptPasswordEncoder bCryptPasswordEncoder,
       RoleRepository roleRepository) {
@@ -104,8 +104,8 @@ public class AdminManageUserServiceImplement implements AdminManageUserService {
       }
     }
 
-    if (!applicationUser.getCompanyName().equals(updateAccountRequest.getCompanyName())){
-      if (applicationUserRepository.findByCompanyName(updateAccountRequest.getCompanyName()) != null){
+    if (!applicationUser.getCompanyName().equals(updateAccountRequest.getCompanyName())) {
+      if (applicationUserRepository.findByCompanyName(updateAccountRequest.getCompanyName()) != null) {
         return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_COMPANY_NAME);
       }
     }

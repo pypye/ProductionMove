@@ -1,14 +1,14 @@
-package com.example.productmoveapi.dto.request;
+package com.example.productmoveapi.dto.request.user_request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import lombok.Data;
 
 /**
- * @author Binh Nguyen Thai at 10:27 on 05/12/2022
+ * @author Binh Nguyen Thai at 10:26 on 05/12/2022
  */
 @Data
-public class UpdateAccountRequest {
+public class CreateAccountRequest {
 
   @NotBlank
   @Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{7,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
@@ -17,6 +17,10 @@ public class UpdateAccountRequest {
   @NotBlank
   @Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
   private String password;
+
+  @NotBlank
+  @Pattern(message = "Invalid confirmed password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
+  private String retypePassword;
 
   @NotBlank
   @Pattern(message = "Invalid email", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")

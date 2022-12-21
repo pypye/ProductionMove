@@ -1,4 +1,4 @@
-package com.example.productmoveapi.dto.request;
+package com.example.productmoveapi.dto.request.user_request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
