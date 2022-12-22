@@ -1,4 +1,4 @@
-package com.example.productmoveapi.dto.request;
+package com.example.productmoveapi.dto.request.user_request;
 
 /**
  * @author Binh Nguyen Thai at 23:02 on 28/11/2022
@@ -12,11 +12,10 @@ import lombok.Data;
 public class LoginRequest {
 
   @NotBlank
-  //@Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
+  @Pattern(message = "Invalid username", regexp = "^[a-zA-Z0-9]*$")
   private String username;
 
-
   @NotBlank
-  //@Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,20}$")
+  @Pattern(message = "Invalid password", regexp = "^[a-zA-Z0-9]*$")
   private String password;
 }

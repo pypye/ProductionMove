@@ -21,7 +21,7 @@ public class AuthEntryPointJWT implements AuthenticationEntryPoint {
       HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
       org.springframework.security.core.AuthenticationException e)
       throws IOException {
-    logger.error("Unauthorized error: {}", e.getMessage());
+//    logger.error("Unauthorized error: {}", e.getMessage());
     httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
   }
 }

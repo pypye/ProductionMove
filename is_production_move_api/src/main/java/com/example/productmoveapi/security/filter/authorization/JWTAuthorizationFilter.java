@@ -50,7 +50,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     } catch (Exception e) {
-      logger.error("Cannot set user authentication: {}", e.getMessage());
+//      logger.error("Cannot set user authentication: {}", e.getMessage());
     }
     response.setContentType("application/xml; charset=utf-8");
     chain.doFilter(request, response);

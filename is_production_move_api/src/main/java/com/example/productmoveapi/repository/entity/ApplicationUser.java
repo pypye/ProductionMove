@@ -1,11 +1,14 @@
 package com.example.productmoveapi.repository.entity;
 
-import com.example.productmoveapi.dto.request.CreateAccountRequest;
+import com.example.productmoveapi.dto.request.user_request.CreateAccountRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,10 +42,26 @@ public class ApplicationUser extends BaseEntity {
   @JoinColumn(name = "role_id")
   private Role role;
 
+  @Column(name = "company_name", nullable = false, unique = true)
+  private String companyName;
+
+  @Column(name = "address", nullable = false)
+  private String address;
+
+  @Column(name = "phone", nullable = false)
+  private String phone;
+
+  @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
+  @JsonIgnore
+  private Collection<Operation> operations;
+
   public void setCreateAccountRequest(CreateAccountRequest createAccountRequest, Role role) {
     this.username = createAccountRequest.getUsername();
     this.password = createAccountRequest.getPassword();
     this.email = createAccountRequest.getEmail();
     this.role = role;
+    this.companyName = createAccountRequest.getCompanyName();
+    this.address = createAccountRequest.getAddress();
+    this.phone = createAccountRequest.getPhone();
   }
 }

@@ -1,13 +1,13 @@
-package com.example.productmoveapi.service.implement;
+package com.example.productmoveapi.service.general.implement;
 
-import com.example.productmoveapi.dto.request.ChangePasswordRequest;
+import com.example.productmoveapi.dto.request.user_request.ChangePasswordRequest;
 import com.example.productmoveapi.dto.response.UserInfoResponse;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.entity.ApplicationUser;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
-import com.example.productmoveapi.service.UserInternalService;
+import com.example.productmoveapi.service.general.UserInternalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +44,8 @@ public class UserInternalServiceImplement implements UserInternalService {
     ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
     UserInfoResponse userInfoResponse = new UserInfoResponse(applicationUser.getId(),
         applicationUser.getUsername(), applicationUser.getEmail(),
-        applicationUser.getRole().getRole());
+        applicationUser.getRole().getRole(), applicationUser.getCompanyName(), applicationUser.getAddress(),
+        applicationUser.getPhone());
     return ResponseFactory.success(userInfoResponse);
   }
 

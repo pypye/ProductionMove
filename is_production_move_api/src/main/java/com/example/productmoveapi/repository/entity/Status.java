@@ -10,18 +10,19 @@ import javax.persistence.Table;
 import lombok.Getter;
 
 /**
- * @author Binh Nguyen Thai at 18:19 on 06/12/2022
+ * @author Binh Nguyen Thai at 11:40 on 21/12/2022
  */
 @Entity
 @Getter
-@Table(name = "role")
-public class Role extends BaseEntity {
+@Table(name = "status")
+public class Status extends BaseEntity {
 
-  private static final long serialVersionUID = 6015628554509474412L;
+  private static final long serialVersionUID = 4032128372631913871L;
+
   @Column(name = "name", nullable = false, unique = true)
-  private String role;
+  private String status;
 
-  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
   @JsonIgnore
-  private Collection<ApplicationUser> applicationUser;
+  private Collection<Operation> operations;
 }

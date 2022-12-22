@@ -1,6 +1,6 @@
-package com.example.productmoveapi.service;
+package com.example.productmoveapi.service.general;
 
-import com.example.productmoveapi.dto.request.ChangePasswordRequest;
+import com.example.productmoveapi.dto.request.user_request.ChangePasswordRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import org.springframework.http.ResponseEntity;
 
