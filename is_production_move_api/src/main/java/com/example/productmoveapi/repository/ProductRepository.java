@@ -1,7 +1,6 @@
 package com.example.productmoveapi.repository;
 
 import com.example.productmoveapi.repository.entity.Product;
-import com.example.productmoveapi.repository.entity.Status;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,5 +13,5 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
   Product findByProductCode(String productCode);
 
-  List<Product> findAllByStatus(String status);
+  List<Product> findAllByLocationAndStatus(String id, String status);
 }

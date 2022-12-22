@@ -1,8 +1,7 @@
 package com.example.productmoveapi.service.agency.implement;
 
+import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.ProductRepository;
-import com.example.productmoveapi.repository.StatusRepository;
-import com.example.productmoveapi.repository.entity.Status;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
@@ -19,17 +18,17 @@ import org.springframework.stereotype.Service;
 public class AgencyProductManagementServiceImplement implements AgencyProductManagementService {
 
   private final ProductRepository productRepository;
-  private final StatusRepository statusRepository;
+  private final ApplicationUserRepository applicationUserRepository;
 
   @Autowired
   public AgencyProductManagementServiceImplement(
-      ProductRepository productRepository, StatusRepository statusRepository) {
+      ProductRepository productRepository, ApplicationUserRepository applicationUserRepository) {
     this.productRepository = productRepository;
-    this.statusRepository = statusRepository;
+    this.applicationUserRepository = applicationUserRepository;
   }
 
   @Override
-  public ResponseEntity<GeneralResponse<Object>> getProductFactory() {
-    return ResponseFactory.success(productRepository.findAllByStatus("1"));
+  public ResponseEntity<GeneralResponse<Object>> getProductFactory(String factoryId) {
+    return ResponseFactory.success(productRepository.findAllByLocationAndStatus(factoryId, "1"));
   }
 }

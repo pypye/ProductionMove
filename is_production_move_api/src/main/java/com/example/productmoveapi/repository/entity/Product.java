@@ -46,6 +46,9 @@ public class Product extends BaseEntity {
   @Column(name = "status_id")
   private String status;
 
+  @Column(name = "location_id")
+  private String location;
+
   @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
   @JsonIgnore
   private Collection<Operation> operations;

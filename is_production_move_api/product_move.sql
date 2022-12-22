@@ -120,6 +120,7 @@ CREATE TABLE `operation` (
   `product_id` bigint NOT NULL,
   `status_id` bigint NOT NULL,
   `company_id` bigint NOT NULL,
+  `destination_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `operation1` (`product_id`),
   KEY `operation2` (`status_id`),
@@ -127,7 +128,7 @@ CREATE TABLE `operation` (
   CONSTRAINT `operation1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `operation2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `operation3` FOREIGN KEY (`company_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +137,7 @@ CREATE TABLE `operation` (
 
 LOCK TABLES `operation` WRITE;
 /*!40000 ALTER TABLE `operation` DISABLE KEYS */;
-INSERT INTO `operation` VALUES (1,'2022-12-22 19:10:18','2022-12-22 19:10:18',1,1,2),(2,'2022-12-22 19:11:53','2022-12-22 19:11:53',2,1,6);
+INSERT INTO `operation` VALUES (1,'2022-12-22 19:10:18','2022-12-22 19:10:18',1,1,2,NULL),(2,'2022-12-22 19:11:53','2022-12-22 19:11:53',2,1,6,NULL),(3,'2022-12-22 21:31:56','2022-12-22 21:31:56',3,1,6,NULL),(4,'2022-12-22 21:57:17','2022-12-22 21:57:17',4,1,6,NULL),(5,'2022-12-22 21:59:15','2022-12-22 21:59:15',5,1,7,NULL);
 /*!40000 ALTER TABLE `operation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,12 +159,13 @@ CREATE TABLE `product` (
   `description` text,
   `status_id` bigint NOT NULL,
   `customer_id` bigint DEFAULT NULL,
+  `location_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `product_category_fk` (`category_id`),
   KEY `product_customer_fk` (`customer_id`),
   CONSTRAINT `product_category_fk` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `product_customer_fk` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +174,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'2022-12-22 19:10:18','2022-12-22 19:10:18','b1584ae448f347c685611d986e972fdc','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',1,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL),(2,'2022-12-22 19:11:53','2022-12-22 19:11:53','e9c36a580be6440193ec3a0fd959a869','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',1,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL);
+INSERT INTO `product` VALUES (1,'2022-12-22 19:10:18','2022-12-22 19:10:18','b1584ae448f347c685611d986e972fdc','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',1,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL,2),(2,'2022-12-22 19:11:53','2022-12-22 19:11:53','e9c36a580be6440193ec3a0fd959a869','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',1,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL,6),(3,'2022-12-22 21:31:56','2022-12-22 21:31:56','b7ef6c9573e44940939cd651e92f5884','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',3,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL,6),(4,'2022-12-22 21:57:17','2022-12-22 21:57:17','483b8b0881274fbb9431e565e608d11a','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',3,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL,6),(5,'2022-12-22 21:59:15','2022-12-22 21:59:15','ba80e6dcd8394e65b7ffc7723760b046','Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10',5,'9.590.000','{\'CPU:\': \'Pentium\', \'RAM:\': \'4 GB\', \'Ổ cứng:\': \'512 GB SSD NVMe PCIe\', \'Màn hình:\': \'14\', \'Card màn hình:\': \'Card tích hợp\', \'Cổng kết nối:\': \'2 x USB 3.2\', \'Hệ điều hành:\': \'Windows 10 Home SL\', \'Thiết kế:\': \'Vỏ nhựa\', \'Kích thước, trọng lượng:\': \'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg\', \'Thời điểm ra mắt:\': \'2020\'}',1,NULL,7);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-22 21:01:28
+-- Dump completed on 2022-12-22 22:16:06
