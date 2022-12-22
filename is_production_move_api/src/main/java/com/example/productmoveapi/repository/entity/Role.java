@@ -18,7 +18,7 @@ import lombok.Getter;
 public class Role extends BaseEntity {
 
   private static final long serialVersionUID = 6015628554509474412L;
-  @Column(name = "name")
+  @Column(name = "name", nullable = false, unique = true)
   private String role;
 
   @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)

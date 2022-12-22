@@ -18,7 +18,8 @@ import lombok.Getter;
 public class Status extends BaseEntity {
 
   private static final long serialVersionUID = 4032128372631913871L;
-  @Column(name = "name")
+
+  @Column(name = "name", nullable = false, unique = true)
   private String status;
 
   @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
