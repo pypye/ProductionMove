@@ -128,7 +128,7 @@ CREATE TABLE `operation` (
   CONSTRAINT `operation1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `operation2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `operation3` FOREIGN KEY (`company_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +137,7 @@ CREATE TABLE `operation` (
 
 LOCK TABLES `operation` WRITE;
 /*!40000 ALTER TABLE `operation` DISABLE KEYS */;
-INSERT INTO `operation` VALUES (1,'2022-12-22 19:10:18','2022-12-22 19:10:18',1,1,2,NULL),(2,'2022-12-22 19:11:53','2022-12-22 19:11:53',2,1,6,NULL),(3,'2022-12-22 21:31:56','2022-12-22 21:31:56',3,1,6,NULL),(4,'2022-12-22 21:57:17','2022-12-22 21:57:17',4,1,6,NULL),(5,'2022-12-22 21:59:15','2022-12-22 21:59:15',5,1,7,NULL);
+INSERT INTO `operation` VALUES (1,'2022-12-22 19:10:18','2022-12-22 19:10:18',1,1,2,NULL),(2,'2022-12-22 19:11:53','2022-12-22 19:11:53',2,1,6,NULL),(3,'2022-12-22 21:31:56','2022-12-22 21:31:56',3,1,6,NULL),(4,'2022-12-22 21:57:17','2022-12-22 21:57:17',4,1,6,NULL),(5,'2022-12-22 21:59:15','2022-12-22 21:59:15',5,1,7,NULL),(6,'2022-12-23 01:00:53','2022-12-23 01:00:53',2,13,5,6),(7,'2022-12-23 01:00:53','2022-12-23 01:00:53',3,13,5,6),(8,'2022-12-23 01:00:53','2022-12-23 01:00:53',4,13,5,6);
 /*!40000 ALTER TABLE `operation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +219,7 @@ CREATE TABLE `status` (
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +228,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'2022-12-20 16:46:32','2022-12-20 16:46:32','Mới sản xuất'),(2,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đưa về đại lý'),(3,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đã bán'),(4,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi, cần bảo hành'),(5,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đang sửa chữa bảo hành'),(6,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đã bảo hành xong'),(7,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đã trả lại bảo hành cho khách hàng'),(8,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi, cần trả về nhà máy'),(9,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi, đã đưa về cơ sở sản xuất'),(10,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi cần triệu hồi'),(11,'2022-12-20 17:43:33','2022-12-20 17:43:33','Hết thời gian bảo hành'),(12,'2022-12-20 17:43:33','2022-12-20 17:43:33','Trả lại cơ sở sản xuất');
+INSERT INTO `status` VALUES (1,'2022-12-20 16:46:32','2022-12-20 16:46:32','Mới sản xuất'),(2,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đưa về đại lý'),(3,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đã bán'),(4,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi, cần bảo hành'),(5,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đang sửa chữa bảo hành'),(6,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đã bảo hành xong'),(7,'2022-12-20 17:43:33','2022-12-20 17:43:33','Đã trả lại bảo hành cho khách hàng'),(8,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi, cần trả về nhà máy'),(9,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi, đã đưa về cơ sở sản xuất'),(10,'2022-12-20 17:43:33','2022-12-20 17:43:33','Lỗi cần triệu hồi'),(11,'2022-12-20 17:43:33','2022-12-20 17:43:33','Hết thời gian bảo hành'),(12,'2022-12-20 17:43:33','2022-12-20 17:43:33','Trả lại cơ sở sản xuất'),(13,'2022-12-23 00:12:54','2022-12-23 00:12:54','Yêu cầu nhập từ đại lý');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +241,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-22 22:16:06
+-- Dump completed on 2022-12-23  1:02:58

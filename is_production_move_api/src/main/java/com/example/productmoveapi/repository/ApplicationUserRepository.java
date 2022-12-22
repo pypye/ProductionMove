@@ -1,6 +1,8 @@
 package com.example.productmoveapi.repository;
 
 import com.example.productmoveapi.repository.entity.ApplicationUser;
+import com.example.productmoveapi.repository.entity.Role;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,6 @@ public interface ApplicationUserRepository extends JpaRepository<ApplicationUser
   ApplicationUser findByEmail(String email);
 
   ApplicationUser findByCompanyName(String company_name);
+
+  List<ApplicationUser> findAllByRole(Role role);
 }

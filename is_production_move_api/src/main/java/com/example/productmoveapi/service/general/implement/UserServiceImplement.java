@@ -97,7 +97,8 @@ public class UserServiceImplement implements UserService {
         jwt,
         userDetailsImplement.getId(),
         userDetailsImplement.getUsername(),
-        userDetailsImplement.getEmail()
+        userDetailsImplement.getEmail(),
+        userDetailsImplement.getAuthorities().iterator().next().toString()
     );
     return ResponseFactory.success(loginResponse, LoginResponse.class);
   }
