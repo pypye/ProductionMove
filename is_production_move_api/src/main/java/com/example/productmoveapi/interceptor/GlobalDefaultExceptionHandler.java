@@ -28,7 +28,7 @@ public class GlobalDefaultExceptionHandler {
   @ExceptionHandler(value = Exception.class)
   @ResponseBody
   public ResponseEntity<GeneralResponse<Object>> defaultExceptionHandler(Exception e) {
-//    log.error(e.getMessage(), e);
+    log.error(e.getMessage(), e);
     return ResponseFactory.error(HttpStatus.INTERNAL_SERVER_ERROR,
         ResponseStatusEnum.UNKNOWN_ERROR);
   }
@@ -36,7 +36,7 @@ public class GlobalDefaultExceptionHandler {
   @ExceptionHandler(value = MissingServletRequestParameterException.class)
   @ResponseBody
   public ResponseEntity<GeneralResponse<Object>> missingRequestParamHandler(Exception e) {
-//    log.error(e.getMessage(), e);
+    log.error(e.getMessage(), e);
     return ResponseFactory.error(HttpStatus.INTERNAL_SERVER_ERROR,
         ResponseStatusEnum.NOT_ENOUGH_PARAM);
   }
@@ -45,7 +45,7 @@ public class GlobalDefaultExceptionHandler {
   @ResponseBody
   public ResponseEntity<GeneralResponse<Object>> businessExceptionHandler(
       CustomBussinessLogicException e) {
-//    log.error(e.getMessage(), e);
+    log.error(e.getMessage(), e);
     return ResponseFactory.error(HttpStatus.INTERNAL_SERVER_ERROR, e.getResponseStatusEnum());
   }
 

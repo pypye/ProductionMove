@@ -23,7 +23,7 @@ import lombok.Setter;
 public class Customer extends BaseEntity {
 
   private static final long serialVersionUID = -1276290940652999391L;
-  @Column(name = "name", nullable = false, unique = true)
+  @Column(name = "name", nullable = false)
   private String name;
 
   @Column(name = "address", nullable = false)

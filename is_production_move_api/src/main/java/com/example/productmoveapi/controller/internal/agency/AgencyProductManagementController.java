@@ -1,6 +1,7 @@
 package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
+import com.example.productmoveapi.dto.request.product_request.SaleProductRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
 import javax.validation.Valid;
@@ -46,9 +47,9 @@ public class AgencyProductManagementController {
     return agencyProductManagementService.addProductFromFactory(factoryId, addProductListRequest);
   }
 
-//  @PostMapping("/add")
-//  public ResponseEntity<GeneralResponse<Object>> addProduct(
-//      @Valid @RequestBody AddProductRequest addProductRequest) {
-//    return factoryProductManagementService.addProduct(addProductRequest);
-//  }
+  @PostMapping("/customer")
+  public ResponseEntity<GeneralResponse<Object>> saleForCustomer(
+      @Valid @RequestBody SaleProductRequest saleProductRequest) {
+    return agencyProductManagementService.saleForCustomer(saleProductRequest);
+  }
 }
