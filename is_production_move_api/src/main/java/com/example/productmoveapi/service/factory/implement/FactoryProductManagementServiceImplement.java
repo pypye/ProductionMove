@@ -72,7 +72,8 @@ public class FactoryProductManagementServiceImplement implements FactoryProductM
 
     String uuid;
     do {
-      uuid = UUID.randomUUID().toString().replace("-", "");
+      uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+      uuid = "PM" + uuid;
     } while (productRepository.findByProductCode(uuid) != null);
     Product product = new Product();
     product.setProductCode(uuid);

@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
@@ -58,7 +60,16 @@ public class ProductInternalServiceImplement implements ProductInternalService {
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> getAllProduct() {
-    List<Product> products = productRepository.findAll();
+    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+        .getPrincipal();
+    List<Product> products;
+    if (userDetails.getAuthorities().iterator().next().toString().equals("admin")) {
+      products = productRepository.findAll();
+    } else {
+      String username = userDetails.getUsername();
+      products = productRepository.findAllByLocation(applicationUserRepository.findByUsername(username));
+    }
+
     return ResponseFactory.success(products);
   }
 }
