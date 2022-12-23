@@ -1,0 +1,16 @@
+.forgot-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.forgot-container a.login-back{
+    color: #000;
+    font-size: 1rem;
+    text-decoration: underline;
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
+}

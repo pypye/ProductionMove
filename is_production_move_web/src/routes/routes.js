@@ -1,33 +1,32 @@
-import { Navigate, useRoutes, } from 'react-router-dom';
-import Login from '../pages/Login/Login';
+import { useRoutes } from 'react-router-dom';
+import Login from '../pages/general/Login/Login';
 import Layout from '../layouts/Layout';
-import { ForgotPassword, Logout, ResetPassword } from '../pages';
+import { ForgotPassword, Logout, ResetPassword, UserManagement } from '../pages';
+import { UseAuth } from '../utils';
+import { LoginLayout } from '../layouts';
 
-export default function Router(props) {
+export default function Router() {
     const routes = useRoutes([
         {
-            path: '/dashboard',
-            element: props.auth ? <Layout /> : <Navigate to="/login" />,
+            element: <UseAuth.Auth element={<Layout />} roles={['admin']} />,
+            children: [
+                { path: '/', element: <div></div> },
+                { path: '/logout', element: <Logout /> },
+                { path: '/management/user/list', element: <UserManagement.UserList /> },
+                { path: '/management/user/add', element: <UserManagement.UserAdd />},
+            ]
         },
         {
-            path: '/login',
-            element: props.auth ? <Navigate to="/dashboard" /> : <Login />,
+            element: <UseAuth.Auth element={<LoginLayout />} roles={['all']} />,
+            children: [
+                { path: '/login', element: <Login /> },
+                { path: '/forgot-password', element: <ForgotPassword /> },
+                { path: '/reset-password', element: <ResetPassword /> },
+            ]
         },
         {
-            path: '/logout',
-            element: <Logout />,
-        },
-        {
-            path: '/forgot-password',
-            element: props.auth ? <Navigate to="/dashboard" /> : <ForgotPassword />,
-        },
-        {
-            path: '/reset-password',
-            element: props.auth ? <Navigate to="/dashboard" /> : <ResetPassword />,
-        },
-        {
-            path: '/',
-            element: props.auth ? <Navigate to="/dashboard" /> : <Navigate to="/login" />,
+            path: '*',
+            element: <UseAuth.Auth element={<div>Not Found</div>} roles={['all']} />,
         }
     ]);
 

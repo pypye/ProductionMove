@@ -5,7 +5,6 @@
     flex-direction: column;
     row-gap: 1rem;
     padding: 1rem 0;
-    position: relative;
 }
 
 .table-container .title {
@@ -17,7 +16,7 @@
 .table-wrapper {
     overflow-x: auto;
     overflow-y: auto;
-    margin-bottom: 2rem;
+    max-height: calc(100vh - 30rem);
 }
 
 .table {
@@ -55,9 +54,7 @@ tbody tr:hover {
 
 .page-pagination {
     background-color: rgb(255, 255, 255);
-    position: absolute;
-    right: 1rem;
-    bottom: 1rem;
+    justify-content: end;
     display: flex;
     flex-direction: row;
     align-items: center;

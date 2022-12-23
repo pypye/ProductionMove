@@ -1,8 +1,9 @@
-import getAuth from "./getAuth";
+import { UseAuth } from "./UseAuth";
 
-async function fetch(urls, method, body) {
+export async function UseFetch(urls, method, body) {
     const baseUrl = "http://localhost:3001";
-    const token = getAuth() === null ? null : getAuth().token;
+    const token = UseAuth.get()
+
     const response = await window.fetch(baseUrl + urls, {
         method: method,
         headers: {
@@ -10,7 +11,6 @@ async function fetch(urls, method, body) {
             'Authorization': `Bearer ${token}`
         },
         body: body === null ? null : JSON.stringify(body)
-    }
-    )
+    })
     return response.json();
-} export default fetch
+}

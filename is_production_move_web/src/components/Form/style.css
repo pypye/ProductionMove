@@ -8,3 +8,45 @@
     box-shadow: rgb(145, 158, 171, 0.2) 0px 0px 2px 0px, rgb(145, 158, 171, 0.2) 0px 12px 24px -4px;
     border-radius: 1rem;
 }
+
+.form-split{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1.25rem;
+}
+
+.form-title {
+    margin: 0;
+}
+.form-notify{
+    display: block;
+    color: #000;
+    background-color: rgb(202, 253, 245);
+    border-radius: 0.5rem;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+}
+
+.form-error{
+    display: block;
+    color: red;
+    background-color: rgb(255, 233, 213);
+    border-radius: 0.5rem;
+    line-height: 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+}
+.form-link{
+    color: #000;
+    font-size: 1rem;
+    text-decoration: underline;
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
+}

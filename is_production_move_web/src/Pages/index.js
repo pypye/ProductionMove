@@ -1,6 +1,7 @@
-import Login from "./Login/Login";
-import Logout from "./Logout/Logout";
-import ForgotPassword from "./ForgotPassword/ForgotPassword";
-import ResetPassword from "./ResetPassword/ResetPassword";
+import Login from "./general/Login/Login";
+import Logout from "./general/Logout/Logout";
+import ForgotPassword from "./general/ForgotPassword/ForgotPassword";
+import ResetPassword from "./general/ResetPassword/ResetPassword";
+import { UserManagement } from "./admin/UserManagement";
 
-export { Login, Logout, ForgotPassword, ResetPassword };
+export { Login, Logout, ForgotPassword, ResetPassword, UserManagement };
