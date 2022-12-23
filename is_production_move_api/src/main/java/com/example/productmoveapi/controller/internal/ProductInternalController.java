@@ -31,13 +31,15 @@ public class ProductInternalController {
     return productInternalService.getAllCategory();
   }
 
-  @GetMapping("/account/{role:^[2-4]*$}")
-  public ResponseEntity<GeneralResponse<Object>> getAccountByRole(@PathVariable(name = "role") String role) {
-    return productInternalService.getAccountByRole(role);
-  }
-
   @GetMapping("/product/all")
   public ResponseEntity<GeneralResponse<Object>> getAllProduct() {
     return productInternalService.getAllProduct();
   }
+
+  @GetMapping("/product/{categoryId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> getAllProductByCategory(
+      @PathVariable(name = "categoryId") String categoryId) {
+    return productInternalService.getAllProductByCategory(categoryId);
+  }
+
 }
