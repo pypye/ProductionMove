@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { UseFetch } from "./UseFetch";
 
 function get() {
@@ -25,39 +25,36 @@ function Auth(props) {
     const [auth, setAuth] = React.useState(null)
 
     React.useEffect(() => {
-        UseFetch("/backend/user/info", "GET", null).then(data => {
-            if (data.status.code === "SUCCESS") {
-                console.log(data.data)
-                setAuth(data.data)
-                setLoading(false)
-            }
-        })
+        if (get()) {
+            UseFetch("/backend/user/info", "GET", null).then(data => {
+                if (data.status.code === "SUCCESS") {
+                    setAuth(data.data)
+                    setLoading(false)
+                }
+            })
+        } else {
+            setAuth(null)
+            setLoading(false)
+        }
     }, [])
+
+    if (loading) {
+        return <React.Fragment />
+    }
 
     if (props.roles.includes('all')) {
         if (auth && auth.type) {
             return <Navigate to="/" />
         } else {
-            return props.element
+            return React.cloneElement(props.element, auth)
         }
     }
 
-    return (
-        <>
-            {loading ? <div></div> :
-                (auth && auth.type && props.roles.includes(auth.type)) ? props.element : <Navigate to="/login" />
-            }
-        </>
-    )
-
-    if (auth && auth.type) {
-        if (auth.type.find(role => props.roles.includes(role))) {
-            return props.element
-        } else {
-            <Navigate to="/login" />
-        }
+    if (auth && auth.type && props.roles.includes(auth.type)) {
+        return React.cloneElement(props.element, auth)
+    } else {
+        return <Navigate to="/login" />
     }
-    return <Navigate to="/login" />
 }
 
 const UseAuth = {

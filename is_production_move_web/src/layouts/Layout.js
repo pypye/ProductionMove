@@ -1,22 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Icon } from '../components/Icon';
-import { UseFetch } from '../utils';
 import { Navigation } from './Navigation/Navigation';
 import './style.css'
 
 function Layout(props) {
-    const [userName, setUserName] = React.useState("");
-    const [userRole, setUserRole] = React.useState("");
-
-    React.useEffect(() => {
-        UseFetch('/backend/user/info', 'GET', null).then(data => {
-            if (data.status.code === "SUCCESS") {
-                setUserName(data.data.companyName);
-                setUserRole(data.data.type);
-            }
-        })
-    }, [])
 
     return (
         <div className="container">
@@ -26,8 +14,8 @@ function Layout(props) {
                     <div className='personal-info'>
                         <Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>
                         <div>
-                            <div><strong>{userName}</strong></div>
-                            <div>{userRole}</div>
+                            <div><strong>{props.companyName}</strong></div>
+                            <div>{props.type}</div>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Form } from "../../../components";
 import { useLocation } from 'react-router-dom';
 import { UseAuth, UseFetch, UseValidation } from '../../../utils';
-import { LoginLayout } from '../../../layouts';
 
 export default function Login() {
     const [loginUsername, setLoginUsername] = React.useState("");
@@ -27,7 +26,7 @@ export default function Login() {
     const onLogin = () => {
         UseFetch('/backend/auth/login', 'POST', loginInfo).then(data => {
             if (data.status.code === "SUCCESS") {
-                UseAuth.set(data.data)
+                UseAuth.set(data.data.token)
                 window.location.href = "/"
             } else if (data.status.code === "E-003") {
                 setError("Tên tài khoản hoặc mật khẩu không đúng")

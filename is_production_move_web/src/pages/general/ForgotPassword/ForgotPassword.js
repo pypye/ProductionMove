@@ -3,7 +3,6 @@ import React from 'react';
 import { Form } from "../../../components";
 import { useNavigate } from 'react-router-dom';
 import { UseFetch, UseValidation } from '../../../utils';
-import { LoginLayout } from '../../../layouts';
 
 function ForgotPassword() {
     const [forgotUsername, setForgotUsername] = React.useState('');

@@ -1,4 +1,4 @@
-import { Navigate, useRoutes, } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import Login from '../pages/general/Login/Login';
 import Layout from '../layouts/Layout';
 import { ForgotPassword, Logout, ResetPassword } from '../pages';
@@ -11,6 +11,7 @@ export default function Router() {
             element: <UseAuth.Auth element={<Layout />} roles={['admin']} />,
             children: [
                 { path: '/', element: <div></div> },
+                { path: '/logout', element: <Logout /> },
                 { path: '/management/user', element: <div>user</div> },
             ]
         },
@@ -18,7 +19,6 @@ export default function Router() {
             element: <UseAuth.Auth element={<LoginLayout />} roles={['all']} />,
             children: [
                 { path: '/login', element: <Login /> },
-                { path: '/logout', element: <Logout /> },
                 { path: '/forgot-password', element: <ForgotPassword /> },
                 { path: '/reset-password', element: <ResetPassword /> },
             ]

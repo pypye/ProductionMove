@@ -3,7 +3,6 @@ import React from 'react';
 import { Form } from "../../../components";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UseFetch, UseValidation } from '../../../utils';
-import { LoginLayout } from '../../../layouts';
 
 function ResetPassword(props) {
     const [resetToken, setResetToken] = React.useState('');
@@ -19,7 +18,6 @@ function ResetPassword(props) {
         if (!state) {
             navigate('/forgot-password');
         } else {
-            console.log(state)
             setEmail(state.email);
             window.history.replaceState({}, document.title)
         }
@@ -56,7 +54,6 @@ function ResetPassword(props) {
             <Form.Submit content='Cập nhật mật khẩu' onClick={onReset} validation={validReset} />
             <div>Bạn không nhận được mã? Gửi lại mã</div>
             <Form.Link content='Quay lại đăng nhập' href='/login' />
-
         </Form>
     )
 } export default ResetPassword
