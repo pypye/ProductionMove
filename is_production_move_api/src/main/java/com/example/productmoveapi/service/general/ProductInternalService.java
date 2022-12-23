@@ -10,11 +10,7 @@ public interface ProductInternalService {
 
   ResponseEntity<GeneralResponse<Object>> getAllCategory();
 
-  ResponseEntity<GeneralResponse<Object>> getAccountByRole(String role);
-
   ResponseEntity<GeneralResponse<Object>> getAllProduct();
-//
-//  ResponseEntity<GeneralResponse<Object>> deleteAccount(String id);
-//
-//  ResponseEntity<GeneralResponse<Object>> updateAccount(String id, UpdateAccountRequest updateAccountRequest);
+
+  ResponseEntity<GeneralResponse<Object>> getAllProductByCategory(String categoryId);
 }

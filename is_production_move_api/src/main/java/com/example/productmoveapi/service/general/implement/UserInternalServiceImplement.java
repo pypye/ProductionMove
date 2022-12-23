@@ -1,13 +1,17 @@
 package com.example.productmoveapi.service.general.implement;
 
 import com.example.productmoveapi.dto.request.user_request.ChangePasswordRequest;
+import com.example.productmoveapi.dto.response.AccountByRoleResponse;
 import com.example.productmoveapi.dto.response.UserInfoResponse;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
+import com.example.productmoveapi.repository.RoleRepository;
 import com.example.productmoveapi.repository.entity.ApplicationUser;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.service.general.UserInternalService;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,12 +32,16 @@ public class UserInternalServiceImplement implements UserInternalService {
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+  private final RoleRepository roleRepository;
+
   @Autowired
   public UserInternalServiceImplement(
       ApplicationUserRepository applicationUserRepository,
-      BCryptPasswordEncoder bCryptPasswordEncoder) {
+      BCryptPasswordEncoder bCryptPasswordEncoder,
+      RoleRepository roleRepository) {
     this.applicationUserRepository = applicationUserRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    this.roleRepository = roleRepository;
   }
 
   @Override
@@ -68,4 +76,15 @@ public class UserInternalServiceImplement implements UserInternalService {
     }
     return ResponseFactory.error(HttpStatus.valueOf(400), ResponseStatusEnum.WRONG_INFORMATION);
   }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getAccountByRole(String role) {
+
+    List<ApplicationUser> applicationUserList =
+        applicationUserRepository.findAllByRole(roleRepository.findRoleById(role));
+    return ResponseFactory.success(
+        applicationUserList.stream().map(dto -> new AccountByRoleResponse(dto.getId(), dto.getCompanyName())).collect(
+            Collectors.toList()));
+  }
+
 }

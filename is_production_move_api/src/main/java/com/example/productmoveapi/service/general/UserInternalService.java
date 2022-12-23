@@ -12,4 +12,6 @@ public interface UserInternalService {
   ResponseEntity<GeneralResponse<Object>> changePassword(ChangePasswordRequest changePasswordRequest);
 
   ResponseEntity<GeneralResponse<Object>> getInfo();
+
+  ResponseEntity<GeneralResponse<Object>> getAccountByRole(String role);
 }

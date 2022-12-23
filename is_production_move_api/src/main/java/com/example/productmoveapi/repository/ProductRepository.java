@@ -18,4 +18,10 @@ public interface ProductRepository extends JpaRepository<Product, String> {
   List<Product> findAllByLocationAndStatus(ApplicationUser id, Status status);
 
   List<Product> findAllByLocationAndIdIn(ApplicationUser location, List<String> id);
+
+  List<Product> findAllByLocation(ApplicationUser location);
+
+  List<Product> findAllByCategoryId(String id);
+
+  List<Product> findAllByCategoryIdAndLocation(String id, ApplicationUser location);
 }
