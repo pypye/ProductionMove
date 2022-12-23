@@ -66,19 +66,21 @@ public class FactoryProductManagementServiceImplement implements FactoryProductM
     if (category == null) {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
-    Product product = new Product();
+
     String uuid = "";
     do {
       uuid = UUID.randomUUID().toString().replace("-", "");
     } while (productRepository.findByProductCode(uuid) != null);
+    Product product = new Product();
     product.setProductCode(uuid);
     product.setProductName(addProductRequest.getProductName());
     product.setCategory(category);
     product.setPrice(addProductRequest.getPrice());
     product.setDescription(addProductRequest.getDescription());
     product.setStatus("1");
+    product.setLocation(currentUser().getId());
     productRepository.save(product);
-    Operation operation = new Operation(product, status("1"), currentUser());
+    Operation operation = new Operation(product, status("1"), currentUser(), null);
     operationRepository.save(operation);
     return ResponseFactory.success("add successfully");
   }
