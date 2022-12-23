@@ -9,7 +9,7 @@ import lombok.Data;
  */
 
 @Data
-public class AddProductFromFactoryRequest {
+public class AddProductListRequest {
 
   @NotEmpty
   private List<String> product_id;

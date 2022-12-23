@@ -1,6 +1,6 @@
 package com.example.productmoveapi.controller.internal.agency;
 
-import com.example.productmoveapi.dto.request.product_request.AddProductFromFactoryRequest;
+import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
 import javax.validation.Valid;
@@ -42,8 +42,8 @@ public class AgencyProductManagementController {
   @PostMapping("/factory/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(
       @PathVariable(name = "factoryId") String factoryId,
-      @Valid @RequestBody AddProductFromFactoryRequest addProductFromFactoryRequest) {
-    return agencyProductManagementService.addProductFromFactory(factoryId, addProductFromFactoryRequest);
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return agencyProductManagementService.addProductFromFactory(factoryId, addProductListRequest);
   }
 
 //  @PostMapping("/add")

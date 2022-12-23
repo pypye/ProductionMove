@@ -1,6 +1,5 @@
 package com.example.productmoveapi.repository.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,6 +34,10 @@ public class Operation extends BaseEntity {
   @JoinColumn(name = "company_id")
   private ApplicationUser applicationUser;
 
-  @Column(name = "destination_id")
-  private String destination_id;
+  @ManyToOne
+  @JoinColumn(name = "destination_id")
+  private ApplicationUser destination;
+
+//  @Column(name = "destination_id")
+//  private String destination;
 }

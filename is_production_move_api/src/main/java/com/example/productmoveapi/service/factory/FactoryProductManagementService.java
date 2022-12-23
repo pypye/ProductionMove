@@ -1,5 +1,6 @@
 package com.example.productmoveapi.service.factory;
 
+import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.dto.request.product_request.AddProductRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import org.springframework.http.ResponseEntity;
@@ -10,4 +11,8 @@ import org.springframework.http.ResponseEntity;
 public interface FactoryProductManagementService {
 
   ResponseEntity<GeneralResponse<Object>> addProduct(AddProductRequest addProductRequest);
+
+  ResponseEntity<GeneralResponse<Object>> getProductFromAgency();
+
+  ResponseEntity<GeneralResponse<Object>> addProductToAgency(AddProductListRequest addProductListRequest);
 }

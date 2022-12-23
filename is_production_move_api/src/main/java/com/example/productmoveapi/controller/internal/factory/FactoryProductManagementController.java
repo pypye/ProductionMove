@@ -1,5 +1,6 @@
 package com.example.productmoveapi.controller.internal.factory;
 
+import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.dto.request.product_request.AddProductRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.factory.FactoryProductManagementService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,4 +40,14 @@ public class FactoryProductManagementController {
     return factoryProductManagementService.addProduct(addProductRequest);
   }
 
+  @GetMapping("/agency")
+  public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
+    return factoryProductManagementService.getProductFromAgency();
+  }
+
+  @PostMapping("/agency")
+  public ResponseEntity<GeneralResponse<Object>> addProductToAgency(
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return factoryProductManagementService.addProductToAgency(addProductListRequest);
+  }
 }
