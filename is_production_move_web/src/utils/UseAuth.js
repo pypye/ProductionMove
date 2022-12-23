@@ -4,17 +4,12 @@ import { UseFetch } from "./UseFetch";
 
 function get() {
     const auth = localStorage.getItem('auth')
-    if (auth) {
-        return JSON.parse(auth)
-    }
-    return null
+    return auth ? JSON.parse(auth) : null
 }
-
 
 function set(info) {
     if (info) {
         localStorage.setItem("auth", JSON.stringify(info));
-
     } else {
         localStorage.removeItem("auth");
     }
@@ -29,6 +24,9 @@ function Auth(props) {
             UseFetch("/backend/user/info", "GET", null).then(data => {
                 if (data.status.code === "SUCCESS") {
                     setAuth(data.data)
+                    setLoading(false)
+                } else {
+                    setAuth(null)
                     setLoading(false)
                 }
             })

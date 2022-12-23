@@ -8,6 +8,14 @@ function Form(props) {
         </form>
     )
 }
+Form.Split = function FormSplit(props) {
+    return (
+        <div className="form-split">
+            {props.children}
+        </div>
+    )
+}
+
 Form.Title = function FormTitle(props) {
     return (
         <h2 className="form-title">{props.content}</h2>

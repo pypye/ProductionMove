@@ -2,7 +2,7 @@ import './style.css'
 import React from 'react'
 import { TableNavigation } from './TableNavigation/TableNavigation';
 import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
-import { Checkbox } from '..';
+import { Checkbox, Option } from '..';
 import { TableIcon } from './TableIcon/TableIcon';
 
 export default function Table(props) {
@@ -78,7 +78,7 @@ export default function Table(props) {
 
     return (
         <div className='table-container' style={{ width: props.width, height: props.height }}>
-            <h1 className='title'>Table</h1>
+            <h1 className='title'>{props.title}</h1>
             <TableNavigation />
             <div className='table-wrapper'>
                 <table className="table" ref={tableRef}>
@@ -121,13 +121,12 @@ export default function Table(props) {
                 </table>
             </div>
             <div className='page-pagination'>
-                Rows per page:
-                <select onChange={(e) => onChangePagePaginationSize(e)}>
-                    <option>10</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
-                </select>
+                <Option title='Rows per page:' onChange={(e) => onChangePagePaginationSize(e)}>
+                    <Option.Item value={10} />
+                    <Option.Item value={25} />
+                    <Option.Item value={50} />
+                    <Option.Item value={100} />
+                </Option>
                 {(tablePage.page - 1) * tablePage.pageSize + 1}-{Math.min((tablePage.page - 1) * tablePage.pageSize + tablePage.pageSize, props.data.length)} of {props.data.length}
                 <div onClick={() => onChangePagePagination(-1)}> <TableIcon.PaginationPrev /></div>
                 <div onClick={() => onChangePagePagination(1)}> <TableIcon.PaginationNext /></div>

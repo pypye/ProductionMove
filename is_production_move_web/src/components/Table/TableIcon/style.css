@@ -30,7 +30,7 @@
     font-weight: 600;
 }
 
-.icon-btn .icon-only {
+.icon-btn.icon-only {
     border-radius: 50%;
     column-gap: 0;
     padding: 0;

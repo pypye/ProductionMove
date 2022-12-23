@@ -39,7 +39,7 @@ export default function Input(props) {
     }
 
     return (
-        <div>
+        <div className="input-wrapper">
             <label className="label" disabled={props.disabled}>{props.label}</label>
             <input
                 className="input"

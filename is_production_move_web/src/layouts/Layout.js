@@ -1,5 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { Dropdown } from '../components';
 import { Icon } from '../components/Icon';
 import { Navigation } from './Navigation/Navigation';
 import './style.css'
@@ -25,7 +26,8 @@ function Layout(props) {
                         <Navigation.Item icon={<Icon.NotificationRaw />} label="[get_product]" />
                     </Navigation.Category>
                     <Navigation.Category label="Quản lý">
-                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[get_user]" link='/management/user' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[get_user]" link='/management/user/list' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[add_user]" link='/management/user/add' />
                     </Navigation.Category>
                 </Navigation>
             </nav>
@@ -33,7 +35,14 @@ function Layout(props) {
                 <header>
                     <Icon.Notification />
                     <Icon.People />
-                    <Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>
+                    <Dropdown>
+                        <Dropdown.Main item={<Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>} />
+                        <Dropdown.Menu>
+                            <Dropdown.Item label="Đổi mật khẩu" />
+                            <Dropdown.Item label="Đăng xuất" />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    
                 </header>
                 <section>
                     <Outlet />

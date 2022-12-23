@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import Login from '../pages/general/Login/Login';
 import Layout from '../layouts/Layout';
-import { ForgotPassword, Logout, ResetPassword } from '../pages';
+import { ForgotPassword, Logout, ResetPassword, UserManagement } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';
 
@@ -12,7 +12,8 @@ export default function Router() {
             children: [
                 { path: '/', element: <div></div> },
                 { path: '/logout', element: <Logout /> },
-                { path: '/management/user', element: <div>user</div> },
+                { path: '/management/user/list', element: <UserManagement.UserList /> },
+                { path: '/management/user/add', element: <UserManagement.UserAdd />},
             ]
         },
         {

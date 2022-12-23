@@ -9,6 +9,7 @@ function Icon(props, icon) {
         var label = btn.children[1].innerHTML;
         if (label === "") {
             btn_ref.current.classList.add("icon-only");
+            btn_ref.current.removeChild(btn.children[1]);
         }
     }, [])
 

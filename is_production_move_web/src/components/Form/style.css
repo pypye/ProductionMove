@@ -8,6 +8,14 @@
     box-shadow: rgb(145, 158, 171, 0.2) 0px 0px 2px 0px, rgb(145, 158, 171, 0.2) 0px 12px 24px -4px;
     border-radius: 1rem;
 }
+
+.form-split{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1.25rem;
+}
+
 .form-title {
     margin: 0;
 }
