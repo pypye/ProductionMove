@@ -1,7 +1,9 @@
-export function LoginLayout(props){
+import { Outlet } from "react-router-dom";
+
+export function LoginLayout(props) {
     return (
         <div className="login-container">
-            {props.children}
+            <Outlet />
         </div>
     )
 }

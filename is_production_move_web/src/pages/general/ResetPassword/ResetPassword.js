@@ -1,9 +1,9 @@
 import './style.css'
 import React from 'react';
-import { Form } from "../../components";
+import { Form } from "../../../components";
 import { useLocation, useNavigate } from 'react-router-dom';
-import { UseFetch, UseValidation } from '../../utils';
-import { LoginLayout } from '../../layouts';
+import { UseFetch, UseValidation } from '../../../utils';
+import { LoginLayout } from '../../../layouts';
 
 function ResetPassword(props) {
     const [resetToken, setResetToken] = React.useState('');
@@ -46,20 +46,17 @@ function ResetPassword(props) {
 
 
     return (
-        <LoginLayout>
-            <Form width='25rem'>
-                <Form.Title content='Gửi yêu cầu thành công' />
-                <Form.Notify enabled={true}>Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email <span style={{ color: 'green' }}>{email}</span>. Hãy nhập mã đó để xác minh email của bạn</Form.Notify>
-                <Form.Input label="Mã xác minh" type="text" reference={[resetToken, setResetToken, UseValidation.token]} />
-                <Form.Input label="Mật khẩu mới" type="password" reference={[resetPassword, setResetPassword, UseValidation.password]} />
-                <Form.Input label="Nhập lại mật khẩu mới" type="password" reference={[resetRetypePassword, setResetRetypePassword, validRetypePassword]} />
-                <Form.Error enable={error !== ""} content={error} />
-                <Form.Submit content='Cập nhật mật khẩu' onClick={onReset} validation={validReset} />
-                <div>Bạn không nhận được mã? Gửi lại mã</div>
-                <Form.Link content='Quay lại đăng nhập' href='/login' />
+        <Form width='25rem'>
+            <Form.Title content='Gửi yêu cầu thành công' />
+            <Form.Notify enabled={true}>Chúng tôi đã gửi mã xác minh gồm 6 chữ số tới email <span style={{ color: 'green' }}>{email}</span>. Hãy nhập mã đó để xác minh email của bạn</Form.Notify>
+            <Form.Input label="Mã xác minh" type="text" reference={[resetToken, setResetToken, UseValidation.token]} />
+            <Form.Input label="Mật khẩu mới" type="password" reference={[resetPassword, setResetPassword, UseValidation.password]} />
+            <Form.Input label="Nhập lại mật khẩu mới" type="password" reference={[resetRetypePassword, setResetRetypePassword, validRetypePassword]} />
+            <Form.Error enable={error !== ""} content={error} />
+            <Form.Submit content='Cập nhật mật khẩu' onClick={onReset} validation={validReset} />
+            <div>Bạn không nhận được mã? Gửi lại mã</div>
+            <Form.Link content='Quay lại đăng nhập' href='/login' />
 
-            </Form>
-        </LoginLayout >
-
+        </Form>
     )
 } export default ResetPassword

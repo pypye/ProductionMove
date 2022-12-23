@@ -1,4 +1,4 @@
-.login-container{
+.login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,27 +6,32 @@
     height: 100vh;
 }
 
-.container{
+.container {
     display: flex;
 }
-.container nav{
+
+.container nav {
     height: 100vh;
     width: 18rem;
-    border: 1px solid black;
+    border-right: 1px dashed rgba(0, 0, 0, 0.1);
     overflow: auto;
     box-sizing: border-box;
 }
-.container nav .info{
+
+.container nav .info {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 2.5rem;
     box-sizing: border-box;
     padding: 1rem 1rem;
 }
-.container nav .info span{
+
+.container nav .info span {
     font-weight: bolder;
+    margin-top: 1rem;
 }
-.personal-info{
+
+.personal-info {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,31 +41,32 @@
     border-radius: 0.5rem;
 }
 
-
-.container nav .navigation{
-    height: 100rem;
-    border: 1px solid black;
-    box-sizing: border-box;
-}
-
-.container main{
+.container main {
     flex: 1;
     height: 100vh;
-    border: 1px solid black;
     overflow: auto;
     box-sizing: border-box;
 }
 
-.container main header{
+.container main header {
     height: 5rem;
-    border: 1px solid black;
     box-sizing: border-box;
     position: sticky;
     top: 0;
 }
-.container main section{
+
+.container main section {
     height: 100rem;
-    border: 1px solid black;
     box-sizing: border-box;
     padding: 1rem 2.5rem;
+}
+
+.container main header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 0 2.5rem;
+    box-sizing: border-box;
 }

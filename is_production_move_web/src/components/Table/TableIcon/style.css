@@ -1,8 +1,8 @@
-.icon {
+.icon-btn .icon {
     width: 1.15rem;
     height: 1.15rem;
 }
-.icon path{
+.icon-btn .icon path{
     fill: rgb(33, 43, 54);
 }
 .icon-btn {
@@ -25,12 +25,12 @@
     background-color: rgba(99, 115, 129, 0.08);
 }
 
-.icon-label {
+.icon-btn .icon-label {
     font-size: 1rem;
     font-weight: 600;
 }
 
-.icon-only {
+.icon-btn .icon-only {
     border-radius: 50%;
     column-gap: 0;
     padding: 0;
