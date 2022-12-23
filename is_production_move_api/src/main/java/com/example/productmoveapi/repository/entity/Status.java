@@ -25,4 +25,8 @@ public class Status extends BaseEntity {
   @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
   @JsonIgnore
   private Collection<Operation> operations;
+
+  @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
+  @JsonIgnore
+  private Collection<Product> products;
 }

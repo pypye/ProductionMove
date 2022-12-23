@@ -1,6 +1,8 @@
 package com.example.productmoveapi.repository;
 
+import com.example.productmoveapi.repository.entity.ApplicationUser;
 import com.example.productmoveapi.repository.entity.Product;
+import com.example.productmoveapi.repository.entity.Status;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, String> {
 
   Product findByProductCode(String productCode);
 
-  List<Product> findAllByLocationAndStatus(String id, String status);
+  List<Product> findAllByLocationAndStatus(ApplicationUser id, Status status);
 
-  List<Product> findAllByLocationAndIdIn(String location, List<String> id);
+  List<Product> findAllByLocationAndIdIn(ApplicationUser location, List<String> id);
 }

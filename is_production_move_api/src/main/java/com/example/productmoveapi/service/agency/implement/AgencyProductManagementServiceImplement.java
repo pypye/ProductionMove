@@ -1,6 +1,6 @@
 package com.example.productmoveapi.service.agency.implement;
 
-import com.example.productmoveapi.dto.request.product_request.AddProductFromFactoryRequest;
+import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.OperationRepository;
 import com.example.productmoveapi.repository.ProductRepository;
@@ -56,17 +56,20 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> getProductFactory(String factoryId) {
-    return ResponseFactory.success(productRepository.findAllByLocationAndStatus(factoryId, "1"));
+    ApplicationUser factory = applicationUserRepository.findById(factoryId).orElse(null);
+    return ResponseFactory.success(productRepository.findAllByLocationAndStatus(factory, status("1")));
   }
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(String factoryId,
-      AddProductFromFactoryRequest addProductFromFactoryRequest) {
+      AddProductListRequest addProductListRequest) {
+    ApplicationUser fatory = applicationUserRepository.findById(factoryId).orElse(null);
     List<Product> productList =
-        productRepository.findAllByLocationAndIdIn(factoryId, addProductFromFactoryRequest.getProduct_id());
+        productRepository.findAllByLocationAndIdIn(fatory, addProductListRequest.getProduct_id());
+    productRepository.saveAll(productList.stream().peek(p -> p.setStatus(status("13"))).collect(Collectors.toList()));
     List<Operation> operationList = productList.stream().map(p -> new Operation(p, status("13"), currentUser(),
-        factoryId)).collect(Collectors.toList());
+        fatory)).collect(Collectors.toList());
     operationRepository.saveAll(operationList);
-    return ResponseFactory.success("request successfully!");
+    return ResponseFactory.success("add successfully!");
   }
 }

@@ -55,6 +55,14 @@ public class ApplicationUser extends BaseEntity {
   @JsonIgnore
   private Collection<Operation> operations;
 
+  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+  @JsonIgnore
+  private Collection<Product> products;
+
+  @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
+  @JsonIgnore
+  private Collection<Operation> operations_des;
+
   public void setCreateAccountRequest(CreateAccountRequest createAccountRequest, Role role) {
     this.username = createAccountRequest.getUsername();
     this.password = createAccountRequest.getPassword();
