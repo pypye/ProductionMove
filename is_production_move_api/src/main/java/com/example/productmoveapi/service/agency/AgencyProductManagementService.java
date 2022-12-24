@@ -18,4 +18,6 @@ public interface AgencyProductManagementService {
   ResponseEntity<GeneralResponse<Object>> saleForCustomer(SaleProductRequest saleProductRequest);
 
   ResponseEntity<GeneralResponse<Object>> getProductCustomer(String productCode);
+
+  ResponseEntity<GeneralResponse<Object>> addProductToWarranty(String productCode, String warrantyId);
 }

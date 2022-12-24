@@ -108,4 +108,20 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
     }
     return ResponseFactory.success(product);
   }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> addProductToWarranty(String productCode, String warrantyId) {
+    Product product = productRepository.findByProductCode(productCode);
+    ApplicationUser warranty = applicationUserRepository.findById(warrantyId).orElse(null);
+    if (product == null || product.getCustomer() == null || product.getStatus() == status("11") || warranty == null
+        || !warranty.getRole().getRole().equals("warranty")) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    product.setNumberOfWarranty(product.getNumberOfWarranty() + 1);
+    product.setStatus(status("4"));
+    productRepository.save(product);
+    operationRepository.save(new Operation(product, status("4"), currentUser(), warranty));
+    return ResponseFactory.success("add successfully");
+  }
+
 }
