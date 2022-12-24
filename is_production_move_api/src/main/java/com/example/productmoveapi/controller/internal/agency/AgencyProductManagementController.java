@@ -69,4 +69,15 @@ public class AgencyProductManagementController {
       @PathVariable(name = "productCode") String productCode, @PathVariable(name = "warrantyId") String warrantyId) {
     return agencyProductManagementService.addProductToWarranty(productCode, warrantyId);
   }
+
+  @GetMapping("/warranty")
+  public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
+    return agencyProductManagementService.getProductFromWarranty();
+  }
+
+  @PostMapping("/warranty")
+  public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return agencyProductManagementService.returnProductToCustomer(addProductListRequest);
+  }
 }

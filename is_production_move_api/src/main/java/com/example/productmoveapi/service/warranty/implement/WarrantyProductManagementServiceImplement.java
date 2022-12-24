@@ -96,7 +96,7 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(AddProductListRequest addProductListRequest) {
-    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndAndApplicationUser(
+    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndApplicationUser(
             addProductListRequest.getProduct_id(), status("5"), currentUser()).stream()
         .filter(opt -> opt.getProduct().getStatus() == status("5")).collect(Collectors.toList());
     Map<String, Operation> operationMap =

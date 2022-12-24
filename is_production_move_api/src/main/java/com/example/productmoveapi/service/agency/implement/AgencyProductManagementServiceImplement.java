@@ -86,9 +86,6 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
   @Override
   public ResponseEntity<GeneralResponse<Object>> getProductNotCustomer() {
     List<Product> product = productRepository.findAllByLocationAndStatus(currentUser(), status("2"));
-    if (product == null) {
-      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
-    }
     return ResponseFactory.success(product);
   }
 
@@ -123,7 +120,8 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
   public ResponseEntity<GeneralResponse<Object>> addProductToWarranty(String productCode, String warrantyId) {
     Product product = productRepository.findByProductCode(productCode);
     ApplicationUser warranty = applicationUserRepository.findById(warrantyId).orElse(null);
-    if (product == null || product.getCustomer() == null || product.getStatus() == status("11") || warranty == null
+    if (product == null || product.getCustomer() == null || product.getStatus() != status("3")
+        || product.getStatus() != status("7") || warranty == null
         || !warranty.getRole().getRole().equals("warranty")) {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
@@ -134,4 +132,19 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
     return ResponseFactory.success("add successfully");
   }
 
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
+    return ResponseFactory.success(productRepository.findAllByLocationAndStatus(currentUser(), status("6")));
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(AddProductListRequest addProductListRequest) {
+    List<Product> productList = productRepository.findAllByLocationAndIdInAndStatus(currentUser(),
+            addProductListRequest.getProduct_id(), status("6")).stream().peek(p -> p.setStatus(status("7")))
+        .collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("7"), p.getLocation(),
+        null)).collect(Collectors.toList()));
+    return ResponseFactory.success("return successfully");
+  }
 }
