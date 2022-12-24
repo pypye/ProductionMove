@@ -2,6 +2,7 @@ package com.example.productmoveapi.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,15 +44,9 @@ public class Product extends BaseEntity {
   @Column(name = "description")
   private String description;
 
-//  @Column(name = "status_id")
-//  private String status;
-
   @ManyToOne
   @JoinColumn(name = "status_id")
   private Status status;
-
-//  @Column(name = "location_id")
-//  private String location;
 
   @ManyToOne
   @JoinColumn(name = "location_id")
@@ -64,4 +59,13 @@ public class Product extends BaseEntity {
   @OneToOne
   @JoinColumn(name = "customer_id")
   private Customer customer;
+
+  @Column(name = "number_of_warranty", nullable = false)
+  private long numberOfWarranty;
+
+  @Column(name = "warrant_time", nullable = false)
+  private long warrantTime;
+
+  @Column(name = "sales_time")
+  private Date salesTime;
 }

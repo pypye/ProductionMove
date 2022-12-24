@@ -38,6 +38,4 @@ public class Operation extends BaseEntity {
   @JoinColumn(name = "destination_id")
   private ApplicationUser destination;
 
-//  @Column(name = "destination_id")
-//  private String destination;
 }
