@@ -83,6 +83,7 @@ public class FactoryProductManagementServiceImplement implements FactoryProductM
     product.setDescription(addProductRequest.getDescription());
     product.setStatus(status("1"));
     product.setLocation(currentUser());
+    product.setWarrantTime(Long.parseLong(addProductRequest.getWarrantTime()));
     productRepository.save(product);
     Operation operation = new Operation(product, status("1"), currentUser(), null);
     operationRepository.save(operation);

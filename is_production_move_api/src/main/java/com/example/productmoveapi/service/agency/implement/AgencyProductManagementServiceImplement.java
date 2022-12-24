@@ -16,6 +16,7 @@ import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
@@ -89,11 +90,22 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
     product.setStatus(status("3"));
+    product.setSalesTime(new Date());
     Customer customer = new Customer(saleProductRequest.getName(), saleProductRequest.getAddress(),
         saleProductRequest.getPhone(), product);
     customerRepository.save(customer);
     product.setCustomer(customer);
     productRepository.save(product);
+    operationRepository.save(new Operation(product, status("3"), currentUser(), null));
     return ResponseFactory.success("sale successfully!");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductCustomer(String productCode) {
+    Product product = productRepository.findByProductCode(productCode);
+    if (product == null || product.getCustomer() == null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    return ResponseFactory.success(product);
   }
 }

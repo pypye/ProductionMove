@@ -52,4 +52,10 @@ public class AgencyProductManagementController {
       @Valid @RequestBody SaleProductRequest saleProductRequest) {
     return agencyProductManagementService.saleForCustomer(saleProductRequest);
   }
+
+  @GetMapping("/{productCode:^[0-9A-Za-z]*$}")
+  public ResponseEntity<GeneralResponse<Object>> getProductCustomer(
+      @PathVariable(name = "productCode") String productCode) {
+    return agencyProductManagementService.getProductCustomer(productCode);
+  }
 }

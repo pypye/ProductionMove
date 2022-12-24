@@ -16,4 +16,6 @@ public interface AgencyProductManagementService {
       AddProductListRequest addProductListRequest);
 
   ResponseEntity<GeneralResponse<Object>> saleForCustomer(SaleProductRequest saleProductRequest);
+
+  ResponseEntity<GeneralResponse<Object>> getProductCustomer(String productCode);
 }

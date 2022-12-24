@@ -23,6 +23,11 @@ public class AddProductRequest {
   @Pattern(message = "Invalid price", regexp = "^[0-9.]*$")
   private String price;
 
+  @NotBlank
+  @Pattern(message = "Invalid warrant time", regexp = "^[0-9.]*$")
+  private String warrantTime;
+
+  @NotBlank
   private String description;
 
 }
