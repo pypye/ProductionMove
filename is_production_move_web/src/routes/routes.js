@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import Login from '../pages/general/Login/Login';
 import Layout from '../layouts/Layout';
-import { ForgotPassword, Logout, ResetPassword, UserManagement } from '../pages';
+import { ForgotPassword, Product, Logout, ResetPassword, User, Category } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';
 
@@ -12,8 +12,9 @@ export default function Router() {
             children: [
                 { path: '/', element: <div></div> },
                 { path: '/logout', element: <Logout /> },
-                { path: '/management/user/list', element: <UserManagement.UserList /> },
-                { path: '/management/user/add', element: <UserManagement.UserAdd />},
+                { path: '/category/list', element: <Category.CategoryList /> },
+                { path: '/product/list', element: <Product.ProductList /> },
+                { path: '/admin/user/list', element: <User.UserList /> },
             ]
         },
         {
@@ -26,7 +27,7 @@ export default function Router() {
         },
         {
             path: '*',
-            element: <UseAuth.Auth element={<div>Not Found</div>} roles={['all']} />,
+            element: <UseAuth.Auth element={<div>Not Found</div>} roles={['admin']} />,
         }
     ]);
 

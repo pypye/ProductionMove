@@ -13,10 +13,11 @@ function password(input) {
     }
     return { state: true };
 }
+
 function retypePassword(input, password) {
     if (input.length === 0) {
         return { state: false, content: 'Mật khẩu không được để trống' };
-    } if(input !== password){
+    } if (input !== password) {
         return { state: false, content: 'Mật khẩu không khớp' };
     }
     return { state: true };
@@ -38,12 +39,21 @@ function token(input) {
     }
     return { state: true };
 }
+
+function category(input) {
+    if (input.length === 0) {
+        return { state: false, content: 'Tên dòng sản phẩm không được để trống' };
+    }
+    return { state: true };
+}
+
 const UseValidation = {
     username,
     password,
     email,
     token,
     retypePassword,
+    category,
 };
 
 export { UseValidation };

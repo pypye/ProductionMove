@@ -29,8 +29,14 @@
 
 thead th {
     position: sticky;
+    z-index: 3;
     top: 0;
     background-color: rgb(255, 255, 255);
+}
+.table-title {
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+    font-weight: bold;
 }
 
 th,
@@ -40,9 +46,20 @@ td {
     text-align: left;
 }
 
+td {
+    max-width: 10rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+td.option {
+    overflow: initial;
+}
+
 tbody tr:hover {
     background-color: rgba(145, 158, 171, 0.08);
 }
+
 
 .selected-row {
     background-color: rgba(0, 171, 85, 0.08);
@@ -54,7 +71,7 @@ tbody tr:hover {
 
 .page-pagination {
     background-color: rgb(255, 255, 255);
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     flex-direction: row;
     align-items: center;

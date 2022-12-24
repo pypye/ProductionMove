@@ -10,7 +10,7 @@ function Form(props) {
 }
 Form.Split = function FormSplit(props) {
     return (
-        <div className="form-split">
+        <div className={"form-split " + props.format}>
             {props.children}
         </div>
     )

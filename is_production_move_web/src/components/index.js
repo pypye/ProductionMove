@@ -5,5 +5,6 @@ import Input from "./Input/Input";
 import Table from "./Table/Table";
 import { Option } from "./Option/Option";
 import { Dropdown } from "./Dropdown/Dropdown";
+import { Section } from "./Section/Section";
 
-export { Button, Checkbox, Form, Input, Table, Option, Dropdown };
+export { Button, Checkbox, Form, Input, Table, Option, Dropdown, Section };

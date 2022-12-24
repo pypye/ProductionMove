@@ -1,25 +1,39 @@
 .dropdown-wrapper {
     position: relative;
     cursor: pointer;
+    display: inline-block;
 }
 .dropdown-menu-wrapper{
     position: absolute;
-    right: 0;
-    z-index: 3;
+    z-index: 4;
 }
 
 .dropdown-menu {
-    width: 10rem;
     background-color: rgb(255, 255, 255);
     padding: 0.5rem;
-    box-sizing: border-box;
+    box-sizing: content-box;
     box-shadow: rgb(145, 158, 171, 0.2) 0px 0px 2px 0px, rgb(145, 158, 171, 0.2) 0px 12px 24px -4px;
     border-radius: 0.5rem;
 }
 
+.dropdown-info{
+    padding: 0.5rem 1rem;
+    word-wrap: break-word;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5rem;
+}
+.dropdown-info-name{
+    font-weight: 600;
+    font-size: 1rem;
+}
+.dropdown-info-email{
+    font-size: 0.875rem;
+    color: rgb(99, 115, 129);
+}
+
 .dropdown-item{
     display: block;
-    padding: 1.5rem 1rem;
+    padding: 0.5rem 1rem;
     margin: 0;
     cursor: pointer;
 }

@@ -1,16 +1,24 @@
 import './style.css'
-import React from 'react'
+import React, { forwardRef, useImperativeHandle } from 'react'
 import { TableNavigation } from './TableNavigation/TableNavigation';
 import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
-import { Checkbox, Option } from '..';
+import { Checkbox, Dropdown, Option } from '..';
 import { TableIcon } from './TableIcon/TableIcon';
 
-export default function Table(props) {
+const Table = forwardRef((props, ref) => {
     const tableRef = React.useRef(null);
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
     const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
+    const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data[0]).map(() => true)]);
 
+    useImperativeHandle(ref, () => ({
+        updateTable(newRow) {
+            var newRowObject = Object.assign({}, { "__data_order": tableData.data.length }, newRow);
+            setTableData({ data: [...tableData.data, newRowObject], selected: tableData.selected });
+            setTablePage({ page: Math.ceil(tableData.data.length / tablePage.pageSize), pageSize: tablePage.pageSize });
+        }
+    }));
 
     React.useEffect(() => {
         const sortTable = (col, order) => {
@@ -27,10 +35,9 @@ export default function Table(props) {
                 setTableData({ data: sorted, selected: tableData.selected });
             }
         }
-
         var table = tableRef.current;
         var headerRow = table.rows[0].children;
-        for (var i = 1; i < headerRow.length; i++) {
+        for (var i = 1; i < headerRow.length - 1; i++) {
             headerRow[i].onclick = function () {
                 var nextOrder;
                 if (sort.sortColumn && this.innerText === sort.sortColumn.innerText) {
@@ -42,17 +49,21 @@ export default function Table(props) {
                 sortTable(this.innerText, nextOrder);
                 setTablePage({ page: 1, pageSize: tablePage.pageSize });
             }
-
         }
     }, [sort, tableData, tablePage, props.data]);
+
+    function onFilter(filterText) {
+        var filtered = props.data.filter(s => Object.values(s).some(v => v.toString().toLowerCase().includes(filterText.toLowerCase())));
+        setTableData({ data: [...filtered.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: tableData.selected });
+        setTablePage({ page: 1, pageSize: tablePage.pageSize });
+    }
+
 
     function onSelectRow(rowIndex) {
         var selected = tableData.selected;
         var index = selected.indexOf(rowIndex);
         if (index > -1) selected.splice(index, 1);
-        else {
-            selected.push(rowIndex);
-        }
+        else selected.push(rowIndex);
         setTableData({ data: tableData.data, selected: selected });
     }
 
@@ -67,7 +78,7 @@ export default function Table(props) {
     }
 
     function onChangePagePaginationSize(event) {
-        setTablePage(t => ({ ...t, pageSize: event.target.value }));
+        setTablePage(t => ({ page: Math.min(Math.max(1, Math.ceil(t.page * t.pageSize / event.target.value)), Math.ceil(tableData.data.length / event.target.value)), pageSize: event.target.value }));
     }
 
     function onChangePagePagination(value) {
@@ -78,8 +89,12 @@ export default function Table(props) {
 
     return (
         <div className='table-container' style={{ width: props.width, height: props.height }}>
-            <h1 className='title'>{props.title}</h1>
-            <TableNavigation />
+            <h2 className='table-title'>{props.title}</h2>
+            <TableNavigation>
+                <TableNavigation.AddRow addRow={props.addRow} />
+                <TableNavigation.Setting columns={Object.keys(props.data[0])} displayColumn={{ displayColumn, setDisplayColumn }} />
+                <TableNavigation.Filter onFilter={onFilter} />
+            </TableNavigation>
             <div className='table-wrapper'>
                 <table className="table" ref={tableRef}>
                     <thead>
@@ -91,10 +106,11 @@ export default function Table(props) {
                             />
                             {
                                 props.data.length > 0 && Object.keys(props.data[0]).map((v, i) => {
-                                    if (v !== '__data_order') return <TableHeaderCell key={i} label={v} order={sort} />
+                                    if (v !== '__data_order' && displayColumn[i]) return <TableHeaderCell key={i} label={v} order={sort} />
                                     else return null;
                                 })
                             }
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,10 +122,20 @@ export default function Table(props) {
                                             <td><Checkbox checked={tableData.selected.includes(v['__data_order']) ? 1 : 0} onClick={() => onSelectRow(v['__data_order'])} /></td>
                                             {
                                                 Object.keys(v).map((v2, i2) => {
-                                                    if (v2 !== '__data_order') return <td key={i2}>{v[v2]}</td>
+                                                    if (v2 !== '__data_order' && displayColumn[i2 - 1]) return <td key={i2}>{v[v2]}</td>
                                                     else return null;
                                                 })
                                             }
+                                            <td className='option'>
+                                                <Dropdown>
+                                                    <Dropdown.Main item={<TableIcon.Option />} />
+                                                    <Dropdown.Menu right zIndex={2}>
+                                                        <Dropdown.Item label="Sửa" onClick={() => props.onEdit(v['__data_order'])} />
+                                                        <Dropdown.Item label="Xoá" onClick={() => props.onDelete(v['__data_order'])} color='red' />
+                                                    </Dropdown.Menu>
+
+                                                </Dropdown>
+                                            </td>
                                         </tr>
                                     )
                                 } else {
@@ -133,4 +159,5 @@ export default function Table(props) {
             </div>
         </div>
     );
-}
+})
+export default Table;

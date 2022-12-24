@@ -7,6 +7,11 @@ import './style.css'
 
 function Layout(props) {
 
+    const onLogout = () => {
+        localStorage.removeItem('auth');
+        window.location.href = '/login';
+    }
+
     return (
         <div className="container">
             <nav>
@@ -21,13 +26,30 @@ function Layout(props) {
                     </div>
                 </div>
                 <Navigation>
-                    <Navigation.Category label="Chung">
-                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[get_category]" />
-                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[get_product]" />
+                    <Navigation.Category label="Quản lý sản phẩm">
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Danh sách dòng sản phẩm" link='/category/list' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Danh sách sản phẩm" link='/product/list' />
                     </Navigation.Category>
-                    <Navigation.Category label="Quản lý">
-                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[get_user]" link='/management/user/list' />
-                        <Navigation.Item icon={<Icon.NotificationRaw />} label="[add_user]" link='/management/user/add' />
+                    <Navigation.Category label="Quảy lý người dùng">
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Danh sách người dùng" link='/admin/user/list' />
+                    </Navigation.Category>
+                    <Navigation.Category label="Quản lý nhà máy">
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Nhập sản phẩm" link='/factory/product/add' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Xuất sản phẩm tới đại lý" link='/factory/product/agency' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Nhận sản phẩm lỗi từ TTBH" />
+                    </Navigation.Category>
+                    <Navigation.Category label="Quản lý đại lý">
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Nhập sản phẩm từ nhà máy" link='/agency/product/factory' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Bán sản phẩm" />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Lấy sản phẩm cần bảo hành từ khách hàng" />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Lấy sản phẩm từ TTBH" />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Sản phẩm không thể sửa" />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Thu hồi sản phẩm" />
+                    </Navigation.Category>
+                    <Navigation.Category label="Quản lý trung tâm bảo hành">
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Lấy sản phầm từ đại lý" />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Trả sản phẩm về đại lý" />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Chuyển sản phẩm về cơ sở sản xuất" />
                     </Navigation.Category>
                 </Navigation>
             </nav>
@@ -37,12 +59,13 @@ function Layout(props) {
                     <Icon.People />
                     <Dropdown>
                         <Dropdown.Main item={<Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>} />
-                        <Dropdown.Menu>
+                        <Dropdown.Menu right>
+                            <Dropdown.Info userName={props.companyName} userEmail={props.email} />
                             <Dropdown.Item label="Đổi mật khẩu" />
-                            <Dropdown.Item label="Đăng xuất" />
+                            <Dropdown.Item label="Đăng xuất" onClick={onLogout} />
                         </Dropdown.Menu>
                     </Dropdown>
-                    
+
                 </header>
                 <section>
                     <Outlet />

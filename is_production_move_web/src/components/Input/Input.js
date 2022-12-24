@@ -44,16 +44,16 @@ export default function Input(props) {
             <input
                 className="input"
                 type={props.type}
-                value={props.reference[0]}
+                value={props.reference && props.reference[0]}
                 disabled={props.disabled}
                 onInput={(event) => {
-                    displayValidation(event, props.reference[2])
-                    props.reference[1](event.target.value)
+                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2])
+                    if (props.reference && props.reference[1]) props.reference[1](event.target.value)
                 }}
                 onFocus={(event) => changeLabelPosition(event, true)}
                 onBlur={(event) => {
                     changeLabelPosition(event, false);
-                    displayValidation(event, props.reference[2])
+                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2])
                 }}
             />
             <p style={{ "display": error === "" ? "none" : "block" }} className="error">{error}</p>

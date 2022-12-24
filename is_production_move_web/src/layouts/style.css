@@ -58,6 +58,9 @@
 .container main section {
     box-sizing: border-box;
     padding: 1rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
 }
 
 .container main header {
