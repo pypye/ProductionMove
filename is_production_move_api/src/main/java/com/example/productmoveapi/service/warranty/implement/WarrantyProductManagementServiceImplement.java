@@ -67,16 +67,40 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductFromAgency(AddProductListRequest addProductListRequest) {
     List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
-        addProductListRequest.getProduct_id()
-        , status("4"), currentUser());
+            addProductListRequest.getProduct_id(), status("4"), currentUser()).stream()
+        .filter(opt -> opt.getProduct().getStatus() == status("4")).collect(Collectors.toList());
     List<Product> productList = operationList.stream().peek(p -> {
       p.getProduct().setStatus(status("5"));
-      p.getProduct().setLocation(p.getApplicationUser());
+      p.getProduct().setLocation(p.getDestination());
     }).map(
         Operation::getProduct).collect(Collectors.toList());
     productRepository.saveAll(productList);
-    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("5"), p.getLocation(),
-        null)).collect(Collectors.toList()));
+    operationRepository.saveAll(
+        operationList.stream().map(p -> new Operation(p.getProduct(), status("5"), p.getDestination(),
+            p.getApplicationUser())).collect(Collectors.toList()));
+    return ResponseFactory.success("add successfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductInWarranty() {
+    return ResponseFactory.success(
+        productRepository.findAllByLocationAndStatus(currentUser(), status("5")));
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(AddProductListRequest addProductListRequest) {
+//    List<Product> productList = productRepository.findAllByLocationAndIdInAndStauts();
+//    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
+//        addProductListRequest.getProduct_id()
+//        , status("4"), currentUser());
+//    List<Product> productList = operationList.stream().peek(p -> {
+//      p.getProduct().setStatus(status("5"));
+//      p.getProduct().setLocation(p.getDestination());
+//    }).map(
+//        Operation::getProduct).collect(Collectors.toList());
+//    productRepository.saveAll(productList);
+//    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("5"), p.getLocation(),
+//        null)).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");
   }
 }

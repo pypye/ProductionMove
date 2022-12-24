@@ -99,15 +99,15 @@ public class FactoryProductManagementServiceImplement implements FactoryProductM
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductToAgency(AddProductListRequest addProductListRequest) {
     List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
-        addProductListRequest.getProduct_id()
-        , status("13"), currentUser());
+            addProductListRequest.getProduct_id(), status("13"), currentUser())
+        .stream().filter(opt -> opt.getProduct().getStatus() == status("13")).collect(Collectors.toList());
+
     List<Product> productList = operationList.stream().peek(p -> {
       p.getProduct().setStatus(status("2"));
       p.getProduct().setLocation(p.getApplicationUser());
     }).map(
         Operation::getProduct).collect(Collectors.toList());
     productRepository.saveAll(productList);
-    operationRepository.deleteAll(operationList);
     operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("2"), p.getLocation(),
         null)).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");

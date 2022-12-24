@@ -73,8 +73,9 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(String factoryId,
       AddProductListRequest addProductListRequest) {
     ApplicationUser factory = applicationUserRepository.findById(factoryId).orElse(null);
-    List<Product> productList =
-        productRepository.findAllByLocationAndIdIn(factory, addProductListRequest.getProduct_id());
+    List<Product> productList = productRepository.findAllByLocationAndIdIn(factory,
+            addProductListRequest.getProduct_id()).stream().filter(opt -> opt.getStatus() == status("1"))
+        .collect(Collectors.toList());
     productRepository.saveAll(productList.stream().peek(p -> p.setStatus(status("13"))).collect(Collectors.toList()));
     List<Operation> operationList = productList.stream().map(p -> new Operation(p, status("13"), currentUser(),
         factory)).collect(Collectors.toList());

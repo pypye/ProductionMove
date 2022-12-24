@@ -43,4 +43,15 @@ public class WarrantyProductManagementController {
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
     return warrantyProductManagementService.addProductFromAgency(addProductListRequest);
   }
+
+  @GetMapping("/all")
+  public ResponseEntity<GeneralResponse<Object>> getProductInWarranty() {
+    return warrantyProductManagementService.getProductInWarranty();
+  }
+
+  @PostMapping("/agency/done")
+  public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return warrantyProductManagementService.addProductDoneToAgency(addProductListRequest);
+  }
 }
