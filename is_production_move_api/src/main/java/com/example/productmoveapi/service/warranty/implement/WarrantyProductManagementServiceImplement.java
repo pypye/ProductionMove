@@ -13,7 +13,10 @@ import com.example.productmoveapi.repository.entity.Status;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.service.warranty.WarrantyProductManagementService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +72,10 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
     List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
             addProductListRequest.getProduct_id(), status("4"), currentUser()).stream()
         .filter(opt -> opt.getProduct().getStatus() == status("4")).collect(Collectors.toList());
+    Map<String, Operation> operationMap =
+        operationList.stream().collect(Collectors.toMap(operation -> operation.getProduct().getId(), Function.identity()
+            , (opt1, opt2) -> opt2));
+    operationList = new ArrayList<>(operationMap.values());
     List<Product> productList = operationList.stream().peek(p -> {
       p.getProduct().setStatus(status("5"));
       p.getProduct().setLocation(p.getDestination());
@@ -89,18 +96,21 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(AddProductListRequest addProductListRequest) {
-//    List<Product> productList = productRepository.findAllByLocationAndIdInAndStauts();
-//    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
-//        addProductListRequest.getProduct_id()
-//        , status("4"), currentUser());
-//    List<Product> productList = operationList.stream().peek(p -> {
-//      p.getProduct().setStatus(status("5"));
-//      p.getProduct().setLocation(p.getDestination());
-//    }).map(
-//        Operation::getProduct).collect(Collectors.toList());
-//    productRepository.saveAll(productList);
-//    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("5"), p.getLocation(),
-//        null)).collect(Collectors.toList()));
+    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndAndApplicationUser(
+            addProductListRequest.getProduct_id(), status("5"), currentUser()).stream()
+        .filter(opt -> opt.getProduct().getStatus() == status("5")).collect(Collectors.toList());
+    Map<String, Operation> operationMap =
+        operationList.stream().collect(Collectors.toMap(operation -> operation.getProduct().getId(), Function.identity()
+            , (opt1, opt2) -> opt2));
+    operationList = new ArrayList<>(operationMap.values());
+    List<Product> productList = operationList.stream().peek(p -> {
+      p.getProduct().setStatus(status("6"));
+      p.getProduct().setLocation(p.getDestination());
+    }).map(
+        Operation::getProduct).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("6"), p.getLocation(),
+        null)).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");
   }
 }

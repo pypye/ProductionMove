@@ -47,6 +47,11 @@ public class AgencyProductManagementController {
     return agencyProductManagementService.addProductFromFactory(factoryId, addProductListRequest);
   }
 
+  @GetMapping("/customer")
+  public ResponseEntity<GeneralResponse<Object>> getProductNotCustomer() {
+    return agencyProductManagementService.getProductNotCustomer();
+  }
+
   @PostMapping("/customer")
   public ResponseEntity<GeneralResponse<Object>> saleForCustomer(
       @Valid @RequestBody SaleProductRequest saleProductRequest) {

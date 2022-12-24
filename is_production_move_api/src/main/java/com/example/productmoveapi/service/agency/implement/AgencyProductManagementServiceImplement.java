@@ -84,6 +84,15 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
   }
 
   @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductNotCustomer() {
+    List<Product> product = productRepository.findAllByLocationAndStatus(currentUser(), status("2"));
+    if (product == null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    return ResponseFactory.success(product);
+  }
+
+  @Override
   public ResponseEntity<GeneralResponse<Object>> saleForCustomer(SaleProductRequest saleProductRequest) {
     Product product = productRepository.findByProductCodeAndLocation(saleProductRequest.getProductCode(),
         currentUser());

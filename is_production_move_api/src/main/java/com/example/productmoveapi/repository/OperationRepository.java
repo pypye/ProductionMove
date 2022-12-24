@@ -16,4 +16,7 @@ public interface OperationRepository extends JpaRepository<Operation, String> {
   List<Operation> findAllByStatusAndDestination(Status status, ApplicationUser des);
 
   List<Operation> findALlByProductIdInAndStatusAndDestination(List<String> id, Status status, ApplicationUser des);
+
+  List<Operation> findALlByProductIdInAndStatusAndAndApplicationUser(List<String> id, Status status,
+      ApplicationUser location);
 }

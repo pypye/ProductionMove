@@ -15,6 +15,8 @@ public interface AgencyProductManagementService {
   ResponseEntity<GeneralResponse<Object>> addProductFromFactory(String factoryId,
       AddProductListRequest addProductListRequest);
 
+  ResponseEntity<GeneralResponse<Object>> getProductNotCustomer();
+
   ResponseEntity<GeneralResponse<Object>> saleForCustomer(SaleProductRequest saleProductRequest);
 
   ResponseEntity<GeneralResponse<Object>> getProductCustomer(String productCode);
