@@ -15,4 +15,8 @@ public interface FactoryProductManagementService {
   ResponseEntity<GeneralResponse<Object>> getProductFromAgency();
 
   ResponseEntity<GeneralResponse<Object>> addProductToAgency(AddProductListRequest addProductListRequest);
+
+  ResponseEntity<GeneralResponse<Object>> getProductFromWarranty();
+
+  ResponseEntity<GeneralResponse<Object>> addProductFromWarranty(AddProductListRequest addProductListRequest);
 }

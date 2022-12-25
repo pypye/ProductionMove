@@ -77,7 +77,9 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
   @Override
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
     return ResponseFactory.success(
-        operationRepository.findAllByStatusAndDestination(status("4"), currentUser()));
+        operationRepository.findAllByStatusAndDestination(status("4"), currentUser()).stream()
+            .map(Operation::getProduct).filter(product -> product.getStatus() == status("4"))
+            .collect(Collectors.toSet()));
   }
 
   @Override

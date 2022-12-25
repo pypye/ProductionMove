@@ -50,4 +50,15 @@ public class FactoryProductManagementController {
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
     return factoryProductManagementService.addProductToAgency(addProductListRequest);
   }
+
+  @GetMapping("/warranty")
+  public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
+    return factoryProductManagementService.getProductFromWarranty();
+  }
+
+  @PostMapping("/warranty")
+  public ResponseEntity<GeneralResponse<Object>> addProductFromWarranty(
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return factoryProductManagementService.addProductFromWarranty(addProductListRequest);
+  }
 }
