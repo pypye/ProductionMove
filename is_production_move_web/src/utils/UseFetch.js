@@ -2,7 +2,7 @@ import { UseAuth } from "./UseAuth";
 
 export async function UseFetch(urls, method, body) {
     const baseUrl = "http://localhost:3001";
-    const token = UseAuth.get()
+    const token = UseAuth.get();
 
     const response = await window.fetch(baseUrl + urls, {
         method: method,

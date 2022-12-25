@@ -11,7 +11,7 @@ function ProductList() {
     React.useEffect(() => {
         UseFetch("/backend/product/all", "GET", null).then(data => {
             let dataDescription = {}
-            console.log(data.data)
+            console.log(data)
             if (data.status.code === "SUCCESS") {
                 data.data.map((item) => {
                     item.category = item.category.category
@@ -34,6 +34,7 @@ function ProductList() {
 
     React.useEffect(() => {
         UseFetch("/backend/category/all", "GET", null).then(data => {
+
             if (data.status.code === "SUCCESS") {
                 setCategoryData(data.data)
                 setLoading(false)
@@ -41,7 +42,7 @@ function ProductList() {
         })
     }, [])
 
-    if (loading || !data.length || !categoryData.length) return <React.Fragment />
+    if (loading) return <React.Fragment />
 
     return (
         <React.Fragment>

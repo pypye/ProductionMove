@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router-dom';
-import Login from '../pages/general/Login/Login';
-import Layout from '../layouts/Layout';
+import { Login } from '../pages/general/Login/Login';
+import { Layout } from '../layouts/Layout';
 import { ForgotPassword, Product, Logout, ResetPassword, User, Category } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';

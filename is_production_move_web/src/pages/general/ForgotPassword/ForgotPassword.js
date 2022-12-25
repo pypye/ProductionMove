@@ -37,4 +37,4 @@ function ForgotPassword() {
             <Form.Link content="Quay lại đăng nhập" to="/login" />
         </Form>
     )
-} export default ForgotPassword
+} export { ForgotPassword }

@@ -1,9 +1,10 @@
-import Button from '../Button/Button';
-import Input from '../Input/Input';
 import './style.css'
+import { Button } from '../Button/Button';
+import { Input } from '../Input/Input';
+
 function Form(props) {
     return (
-        <form className="form" style={{ width: props.width }}>
+        <form className={"form " + (props.noContainer ? "" : "form-container")} style={{ width: props.width }}>
             {props.children}
         </form>
     )
@@ -26,6 +27,13 @@ Form.Notify = function FormNotify(props) {
         props.enabled && <p className="form-notify">{props.content}{props.children}</p>
     )
 }
+
+Form.Warning = function FormNotify(props) {
+    return (
+        props.enabled && <p className="form-warning">{props.content}{props.children}</p>
+    )
+}
+
 Form.Error = function FormError(props) {
     return (
         props.enabled && <p className="form-error">{props.content}</p>
@@ -35,7 +43,7 @@ Form.Error = function FormError(props) {
 Form.Input = Input;
 Form.Submit = function FormSubmit(props) {
     return (
-        <Button type="primary" onClick={props.onClick} validation={props.validation}>{props.content}</Button>
+        <Button type={props.type ? props.type : "primary"} onClick={props.onClick} validation={props.validation}>{props.content}</Button>
     )
 }
 
@@ -45,4 +53,4 @@ Form.Link = function FormLink(props) {
     )
 }
 
-export default Form;
+export { Form }

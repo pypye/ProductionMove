@@ -1,14 +1,13 @@
-import Checkbox from '../../Checkbox/Checkbox';
-import { Dropdown } from '../../Dropdown/Dropdown';
-import Form from '../../Form/Form';
-import Input from '../../Input/Input';
-import { Section } from '../../Section/Section';
-import { TableIcon } from '../TableIcon/TableIcon';
-import './style.css';
+import './style_navigation.css';
 import React from 'react';
+import { Checkbox } from '../../Checkbox/Checkbox';
+import { Dropdown } from '../../Dropdown/Dropdown';
+import { Form } from '../../Form/Form';
+import { Input } from '../../Input/Input';
+import { Section } from '../../Section/Section';
+import { TableComponent } from '.';
 
-function TableNavigation(props) {
-
+function Navigation(props) {
     return (
         <ul className="tool">
             {props.children.map((v, i) => {
@@ -18,10 +17,10 @@ function TableNavigation(props) {
     );
 }
 
-TableNavigation.AddRow = function TableNavigationAddRow(props) {
+Navigation.AddRow = function NavigationAddRow(props) {
     return (
-        <Dropdown>
-            <Dropdown.Main item={<TableIcon.Add label="Thêm" />} />
+        <Dropdown ref={props.refs} onReset={props.onReset}>
+            <Dropdown.Main item={<TableComponent.Icon.Add label="Thêm" />} />
             <Dropdown.MenuWrapper width='30rem' right={props.right}>
                 {props.addRow}
             </Dropdown.MenuWrapper>
@@ -29,7 +28,7 @@ TableNavigation.AddRow = function TableNavigationAddRow(props) {
     )
 }
 
-TableNavigation.Setting = function TableNavigationSetting(props) {
+Navigation.Setting = function NavigationSetting(props) {
     const onDisplayColumn = (i) => {
         props.displayColumn.setDisplayColumn((prev) => {
             prev[i] = !prev[i];
@@ -38,10 +37,16 @@ TableNavigation.Setting = function TableNavigationSetting(props) {
     }
     return (
         <Dropdown>
-            <Dropdown.Main item={<TableIcon.Column label="Tuỳ chỉnh" />} />
+            <Dropdown.Main item={<TableComponent.Icon.Column label="Tuỳ chỉnh" />} />
             <Dropdown.MenuWrapper width='20rem' right={props.right}>
                 <Section title="Chọn cột hiển thị">
                     {props.columns.map((v, i) => {
+                        if (v === 'id') {
+                            return <Form.Split key={i} format='dashed-bottom'>
+                                <Checkbox checked={1} disabled={1}></Checkbox>
+                                <span className='setting-column'>no.</span>
+                            </Form.Split>
+                        }
                         return <Form.Split key={i} format='dashed-bottom'>
                             <Checkbox checked={props.displayColumn.displayColumn[i] ? 1 : 0} onClick={() => onDisplayColumn(i)}></Checkbox>
                             <span className='setting-column'>{v}</span>
@@ -53,17 +58,22 @@ TableNavigation.Setting = function TableNavigationSetting(props) {
     )
 }
 
-TableNavigation.Filter = function TableNavigationFilter(props) {
+Navigation.Filter = function NavigationFilter(props) {
     const [filterText, setFilterText] = React.useState('');
 
     const onFilter = (text) => {
         setFilterText(text);
-        props.onFilter(text);
+        var filtered = props.data.filter(s => {
+            var x = Object.values(s).some(v => v.toString().toLowerCase().includes(text.toLowerCase()))
+            return x;
+        });
+        props.setTableData({ data: [...filtered.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: props.tableData.selected });
+        props.setTablePage({ page: 1, pageSize: props.tablePage.pageSize });
     }
 
     return (
         <Dropdown>
-            <Dropdown.Main item={<TableIcon.Filter label="Lọc" />} />
+            <Dropdown.Main item={<TableComponent.Icon.Filter label="Lọc" />} />
             <Dropdown.MenuWrapper width='20rem' right={props.right}>
                 <Section title="Lọc">
                     <Input type="text" label="Giá trị cần lọc" reference={[filterText, onFilter]} />
@@ -73,4 +83,4 @@ TableNavigation.Filter = function TableNavigationFilter(props) {
     )
 }
 
-export { TableNavigation };
+export { Navigation };

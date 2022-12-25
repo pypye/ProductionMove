@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Dropdown } from '../components';
-import { Icon } from '../components/Icon';
+import { Dropdown, Icon } from '../components';
 import { Navigation } from './Navigation/Navigation';
 import './style.css'
 
@@ -59,7 +58,7 @@ function Layout(props) {
                     <Icon.People />
                     <Dropdown>
                         <Dropdown.Main item={<Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>} />
-                        <Dropdown.Menu right>
+                        <Dropdown.Menu right zIndex={5}>
                             <Dropdown.Info userName={props.companyName} userEmail={props.email} />
                             <Dropdown.Item label="Đổi mật khẩu" />
                             <Dropdown.Item label="Đăng xuất" onClick={onLogout} />
@@ -73,4 +72,4 @@ function Layout(props) {
             </main>
         </div>
     );
-} export default Layout;
+} export { Layout };

@@ -5,6 +5,7 @@
     flex-direction: column;
     row-gap: 1rem;
     padding: 1rem 0;
+    overflow: auto;
 }
 
 .table-container .title {
@@ -29,10 +30,12 @@
 
 thead th {
     position: sticky;
-    z-index: 3;
     top: 0;
     background-color: rgb(255, 255, 255);
+    z-index: 1;
 }
+
+
 .table-title {
     margin: 0;
     padding: 0.5rem 1.5rem;

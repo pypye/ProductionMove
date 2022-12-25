@@ -1,22 +1,42 @@
 import './style.css'
 import React, { forwardRef, useImperativeHandle } from 'react'
-import { TableNavigation } from './TableNavigation/TableNavigation';
-import { TableHeaderCell } from './TableHeaderCell/TableHeaderCell';
-import { Checkbox, Dropdown, Option } from '..';
-import { TableIcon } from './TableIcon/TableIcon';
+import { TableComponent } from './TableComponents';
 
 const Table = forwardRef((props, ref) => {
     const tableRef = React.useRef(null);
+    const addRowRef = React.useRef(null);
+    const editRowRef = React.useRef(null);
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
     const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
     const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data[0]).map(() => true)]);
 
     useImperativeHandle(ref, () => ({
-        updateTable(newRow) {
-            var newRowObject = Object.assign({}, { "__data_order": tableData.data.length }, newRow);
-            setTableData({ data: [...tableData.data, newRowObject], selected: tableData.selected });
-            setTablePage({ page: Math.ceil(tableData.data.length / tablePage.pageSize), pageSize: tablePage.pageSize });
+        updateTable(newRow, method) {
+            var index, newData;
+            if (method === "add") {
+                var newRowObject = Object.assign({}, { "__data_order": tableData.data.length }, newRow);
+                setTableData({ data: [...tableData.data, newRowObject], selected: tableData.selected });
+                setTablePage({ page: Math.ceil(tableData.data.length / tablePage.pageSize), pageSize: tablePage.pageSize });
+            } else if (method === "edit") {
+                index = tableData.data.findIndex(item => item.id === newRow.id);
+                newData = [...tableData.data];
+                newData[index] = Object.assign({}, { "__data_order": index }, newRow);
+                setTableData({ data: newData, selected: tableData.selected });
+            } else if (method === "delete") {
+                index = tableData.data.findIndex(item => item.id === newRow.id);
+                newData = [...tableData.data];
+                newData.splice(index, 1);
+                setTableData({ data: newData, selected: tableData.selected });
+            }
+        },
+
+        forceAddRowClose() {
+            addRowRef.current.forceDropdownClose();
+        },
+
+        forceEditRowClose() {
+            editRowRef.current.forcePopupClose();
         }
     }));
 
@@ -37,7 +57,7 @@ const Table = forwardRef((props, ref) => {
         }
         var table = tableRef.current;
         var headerRow = table.rows[0].children;
-        for (var i = 1; i < headerRow.length - 1; i++) {
+        for (var i = 2; i < headerRow.length - 1; i++) {
             headerRow[i].onclick = function () {
                 var nextOrder;
                 if (sort.sortColumn && this.innerText === sort.sortColumn.innerText) {
@@ -52,112 +72,56 @@ const Table = forwardRef((props, ref) => {
         }
     }, [sort, tableData, tablePage, props.data]);
 
-    function onFilter(filterText) {
-        var filtered = props.data.filter(s => Object.values(s).some(v => v.toString().toLowerCase().includes(filterText.toLowerCase())));
-        setTableData({ data: [...filtered.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: tableData.selected });
-        setTablePage({ page: 1, pageSize: tablePage.pageSize });
-    }
-
-
-    function onSelectRow(rowIndex) {
-        var selected = tableData.selected;
-        var index = selected.indexOf(rowIndex);
-        if (index > -1) selected.splice(index, 1);
-        else selected.push(rowIndex);
-        setTableData({ data: tableData.data, selected: selected });
-    }
-
-    function onSelectAll() {
-        var selected = [];
-        if (tableData.selected.length === tableData.data.length) {
-            setTableData({ data: tableData.data, selected: selected });
-        } else {
-            for (var i = 0; i < tableData.data.length; i++) selected.push(i);
-            setTableData({ data: tableData.data, selected: selected });
-        }
-    }
-
-    function onChangePagePaginationSize(event) {
-        setTablePage(t => ({ page: Math.min(Math.max(1, Math.ceil(t.page * t.pageSize / event.target.value)), Math.ceil(tableData.data.length / event.target.value)), pageSize: event.target.value }));
-    }
-
-    function onChangePagePagination(value) {
-        if (tablePage.page + value > 0 && tablePage.page + value <= Math.ceil(tableData.data.length / tablePage.pageSize)) {
-            setTablePage(t => ({ ...t, page: tablePage.page + value }));
-        }
-    }
-
     return (
         <div className='table-container' style={{ width: props.width, height: props.height }}>
             <h2 className='table-title'>{props.title}</h2>
-            <TableNavigation>
-                <TableNavigation.AddRow addRow={props.addRow} />
-                <TableNavigation.Setting columns={Object.keys(props.data[0])} displayColumn={{ displayColumn, setDisplayColumn }} />
-                <TableNavigation.Filter onFilter={onFilter} />
-            </TableNavigation>
+            <TableComponent.Navigation>
+                <TableComponent.Navigation.AddRow
+                    refs={addRowRef}
+                    addRow={props.addRow}
+                />
+                <TableComponent.Navigation.Setting
+                    columns={Object.keys(props.data[0])}
+                    displayColumn={{ displayColumn, setDisplayColumn }}
+                />
+                <TableComponent.Navigation.Filter
+                    tableData={tableData}
+                    tablePage={tablePage}
+                    setTableData={setTableData}
+                    setTablePage={setTablePage}
+                    data={props.data}
+                />
+            </TableComponent.Navigation>
             <div className='table-wrapper'>
                 <table className="table" ref={tableRef}>
-                    <thead>
-                        <tr>
-                            <TableHeaderCell
-                                checkbox
-                                checked={tableData.selected.length === tableData.data.length ? 1 : (tableData.selected.length === 0 ? 0 : 2)}
-                                onClick={() => onSelectAll()}
-                            />
-                            {
-                                props.data.length > 0 && Object.keys(props.data[0]).map((v, i) => {
-                                    if (v !== '__data_order' && displayColumn[i]) return <TableHeaderCell key={i} label={v} order={sort} />
-                                    else return null;
-                                })
-                            }
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            tableData.data.map((v, i) => {
-                                if (i >= (tablePage.page - 1) * tablePage.pageSize && i < tablePage.page * tablePage.pageSize) {
-                                    return (
-                                        <tr key={i} className={tableData.selected.includes(v['__data_order']) ? 'selected-row' : undefined}>
-                                            <td><Checkbox checked={tableData.selected.includes(v['__data_order']) ? 1 : 0} onClick={() => onSelectRow(v['__data_order'])} /></td>
-                                            {
-                                                Object.keys(v).map((v2, i2) => {
-                                                    if (v2 !== '__data_order' && displayColumn[i2 - 1]) return <td key={i2}>{v[v2]}</td>
-                                                    else return null;
-                                                })
-                                            }
-                                            <td className='option'>
-                                                <Dropdown>
-                                                    <Dropdown.Main item={<TableIcon.Option />} />
-                                                    <Dropdown.Menu right zIndex={2}>
-                                                        <Dropdown.Item label="Sửa" onClick={() => props.onEdit(v['__data_order'])} />
-                                                        <Dropdown.Item label="Xoá" onClick={() => props.onDelete(v['__data_order'])} color='red' />
-                                                    </Dropdown.Menu>
-
-                                                </Dropdown>
-                                            </td>
-                                        </tr>
-                                    )
-                                } else {
-                                    return null;
-                                }
-                            })
-                        }
-                    </tbody>
+                    <TableComponent.Header
+                        tableData={tableData}
+                        sort={sort}
+                        displayColumn={displayColumn}
+                        setTableData={setTableData}
+                        data={props.data}
+                    />
+                    <TableComponent.Body
+                        tableData={tableData}
+                        tablePage={tablePage}
+                        displayColumn={displayColumn}
+                        editRowRef={editRowRef}
+                        setTableData={setTableData}
+                        data={props.data}
+                        editRow={props.editRow}
+                        onDelete={props.onDelete}
+                        onFetchEditRow={props.onFetchEditRow}
+                        onReset={props.onReset}
+                    />
                 </table>
             </div>
-            <div className='page-pagination'>
-                <Option title='Rows per page:' onChange={(e) => onChangePagePaginationSize(e)}>
-                    <Option.Item value={10} />
-                    <Option.Item value={25} />
-                    <Option.Item value={50} />
-                    <Option.Item value={100} />
-                </Option>
-                {(tablePage.page - 1) * tablePage.pageSize + 1}-{Math.min((tablePage.page - 1) * tablePage.pageSize + tablePage.pageSize, props.data.length)} of {props.data.length}
-                <div onClick={() => onChangePagePagination(-1)}> <TableIcon.PaginationPrev /></div>
-                <div onClick={() => onChangePagePagination(1)}> <TableIcon.PaginationNext /></div>
-            </div>
+            <TableComponent.Pagination
+                tableData={tableData}
+                tablePage={tablePage}
+                setTablePage={setTablePage}
+                data={props.data}
+            />
         </div>
     );
 })
-export default Table;
+export { Table };

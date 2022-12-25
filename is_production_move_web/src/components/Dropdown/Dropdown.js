@@ -1,25 +1,40 @@
 import './style.css'
-import React from 'react'
+import React, { forwardRef, useImperativeHandle } from 'react'
 
-function Dropdown(props) {
+const Dropdown = forwardRef((props, ref) => {
     const container = React.useRef(null)
     const [isOpen, setIsOpen] = React.useState(false)
+    useImperativeHandle(ref, () => ({
+        forceDropdownOpen() {
+            setIsOpen(true);
+        },
+        forceDropdownClose() {
+            setIsOpen(false);
+            if (props.onReset) props.onReset();
+            if (props.onCloseOther) props.onCloseOther();
+        }
+    }))
 
     React.useEffect(() => {
-
-        document.addEventListener("mousedown", onDropDownClose)
+        document.addEventListener("mousedown", onDropDownClose);
         return () => {
-            document.removeEventListener("mousedown", onDropDownClose)
+            document.removeEventListener("mousedown", onDropDownClose);
         }
-    }, [])
+    })
 
     const onDropDownClose = (event) => {
         if (container.current && !container.current.contains(event.target)) {
-            setIsOpen(false)
+            setIsOpen(false);
+            if (props.onReset) props.onReset();
+            if (props.onCloseOther) props.onCloseOther();
         }
     }
 
     const toggleDropdown = () => {
+        if (isOpen) {
+            if (props.onReset) props.onReset();
+            if (props.onCloseOther) props.onCloseOther();
+        }
         setIsOpen(!isOpen)
     }
 
@@ -29,7 +44,7 @@ function Dropdown(props) {
             {isOpen && { ...props.children[1] }}
         </div>
     )
-}
+})
 
 Dropdown.Main = function DropdownMain(props) {
     return (
@@ -40,7 +55,7 @@ Dropdown.Main = function DropdownMain(props) {
 }
 Dropdown.MenuWrapper = function DropdownMenuWrapper(props) {
     return (
-        <div className='dropdown-menu-wrapper' style={{ width: props.width, right: props.right ? 0 : null, zIndex: props.zIndex }}>
+        <div className='dropdown-menu-wrapper' style={{ width: props.width, right: props.right ? 0 : null, bottom: props.bottom ? 0 : null, zIndex: props.zIndex }}>
             {props.children}
         </div>
     )
@@ -48,7 +63,7 @@ Dropdown.MenuWrapper = function DropdownMenuWrapper(props) {
 
 Dropdown.Menu = function DropdownMenu(props) {
     return (
-        <Dropdown.MenuWrapper width={props.width} right={props.right} zIndex={props.zIndex}>
+        <Dropdown.MenuWrapper width={props.width} right={props.right} bottom={props.bottom} zIndex={props.zIndex}>
             <div className="dropdown-menu">
                 {props.children}
             </div>

@@ -3,7 +3,7 @@ import { Form } from "../../../components";
 import { useLocation } from 'react-router-dom';
 import { UseAuth, UseFetch, UseValidation } from '../../../utils';
 
-export default function Login() {
+function Login() {
     const [loginUsername, setLoginUsername] = React.useState("");
     const [loginPassword, setLoginPassword] = React.useState("");
     const loginInfo = React.useMemo(() => ({ username: loginUsername, password: loginPassword }), [loginUsername, loginPassword]);
@@ -48,3 +48,4 @@ export default function Login() {
         </Form>
     )
 }
+export { Login }

@@ -56,4 +56,4 @@ function ResetPassword(props) {
             <Form.Link content='Quay lại đăng nhập' href='/login' />
         </Form>
     )
-} export default ResetPassword
+} export { ResetPassword }

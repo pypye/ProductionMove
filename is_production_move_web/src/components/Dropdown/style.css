@@ -5,7 +5,7 @@
 }
 .dropdown-menu-wrapper{
     position: absolute;
-    z-index: 4;
+    z-index: 2;
 }
 
 .dropdown-menu {
