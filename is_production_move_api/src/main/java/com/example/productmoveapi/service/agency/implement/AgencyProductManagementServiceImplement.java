@@ -185,4 +185,34 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
     operationRepository.save(new Operation(newProduct, status("3"), currentUser(), null));
     return ResponseFactory.success("change successfully");
   }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> recallProduct(String categoryId) {
+    List<Product> productList = productRepository.findAllByCategoryIdAndLocation(categoryId, currentUser()).stream()
+        .filter(p -> p.getStatus() == status("2") || p.getStatus() == status("3") || p.getStatus() == status("7"))
+        .collect(Collectors.toList());
+
+    productList = productList.stream().peek(p -> p.setStatus(status("10"))).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    List<Operation> operationList =
+        productList.stream().map(p -> new Operation(p, status("10"), currentUser(), null)).collect(Collectors.toList());
+    operationRepository.saveAll(operationList);
+    return ResponseFactory.success("recall sucessfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(String warrantyId) {
+    List<Product> productList = productRepository.findAllByLocationAndStatus(currentUser(), status("10"));
+    ApplicationUser warranty = applicationUserRepository.findById(warrantyId).orElse(null);
+    if (warranty == null || !warranty.getRole().getRole().equals("warranty")) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    productList = productList.stream().peek(p -> p.setStatus(status("4"))).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    List<Operation> operationList =
+        productList.stream().map(p -> new Operation(p, status("4"), currentUser(), warranty))
+            .collect(Collectors.toList());
+    operationRepository.saveAll(operationList);
+    return ResponseFactory.success("add successfully");
+  }
 }

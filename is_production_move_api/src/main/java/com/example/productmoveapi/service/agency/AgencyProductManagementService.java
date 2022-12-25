@@ -31,4 +31,8 @@ public interface AgencyProductManagementService {
   ResponseEntity<GeneralResponse<Object>> getProductErrorFromWarranty();
 
   ResponseEntity<GeneralResponse<Object>> changeProductErrorToCustomer(ChangeProductRequest changeProductRequest);
+
+  ResponseEntity<GeneralResponse<Object>> recallProduct(String categoryId);
+
+  ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(String warrantyId);
 }

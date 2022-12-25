@@ -92,4 +92,15 @@ public class AgencyProductManagementController {
       @Valid @RequestBody ChangeProductRequest changeProductRequest) {
     return agencyProductManagementService.changeProductErrorToCustomer(changeProductRequest);
   }
+
+  @PostMapping("/recall/{categoryId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> recallProduct(@PathVariable(name = "categoryId") String categoryId) {
+    return agencyProductManagementService.recallProduct(categoryId);
+  }
+
+  @PostMapping("/recall/warranty/{warrantyId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(
+      @PathVariable(name = "warrantyId") String warrantyId) {
+    return agencyProductManagementService.recallProductToWarranty(warrantyId);
+  }
 }
