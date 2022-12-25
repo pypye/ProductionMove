@@ -16,4 +16,7 @@ public interface WarrantyProductManagementService {
   ResponseEntity<GeneralResponse<Object>> getProductInWarranty();
 
   ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(AddProductListRequest addProductListRequest);
+
+  ResponseEntity<GeneralResponse<Object>> addProductErrorToFactory(AddProductListRequest addProductListRequest,
+      String factoryId);
 }

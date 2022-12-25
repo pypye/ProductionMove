@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,5 +54,12 @@ public class WarrantyProductManagementController {
   public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
     return warrantyProductManagementService.addProductDoneToAgency(addProductListRequest);
+  }
+
+  @PostMapping("/factory/error/{factoryId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> addProductErrorToFactory(
+      @Valid @RequestBody AddProductListRequest addProductListRequest,
+      @PathVariable(name = "factoryId") String factoryId) {
+    return warrantyProductManagementService.addProductErrorToFactory(addProductListRequest, factoryId);
   }
 }

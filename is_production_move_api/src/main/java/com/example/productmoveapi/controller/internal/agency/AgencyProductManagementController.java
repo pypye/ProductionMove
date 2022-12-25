@@ -70,12 +70,12 @@ public class AgencyProductManagementController {
     return agencyProductManagementService.addProductToWarranty(productCode, warrantyId);
   }
 
-  @GetMapping("/warranty")
+  @GetMapping("/warranty/done")
   public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
     return agencyProductManagementService.getProductFromWarranty();
   }
 
-  @PostMapping("/warranty")
+  @PostMapping("/warranty/done")
   public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
     return agencyProductManagementService.returnProductToCustomer(addProductListRequest);
