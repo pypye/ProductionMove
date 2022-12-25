@@ -100,6 +100,7 @@ const Table = forwardRef((props, ref) => {
                         displayColumn={displayColumn}
                         setTableData={setTableData}
                         data={props.data}
+                        noOption={props.noOption}
                     />
                     <TableComponent.Body
                         tableData={tableData}
@@ -112,6 +113,7 @@ const Table = forwardRef((props, ref) => {
                         onDelete={props.onDelete}
                         onFetchEditRow={props.onFetchEditRow}
                         onReset={props.onReset}
+                        noOption={props.noOption}
                     />
                 </table>
             </div>

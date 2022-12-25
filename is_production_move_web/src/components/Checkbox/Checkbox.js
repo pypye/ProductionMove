@@ -10,8 +10,8 @@ function Checkbox(props) {
     const ref = React.useRef(null);
 
     React.useEffect(() => {
-        setChecked(props.checked)
-    }, [props.checked])
+        setChecked(props.checked);
+    }, [props.checked]);
 
     return (
         <div className="checkbox" ref={ref} onClick={() => {

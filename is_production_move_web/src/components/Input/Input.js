@@ -5,12 +5,10 @@ function Input(props) {
     const ref = React.useRef(null);
     const [error, setError] = React.useState("");
 
-
     const changeLabelPosition = (event, focus) => {
         var label = event.target.previousSibling;
         if (focus) {
             label.classList.add("focus");
-
         } else {
             if (event.target.value === '') {
                 label.classList.remove("focus");
@@ -29,7 +27,6 @@ function Input(props) {
             label.classList.add("error");
             event.target.classList.add("error");
             setError(result.content);
-
         } else {
             label.classList.remove("error");
             event.target.classList.remove("error");
@@ -47,13 +44,13 @@ function Input(props) {
                 value={props.reference && props.reference[0]}
                 disabled={props.disabled}
                 onInput={(event) => {
-                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2])
-                    if (props.reference && props.reference[1]) props.reference[1](event.target.value)
+                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2]);
+                    if (props.reference && props.reference[1]) props.reference[1](event.target.value);
                 }}
                 onFocus={(event) => changeLabelPosition(event, true)}
                 onBlur={(event) => {
                     changeLabelPosition(event, false);
-                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2])
+                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2]);
                 }}
             />
             <p style={{ "display": error === "" ? "none" : "block" }} className="error">{error}</p>
@@ -61,4 +58,4 @@ function Input(props) {
 
     );
 }
-export { Input }
+export { Input }            

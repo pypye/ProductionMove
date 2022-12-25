@@ -42,7 +42,6 @@ const Popup = forwardRef((props, ref) => {
     return (
         <React.Fragment>
             {React.cloneElement(props.children[0], { onToggle: togglePopup })}
-
             <div className="popup-wrapper" style={{ display: isOpen ? 'block' : 'none' }}>
                 {isOpen &&
                     <div className="popup-content" ref={container}>
@@ -50,8 +49,6 @@ const Popup = forwardRef((props, ref) => {
                     </div>
                 }
             </div>
-
-
         </React.Fragment>
     )
 });

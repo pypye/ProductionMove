@@ -7,7 +7,7 @@ function Button(props) {
             className={`btn ${props.type} ` + (props.validation && !props.validation() ? 'disabled' : '')}
             onClick={(e) => {
                 e.preventDefault();
-                props.onClick()
+                props.onClick();
             }}
             disabled={props.validation ? !props.validation() : false}
         >

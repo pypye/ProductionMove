@@ -19,7 +19,6 @@ function Body(props) {
     function onCloseOther(i) {
         dropdownRef.current[i].current.forceDropdownClose();
     }
-
     return (
         <tbody>
             {
@@ -30,46 +29,42 @@ function Body(props) {
                                 <td><Checkbox checked={props.tableData.selected.includes(v['__data_order']) ? 1 : 0} onClick={() => onSelectRow(v['__data_order'])} /></td>
                                 {
                                     Object.keys(v).map((v2, i2) => {
-                                        if(v2 === 'id' && props.displayColumn[i2 - 1]) return <td key={i2}>{i+1}</td>;
+                                        if (v2 === 'id' && props.displayColumn[i2 - 1]) return <td key={i2}>{i + 1}</td>;
                                         if (v2 !== '__data_order' && props.displayColumn[i2 - 1]) return <td key={i2}>{v[v2]}</td>;
                                         else return null;
                                     })
                                 }
-                                <td className='option'>
-                                    <Dropdown ref={dropdownRef.current[i]}>
-                                        <Dropdown.Main item={<TableComponent.Icon.Option />} />
-                                        <Dropdown.Menu right bottom={i >= Math.min(props.tablePage.page * props.tablePage.pageSize, props.data.length) - 2} zIndex={1}>
-                                            <Popup ref={props.editRowRef} onReset={props.onReset} onCloseOther={() => onCloseOther(i)}>
-                                                <Popup.Trigger onClick={() => props.onFetchEditRow(v, i+1)}><Dropdown.Item label="Sửa" /></Popup.Trigger>
-                                                <Popup.Content>
-                                                    {props.editRow}
-                                                </Popup.Content>
-                                            </Popup>
-                                            <Popup>
-                                                <Popup.Trigger><Dropdown.Item label="Xoá" color='red' /></Popup.Trigger>
-                                                <Popup.Content>
-                                                    <Form noContainer>
-                                                        <Form.Title content='Xác nhận xoá' />
-                                                        <Form.Warning content='Bạn có chắc chắn muốn xoá?' enabled />
-                                                        <Form.Split>
-                                                            <Form.Submit content='Hủy' onClick={() => onCloseOther(i)} />
-                                                            <Form.Submit type="error" content='Xoá' onClick={() => {
-                                                                props.onDelete(v);
-                                                                onCloseOther(i);
-                                                            }} />
-
-                                                        </Form.Split>
-                                                    </Form>
-
-
-
-                                                </Popup.Content>
-                                            </Popup>
-
-                                        </Dropdown.Menu>
-
-                                    </Dropdown>
-                                </td>
+                                {props.noOption ? null :
+                                    <td className='option'>
+                                        <Dropdown ref={dropdownRef.current[i]}>
+                                            <Dropdown.Main item={<TableComponent.Icon.Option />} />
+                                            <Dropdown.Menu right bottom={i >= Math.min(props.tablePage.page * props.tablePage.pageSize, props.data.length) - 2} zIndex={1}>
+                                                <Popup ref={props.editRowRef} onReset={props.onReset} onCloseOther={() => onCloseOther(i)}>
+                                                    <Popup.Trigger onClick={() => props.onFetchEditRow(v, i + 1)}><Dropdown.Item label="Sửa" /></Popup.Trigger>
+                                                    <Popup.Content>
+                                                        {props.editRow}
+                                                    </Popup.Content>
+                                                </Popup>
+                                                <Popup>
+                                                    <Popup.Trigger><Dropdown.Item label="Xoá" color='red' /></Popup.Trigger>
+                                                    <Popup.Content>
+                                                        <Form noContainer>
+                                                            <Form.Title content='Xác nhận xoá' />
+                                                            <Form.Warning content='Bạn có chắc chắn muốn xoá?' enabled />
+                                                            <Form.Split>
+                                                                <Form.Submit content='Hủy' onClick={() => onCloseOther(i)} />
+                                                                <Form.Submit type="error" content='Xoá' onClick={() => {
+                                                                    props.onDelete(v);
+                                                                    onCloseOther(i);
+                                                                }} />
+                                                            </Form.Split>
+                                                        </Form>
+                                                    </Popup.Content>
+                                                </Popup>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </td>
+                                }
                             </tr>
                         )
                     } else {

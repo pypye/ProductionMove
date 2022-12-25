@@ -61,7 +61,7 @@ function TableHeader(props) {
                         else return null;
                     })
                 }
-                <th></th>
+                {props.noOption ? null : <th></th>}
             </tr>
         </thead>
     );

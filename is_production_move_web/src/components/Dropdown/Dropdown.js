@@ -35,7 +35,7 @@ const Dropdown = forwardRef((props, ref) => {
             if (props.onReset) props.onReset();
             if (props.onCloseOther) props.onCloseOther();
         }
-        setIsOpen(!isOpen)
+        setIsOpen(!isOpen);
     }
 
     return (
