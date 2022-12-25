@@ -93,24 +93,49 @@ public class FactoryProductManagementServiceImplement implements FactoryProductM
   @Override
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
     return ResponseFactory.success(
-        operationRepository.findAllByStatusAndDestination(status("13"), currentUser()));
+        operationRepository.findAllByStatusAndDestination(status("13"), currentUser()).stream()
+            .map(Operation::getProduct)
+            .filter(product -> product.getStatus() == status("13")).collect(Collectors.toList()));
   }
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductToAgency(AddProductListRequest addProductListRequest) {
     List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
-        addProductListRequest.getProduct_id()
-        , status("13"), currentUser());
+            addProductListRequest.getProduct_id(), status("13"), currentUser())
+        .stream().filter(opt -> opt.getProduct().getStatus() == status("13")).collect(Collectors.toList());
     List<Product> productList = operationList.stream().peek(p -> {
       p.getProduct().setStatus(status("2"));
       p.getProduct().setLocation(p.getApplicationUser());
     }).map(
         Operation::getProduct).collect(Collectors.toList());
     productRepository.saveAll(productList);
-    operationRepository.deleteAll(operationList);
     operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("2"), p.getLocation(),
         null)).collect(Collectors.toList()));
+    return ResponseFactory.success("add successfully");
+  }
 
-    return ResponseFactory.success();
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
+    return ResponseFactory.success(
+        operationRepository.findAllByStatusAndDestination(status("8"), currentUser()).stream()
+            .map(Operation::getProduct).filter(product -> product.getStatus() == status("8"))
+            .collect(Collectors.toList()));
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> addProductFromWarranty(AddProductListRequest addProductListRequest) {
+    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
+            addProductListRequest.getProduct_id(), status("8"), currentUser()).stream()
+        .filter(opt -> opt.getProduct().getStatus() == status("8")).collect(Collectors.toList());
+    List<Product> productList = operationList.stream().peek(p -> {
+      p.getProduct().setStatus(status("9"));
+      p.getProduct().setLocation(p.getDestination());
+    }).map(
+        Operation::getProduct).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    operationRepository.saveAll(
+        operationList.stream().map(p -> new Operation(p.getProduct(), status("9"), p.getDestination(),
+            null)).collect(Collectors.toList()));
+    return ResponseFactory.success("add successfully");
   }
 }

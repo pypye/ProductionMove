@@ -1,5 +1,6 @@
 package com.example.productmoveapi.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,6 +36,7 @@ public class Operation extends BaseEntity {
   private ApplicationUser applicationUser;
 
   @ManyToOne
+  @JsonIgnore
   @JoinColumn(name = "destination_id")
   private ApplicationUser destination;
 

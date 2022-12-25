@@ -73,13 +73,20 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(String factoryId,
       AddProductListRequest addProductListRequest) {
     ApplicationUser factory = applicationUserRepository.findById(factoryId).orElse(null);
-    List<Product> productList =
-        productRepository.findAllByLocationAndIdIn(factory, addProductListRequest.getProduct_id());
+    List<Product> productList = productRepository.findAllByLocationAndIdIn(factory,
+            addProductListRequest.getProduct_id()).stream().filter(opt -> opt.getStatus() == status("1"))
+        .collect(Collectors.toList());
     productRepository.saveAll(productList.stream().peek(p -> p.setStatus(status("13"))).collect(Collectors.toList()));
     List<Operation> operationList = productList.stream().map(p -> new Operation(p, status("13"), currentUser(),
         factory)).collect(Collectors.toList());
     operationRepository.saveAll(operationList);
     return ResponseFactory.success("add successfully!");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductNotCustomer() {
+    List<Product> product = productRepository.findAllByLocationAndStatus(currentUser(), status("2"));
+    return ResponseFactory.success(product);
   }
 
   @Override
@@ -107,5 +114,37 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
     return ResponseFactory.success(product);
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> addProductToWarranty(String productCode, String warrantyId) {
+    Product product = productRepository.findByProductCode(productCode);
+    ApplicationUser warranty = applicationUserRepository.findById(warrantyId).orElse(null);
+    if (product == null || product.getCustomer() == null || (product.getStatus() != status("3")
+                                                             && product.getStatus() != status("7")) || warranty == null
+        || !warranty.getRole().getRole().equals("warranty")) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    product.setNumberOfWarranty(product.getNumberOfWarranty() + 1);
+    product.setStatus(status("4"));
+    productRepository.save(product);
+    operationRepository.save(new Operation(product, status("4"), currentUser(), warranty));
+    return ResponseFactory.success("add successfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
+    return ResponseFactory.success(productRepository.findAllByLocationAndStatus(currentUser(), status("6")));
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(AddProductListRequest addProductListRequest) {
+    List<Product> productList = productRepository.findAllByLocationAndIdInAndStatus(currentUser(),
+            addProductListRequest.getProduct_id(), status("6")).stream().peek(p -> p.setStatus(status("7")))
+        .collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("7"), p.getLocation(),
+        null)).collect(Collectors.toList()));
+    return ResponseFactory.success("return successfully");
   }
 }

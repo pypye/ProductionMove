@@ -47,6 +47,11 @@ public class AgencyProductManagementController {
     return agencyProductManagementService.addProductFromFactory(factoryId, addProductListRequest);
   }
 
+  @GetMapping("/customer")
+  public ResponseEntity<GeneralResponse<Object>> getProductNotCustomer() {
+    return agencyProductManagementService.getProductNotCustomer();
+  }
+
   @PostMapping("/customer")
   public ResponseEntity<GeneralResponse<Object>> saleForCustomer(
       @Valid @RequestBody SaleProductRequest saleProductRequest) {
@@ -57,5 +62,22 @@ public class AgencyProductManagementController {
   public ResponseEntity<GeneralResponse<Object>> getProductCustomer(
       @PathVariable(name = "productCode") String productCode) {
     return agencyProductManagementService.getProductCustomer(productCode);
+  }
+
+  @PostMapping("/warranty/{productCode:^[0-9A-Za-z]*$}/{warrantyId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> addProductToWarranty(
+      @PathVariable(name = "productCode") String productCode, @PathVariable(name = "warrantyId") String warrantyId) {
+    return agencyProductManagementService.addProductToWarranty(productCode, warrantyId);
+  }
+
+  @GetMapping("/warranty/done")
+  public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
+    return agencyProductManagementService.getProductFromWarranty();
+  }
+
+  @PostMapping("/warranty/done")
+  public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return agencyProductManagementService.returnProductToCustomer(addProductListRequest);
   }
 }
