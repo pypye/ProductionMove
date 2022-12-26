@@ -2,21 +2,32 @@ import React from "react";
 import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
-function GetFromFactory(props) {
+function RecallProduct(props) {
     const ref = React.useRef(null);
-    const [factory, setFactory] = React.useState("6");
+    const [categoryId, setCategoryId] = React.useState("5");
+    const [warrantyId, setWarrantyId] = React.useState("4");
     const [data, setData] = React.useState(null);
 
-    const onGetFactoryProduct = () => {
-        UseFetch(`/backend/agency/product/factory/${factory}`, "GET", null).then((res) => {
+    const onRecallProduct = () => {
+        UseFetch(`/backend/agency/product/recall/${categoryId}`, "POST", null).then((res) => {
             if (res.status.code === "SUCCESS") {
-                var _res = res.data.map((item) => {
+                alert("Thu hồi thành công")
+            } else {
+                alert("Thu hồi thất bại")
+            }
+        })
+    }
+
+    const onGetList = () => {
+        UseFetch(`/backend/product/${categoryId}`, "GET", null).then((res) => {
+            if (res.status.code === "SUCCESS") {
+                var _res = res.data.filter(item => item.status.status !== 'Lỗi, cần bảo hành').map((item) => {
                     var _item = {
                         id: item.id,
                         productCode: item.productCode,
                         category: item.category.category,
                         price: item.price,
-                        status: item.status.status,
+                        status: 'Lỗi cần triệu hồi',
                         location: item.location.companyName,
                         warrantTime: item.warrantTime,
                         description: <Popup>
@@ -54,46 +65,53 @@ function GetFromFactory(props) {
         })
     }
 
-    const onRequestProduct = () => {
-        var currentData = ref.current.getTableData()
-        var _select = currentData.selected
-        var _id = []
-        for (var i = 0; i < _select.length; i++) {
-            _id.push(currentData.data[_select[i]].id)
-        }
-        UseFetch(`/backend/agency/product/factory/${factory}`, "POST", { "product_id": _id }).then(res => {
+
+    const onTransferToWarranty = () => {
+        UseFetch(`/backend/agency/product/recall/warranty/${warrantyId}`, "POST", null).then((res) => {
             if (res.status.code === "SUCCESS") {
-                var _data = currentData.data.filter((item) => {
-                    return !_select.includes(currentData.data.indexOf(item))
+                var _data = data.map(item => {
+                    if (item) {
+                        item.status = "Lỗi, cần bảo hành";
+                    }
+                    return item
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                alert("Yêu cầu nhập sản phẩm thành công")
+                alert("Chuyển về trung tâm bảo hành thành công")
             } else {
-                alert("Yêu cầu nhập sản phẩm thất bại")
+                alert("Chuyển về trung tâm bảo hành thất bại")
             }
         })
     }
 
+
     return (
         <React.Fragment>
-            <Section title="Nhập sản phẩm từ nhà máy">
+            <Section title="Thu hồi sản phẩm">
                 <Section.Div inline>
-                    <Option title="Chọn nhà máy" value={factory} onChange={setFactory}>
+                    <Option title="Chọn loại sản phẩm" value={categoryId} onChange={setCategoryId}>
+                        <Option.Item value="5" />
                         <Option.Item value="6" />
                         <Option.Item value="7" />
                     </Option>
-                    <Button onClick={onGetFactoryProduct}>Lấy thông tin sản phẩm</Button>
+                    <Button onClick={() => {
+                        onRecallProduct();
+                        onGetList();
+                    }}>Thu hồi</Button>
                 </Section.Div>
             </Section>
-            {data && <Table title={
+            {data && <Table multiTitle={
                 <React.Fragment>
-                    <span style={{ marginRight: '1rem' }}>Danh sách sản phẩm từ nhà máy {factory}</span>
-                    <Button onClick={onRequestProduct}>Yêu cầu nhập sản phẩm</Button>
+                    <h2>Sản phẩm đã thu hồi</h2>
+                    <Option title="Chọn TTBH" value={warrantyId} onChange={setWarrantyId}>
+                        <Option.Item value="4" />
+                    </Option>
+                    <Button onClick={onTransferToWarranty}>Chuyển sản phẩm TTBH</Button>
                 </React.Fragment>
-            } ref={ref} data={data} noOption noAddRow checkbox />}
+
+            } ref={ref} data={data} noOption noAddRow />}
         </React.Fragment>
 
     )
 }
-export { GetFromFactory }
+export { RecallProduct }
