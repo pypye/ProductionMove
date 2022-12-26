@@ -22,6 +22,13 @@ Form.Title = function FormTitle(props) {
         <h2 className="form-title">{props.content}</h2>
     )
 }
+
+Form.Subtitle = function FormSubtitle(props) {
+    return (
+        <h3 className="form-title">{props.content}</h3>
+    )
+}
+
 Form.Notify = function FormNotify(props) {
     return (
         props.enabled && <p className="form-notify">{props.content}{props.children}</p>

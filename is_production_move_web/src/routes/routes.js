@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import { Login } from '../pages/general/Login/Login';
 import { Layout } from '../layouts/Layout';
-import { ForgotPassword, Product, Logout, ResetPassword, User, Category, GetFromFactory, SendToAgency, SaleProduct } from '../pages';
+import { ForgotPassword, Product, Logout, ResetPassword, User, Category, GetFromFactory, SendToAgency, SaleProduct, AddProduct } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';
 
@@ -25,7 +25,7 @@ export default function Router() {
         {
             element: <UseAuth.Auth element={<Layout />} roles={['factory']} />,
             children: [
-                { path: '/factory/add-product', element: <div>add-product</div> },
+                { path: '/factory/add-product', element: <AddProduct /> },
                 { path: '/factory/send-to-agency', element: <SendToAgency />},
                 { path: '/factory/get-from-agency', element: <div>get-from-agency</div> },
             ]

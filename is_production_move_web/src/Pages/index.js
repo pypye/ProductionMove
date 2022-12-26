@@ -8,5 +8,6 @@ import { Category } from "./admin/Category";
 import { GetFromFactory } from "./agency/GetFromFactory/GetFromFactory";
 import { SendToAgency } from "./factory/SendToAgency/SendToAgency";
 import { SaleProduct } from "./agency/SaleProduct/SaleProduct";
+import { AddProduct } from "./factory/AddProduct/AddProduct";
 
-export { Login, Logout, ForgotPassword, ResetPassword, User, Product, Category, GetFromFactory, SendToAgency, SaleProduct };
+export { Login, Logout, ForgotPassword, ResetPassword, User, Product, Category, GetFromFactory, SendToAgency, SaleProduct, AddProduct };

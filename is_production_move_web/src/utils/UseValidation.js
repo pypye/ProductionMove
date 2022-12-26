@@ -91,6 +91,38 @@ function customerName(input) {
     return { state: true };
 }
 
+function productName(input) {
+    const productNamePattern = /^[0-9a-zA-Z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$/;
+    if (input.length === 0) {
+        return { state: false, content: 'Tên sản phẩm không được để trống' };
+    } else if (!productNamePattern.test(input)) {
+        return { state: false, content: 'Tên sản phẩm chỉ được chứa số, chữ cái và khoảng trắng' };
+    }
+    return { state: true };
+}
+
+
+function price(input) {
+    const pricePattern = /^[0-9.]+$/;
+    if (input.length === 0) {
+        return { state: false, content: 'Giá sản phẩm không được để trống' };
+    } else if (!pricePattern.test(input)) {
+        return { state: false, content: 'Giá sản phẩm chỉ được chứa số và dấu chấm' };
+    }
+    return { state: true };
+}
+
+function warrantTime(input) {
+    const warrantTimePattern = /^[0-9]+$/;
+    if (input.length === 0) {
+        return { state: false, content: 'Thời gian bảo hành không được để trống' };
+    } else if (!warrantTimePattern.test(input)) {
+        return { state: false, content: 'Thời gian bảo hành chỉ được chứa số' };
+    }
+    return { state: true };
+}
+
+
 const UseValidation = {
     username,
     password,
@@ -102,6 +134,9 @@ const UseValidation = {
     address,
     companyName,
     customerName,
+    productName,
+    price,
+    warrantTime,
 };
 
 export { UseValidation };

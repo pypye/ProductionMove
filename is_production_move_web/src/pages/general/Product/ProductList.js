@@ -25,7 +25,7 @@ function ProductList() {
                                     <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
                                     {
                                         Object.entries(JSON.parse(item.description.replaceAll("'", '"'))).map(([key, value]) => {
-                                            return <div key={key}><strong>{key}</strong> {value}</div>
+                                            return <div key={key}><strong>{key}</strong> {value !== "" ? value : "N/A"}</div>
                                         })
                                     }
                                 </Section>
