@@ -1,6 +1,7 @@
 package com.example.productmoveapi.security.filter.service;
 
 import com.example.productmoveapi.repository.entity.ApplicationUser;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class UserDetailsImplement implements UserDetails {
 
+  @Serial
   private static final long serialVersionUID = 4030000316478277980L;
   private final String id;
   private final String username;

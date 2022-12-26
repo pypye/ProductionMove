@@ -16,16 +16,6 @@ public class ResponseFactory {
     return ResponseEntity.ok(generalResponse);
   }
 
-  public static <T> ResponseEntity<GeneralResponse<T>> success(GeneralResponse<T> responseObject) {
-    return ResponseEntity.ok(responseObject);
-  }
-
-  public static ResponseEntity<GeneralResponse<Object>> success() {
-    GeneralResponse<Object> responseObject = new GeneralResponse<>();
-    responseObject.setStatus(new GeneralResponseStatus(ResponseStatusEnum.SUCCESS));
-    return ResponseEntity.ok(responseObject);
-  }
-
   public static ResponseEntity<GeneralResponse<Object>> success(Object data, Class<?> clazz) {
     GeneralResponse<Object> responseObject = new GeneralResponse<>();
     responseObject.setStatus(new GeneralResponseStatus(ResponseStatusEnum.SUCCESS));

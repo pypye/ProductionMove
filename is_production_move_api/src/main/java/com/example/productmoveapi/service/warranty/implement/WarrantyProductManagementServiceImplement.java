@@ -2,7 +2,6 @@ package com.example.productmoveapi.service.warranty.implement;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
-import com.example.productmoveapi.repository.CategoryRepository;
 import com.example.productmoveapi.repository.OperationRepository;
 import com.example.productmoveapi.repository.ProductRepository;
 import com.example.productmoveapi.repository.StatusRepository;
@@ -35,18 +34,15 @@ import org.springframework.stereotype.Service;
 public class WarrantyProductManagementServiceImplement implements WarrantyProductManagementService {
 
   private final ProductRepository productRepository;
-  private final CategoryRepository categoryRepository;
   private final ApplicationUserRepository applicationUserRepository;
   private final OperationRepository operationRepository;
   private final StatusRepository statusRepository;
 
   @Autowired
-  public WarrantyProductManagementServiceImplement(
-      ProductRepository productRepository, CategoryRepository categoryRepository,
-      ApplicationUserRepository applicationUserRepository,
-      OperationRepository operationRepository, StatusRepository statusRepository) {
+  public WarrantyProductManagementServiceImplement(ProductRepository productRepository,
+      ApplicationUserRepository applicationUserRepository, OperationRepository operationRepository,
+      StatusRepository statusRepository) {
     this.productRepository = productRepository;
-    this.categoryRepository = categoryRepository;
     this.applicationUserRepository = applicationUserRepository;
     this.operationRepository = operationRepository;
     this.statusRepository = statusRepository;
@@ -63,10 +59,10 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
     return statusRepository.findById(num).orElse(null);
   }
 
-  private List<Operation> getOperationListByCurrentUser(AddProductListRequest addProductListRequest, String num) {
+  private List<Operation> getOperationListByCurrentUser(AddProductListRequest addProductListRequest) {
     List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndApplicationUser(
-            addProductListRequest.getProduct_id(), status(num), currentUser()).stream()
-        .filter(opt -> opt.getProduct().getStatus() == status(num)).collect(Collectors.toList());
+            addProductListRequest.getProduct_id(), status("5"), currentUser()).stream()
+        .filter(opt -> opt.getProduct().getStatus() == status("5")).collect(Collectors.toList());
     Map<String, Operation> operationMap =
         operationList.stream().collect(Collectors.toMap(operation -> operation.getProduct().getId(), Function.identity()
             , (opt1, opt2) -> opt2));
@@ -111,7 +107,7 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
 
   @Override
   public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(AddProductListRequest addProductListRequest) {
-    List<Operation> operationList = getOperationListByCurrentUser(addProductListRequest, "5");
+    List<Operation> operationList = getOperationListByCurrentUser(addProductListRequest);
     List<Product> productList = operationList.stream().peek(p -> {
       p.getProduct().setStatus(status("6"));
       p.getProduct().setLocation(p.getDestination());
@@ -130,7 +126,7 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
     if (factory == null || !factory.getRole().getRole().equals("factory")) {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
-    List<Operation> operationList = getOperationListByCurrentUser(addProductListRequest, "5");
+    List<Operation> operationList = getOperationListByCurrentUser(addProductListRequest);
     List<Product> productList = operationList.stream().peek(p -> p.getProduct().setStatus(status("8"))).map(
         Operation::getProduct).collect(Collectors.toList());
     productRepository.saveAll(productList);
