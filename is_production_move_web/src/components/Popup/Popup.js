@@ -14,7 +14,7 @@ const Popup = forwardRef((props, ref) => {
             if (props.onReset) props.onReset()
             if (props.onCloseOther) props.onCloseOther();
         }
-    }));
+    }), [props]);
 
     React.useEffect(() => {
         document.addEventListener("mousedown", onPopupClose);

@@ -7,4 +7,15 @@ function Section(props) {
             {props.children}
         </div>
     )
-} export { Section }
+}
+
+Section.Div = function (props) {
+    return (
+        <div className={(props.inline ? "section-div-inline" : "section-div-flex")}>
+            {props.children}
+        </div>
+    )
+}
+
+
+export { Section }

@@ -53,10 +53,10 @@ function TableHeader(props) {
     return (
         <thead>
             <tr>
-                <TableHeaderCell checkbox checked={props.tableData.selected.length === props.tableData.data.length ? 1 : (props.tableData.selected.length === 0 ? 0 : 2)} onClick={() => onSelectAll()} />
+                {props.checkbox && <TableHeaderCell checkbox checked={props.tableData.selected.length === props.tableData.data.length ? 1 : (props.tableData.selected.length === 0 ? 0 : 2)} onClick={() => onSelectAll()} />}
                 {
                     props.data.length > 0 && Object.keys(props.data[0]).map((v, i) => {
-                        if (v === 'id' && props.displayColumn[i]) return <th key={i}>no.</th>
+                        if (v === 'id' && props.displayColumn[i]) return <th key={v}>no.</th>
                         if (v !== '__data_order' && props.displayColumn[i]) return <TableHeaderCell key={i} label={v} order={props.sort} />
                         else return null;
                     })

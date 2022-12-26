@@ -6,20 +6,22 @@ const Table = forwardRef((props, ref) => {
     const tableRef = React.useRef(null);
     const addRowRef = React.useRef(null);
     const editRowRef = React.useRef(null);
+    const customerPopupRef = React.useRef(null);
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
     const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
-
     const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data.length ? props.data[0] : []).map(() => true)]);
-    console.log(displayColumn);
 
     useImperativeHandle(ref, () => ({
+        getTableData() {
+            return tableData;
+        },
         updateTable(newRow, method) {
             var index, newData;
             if (method === "add") {
                 var newRowObject = Object.assign({}, { "__data_order": tableData.data.length }, newRow);
                 setTableData({ data: [...tableData.data, newRowObject], selected: tableData.selected });
-                setTablePage({ page: Math.ceil(tableData.data.length / tablePage.pageSize), pageSize: tablePage.pageSize });
+                setTablePage({ page: Math.ceil(props.data.length / tablePage.pageSize), pageSize: tablePage.pageSize });
             } else if (method === "edit") {
                 index = tableData.data.findIndex(item => item.id === newRow.id);
                 newData = [...tableData.data];
@@ -32,6 +34,10 @@ const Table = forwardRef((props, ref) => {
                 setTableData({ data: newData, selected: tableData.selected });
             }
         },
+        updateAllTable(newData) {
+            setTableData({ data: [...newData.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
+            setTablePage({ page: 1, pageSize: tablePage.pageSize });
+        },
 
         forceAddRowClose() {
             addRowRef.current.forceDropdownClose();
@@ -39,6 +45,9 @@ const Table = forwardRef((props, ref) => {
 
         forceEditRowClose() {
             editRowRef.current.forcePopupClose();
+        },
+        forceCustomerPopupClose() {
+            customerPopupRef.current.forcePopupClose();
         }
     }));
 
@@ -106,6 +115,7 @@ const Table = forwardRef((props, ref) => {
                             setTableData={setTableData}
                             data={props.data}
                             noOption={props.noOption}
+                            checkbox={props.checkbox}
                         />
                         <TableComponent.Body
                             tableData={tableData}
@@ -119,6 +129,10 @@ const Table = forwardRef((props, ref) => {
                             onFetchEditRow={props.onFetchEditRow}
                             onReset={props.onReset}
                             noOption={props.noOption}
+                            checkbox={props.checkbox}
+                            customerPopup={props.customerPopup}
+                            customerPopupRef={customerPopupRef}
+                            onFetchCustomerPopup={props.onFetchCustomerPopup}
                         />
                     </table>
                 </div>

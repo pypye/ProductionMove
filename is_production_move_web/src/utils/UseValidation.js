@@ -81,6 +81,16 @@ function companyName(input) {
     return { state: true };
 }
 
+function customerName(input) {
+    const customerNamePattern = /^[a-zA-Z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$/
+    if (input.length === 0) {
+        return { state: false, content: 'Tên khách hàng không được để trống' };
+    } else if (!customerNamePattern.test(input)) {
+        return { state: false, content: 'Tên khách hàng chỉ được chứa chữ cái và khoảng trắng' };
+    }
+    return { state: true };
+}
+
 const UseValidation = {
     username,
     password,
@@ -91,6 +101,7 @@ const UseValidation = {
     phone,
     address,
     companyName,
+    customerName,
 };
 
 export { UseValidation };

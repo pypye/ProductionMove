@@ -3,8 +3,8 @@ import { Option } from "../../Option/Option";
 
 function Pagination(props) {
     
-    function onChangePagePaginationSize(event) {
-        props.setTablePage(t => ({ page: Math.min(Math.max(1, Math.ceil(t.page * t.pageSize / event.target.value)), Math.ceil(props.tableData.data.length / event.target.value)), pageSize: event.target.value }));
+    function onChangePagePaginationSize(value) {
+        props.setTablePage(t => ({ page: Math.min(Math.max(1, Math.ceil(t.page * t.pageSize / value)), Math.ceil(props.tableData.data.length / value)), pageSize: value }));
     }
 
     function onChangePagePagination(value) {
@@ -14,7 +14,7 @@ function Pagination(props) {
     }
     return (
         <div className='page-pagination'>
-            <Option title='Rows per page:' onChange={(e) => onChangePagePaginationSize(e)}>
+            <Option title='Rows per page:' onChange={onChangePagePaginationSize}>
                 <Option.Item value={10} />
                 <Option.Item value={25} />
                 <Option.Item value={50} />

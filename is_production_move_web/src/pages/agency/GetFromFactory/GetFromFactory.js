@@ -1,13 +1,14 @@
-import {  Popup, Section, Table } from "../../../components"
+import React from "react";
+import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
-import React from "react"
 
-function ProductList() {
-    const [data, setData] = React.useState(null)
-    const [loading, setLoading] = React.useState(true)
+function GetFromFactory(props) {
+    const ref = React.useRef(null);
+    const [factory, setFactory] = React.useState("6");
+    const [data, setData] = React.useState(null);
 
-    React.useEffect(() => {
-        UseFetch("/backend/product/all", "GET", null).then(res => {
+    const onGetFactoryProduct = () => {
+        UseFetch(`/backend/agency/product/factory/${factory}`, "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
                     var _item = {
@@ -48,17 +49,53 @@ function ProductList() {
                     return _item
                 })
                 setData(_res)
-                setLoading(false)
+                if (ref.current) ref.current.updateAllTable(_res)
             }
         })
-    }, [])
+    }
 
-    if (loading || !data) return <React.Fragment />
+    const onRequestProduct = () => {
+        var currentData = ref.current.getTableData()
+        var _select = currentData.selected
+        var _id = []
+        for (var i = 0; i < _select.length; i++) {
+            _id.push(currentData.data[_select[i]].id)
+        }
+
+        UseFetch(`/backend/agency/product/factory/${factory}`, "POST", { "product_id": _id }).then(res => {
+            if (res.status.code === "SUCCESS") {
+                var _data = currentData.data.filter((item) => {
+                    return !_select.includes(currentData.data.indexOf(item))
+                })
+                setData(_data)
+                ref.current.updateAllTable(_data)
+                alert("Yêu cầu nhập sản phẩm thành công")
+            } else{
+                alert("Yêu cầu nhập sản phẩm thất bại")
+            }
+        })
+    }
 
     return (
         <React.Fragment>
-            <Table title='Danh sách sản phẩm' data={data} noOption noAddRow />
+            <Section title="Nhận sản phẩm từ nhà máy">
+                <Section.Div inline>
+                    <Option title="Chọn nhà máy" value={factory} onChange={setFactory}>
+                        <Option.Item value="6" />
+                        <Option.Item value="7" />
+                    </Option>
+                    <Button onClick={onGetFactoryProduct}>Lấy thông tin sản phẩm</Button>
+                </Section.Div>
+            </Section>
+            {data && <Table title={
+                <React.Fragment>
+                    <span style={{ marginRight: '1rem' }}>Danh sách sản phẩm từ nhà máy {factory}</span>
+                    <Button onClick={onRequestProduct}>Yêu cầu nhập sản phẩm</Button>
+                </React.Fragment>
+
+            } ref={ref} data={data} noOption noAddRow checkbox />}
         </React.Fragment>
+
     )
 }
-export { ProductList }
+export { GetFromFactory }

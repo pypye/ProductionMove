@@ -25,7 +25,7 @@ function Layout(props) {
                 </div>
                 <Navigation>
                     <Navigation.Category label="Chung" role={['admin', 'factory', 'warranty', 'agency']} type={props.type}>
-                        <Navigation.Item icon={<Icon.NotificationRaw />} label="Danh sách sản phẩm trong kho" link='/product' />
+                        <Navigation.Item icon={<Icon.NotificationRaw />} label={props.type === 'admin' ? "Danh sách sản phẩm" : "Danh sách sản phẩm trong kho"} link='/product' />
                     </Navigation.Category>
 
                     <Navigation.Category label="Ban quản lý" role={['admin']} type={props.type}>

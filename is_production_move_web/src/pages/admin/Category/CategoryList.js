@@ -59,8 +59,7 @@ function CategoryList() {
         UseFetch(`/backend/admin/category/update/${id}`, "PUT", { name: category }).then(res => {
             if (res.status.code === "SUCCESS") {
                 setData(prev => {
-                    var index = prev.findIndex(item => item.id === id)
-                    prev[index].category = category
+                    prev[id].category = category
                     return prev
                 })
                 setError("")
