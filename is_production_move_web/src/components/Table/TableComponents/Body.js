@@ -30,11 +30,11 @@ function Body(props) {
                                 {
                                     Object.keys(v).map((v2, i2) => {
                                         if (v2 === 'id' && props.displayColumn[i2 - 1]) return <td key={v2}>{i + 1}</td>;
-                                        if (v2 === 'customer' && props.displayColumn[i2 - 1] && props.customerPopup) return <td key={v2}>
-                                            <Popup ref={props.customerPopupRef}>
-                                                <Popup.Trigger onClick={() => props.onFetchCustomerPopup(v)}><a href="#/">Bán sản phẩm này</a></Popup.Trigger>
+                                        if (v2 === 'option' && props.displayColumn[i2 - 1] && props.optionPopup && v[v2] === "N/A") return <td key={v2}>
+                                            <Popup ref={props.optionPopupRef}>
+                                                <Popup.Trigger onClick={() => props.onFetchOptionPopup(v)}><a href="#/">{props.optionPopupTitle}</a></Popup.Trigger>
                                                 <Popup.Content>
-                                                    {props.customerPopup}
+                                                    {props.optionPopup}
                                                 </Popup.Content>
                                             </Popup>
                                         </td>;

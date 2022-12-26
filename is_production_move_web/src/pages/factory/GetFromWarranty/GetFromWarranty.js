@@ -2,13 +2,13 @@ import React from "react";
 import { Button, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
-function SendToAgency(props) {
+function GetFromWarranty(props) {
     const ref = React.useRef(null);
     const [data, setData] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        UseFetch(`/backend/factory/product/agency`, "GET", null).then((res) => {
+        UseFetch(`/backend/factory/product/warranty`, "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
                     var _item = {
@@ -44,7 +44,7 @@ function SendToAgency(props) {
                                     <div><strong>Số lần bảo hành:</strong> {item.numberOfWarranty}</div>
                                 </Section>
                             </Popup.Content>
-                        </Popup> : "N/A"
+                        </Popup> : "N/A",
                     }
                     return _item
                 })
@@ -63,16 +63,16 @@ function SendToAgency(props) {
             _id.push(currentData.data[_select[i]].id)
         }
 
-        UseFetch(`/backend/factory/product/agency`, "POST", { "product_id": _id }).then(res => {
+        UseFetch(`/backend/factory/product/warranty`, "POST", { "product_id": _id }).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _data = currentData.data.filter((item) => {
                     return !_select.includes(currentData.data.indexOf(item))
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                alert("Xuất sản phẩm thành công")
+                alert("Lấy sản phẩm thành công")
             } else {
-                alert("Xuất sản phẩm thất bại")
+                alert("Lấy sản phẩm thất bại")
             }
         })
     }
@@ -82,12 +82,12 @@ function SendToAgency(props) {
         <React.Fragment>
             <Table title={
                 <React.Fragment>
-                    <span style={{ marginRight: '1rem' }}>Xuất sản phẩm tới đại lý</span>
-                    <Button onClick={onRequestProduct}>Xuất sản phẩm đã chọn</Button>
+                    <span style={{ marginRight: '1rem' }}>Lấy sản phẩm lỗi từ TTBH</span>
+                    <Button onClick={onRequestProduct}>Lấy sản phẩm đã chọn</Button>
                 </React.Fragment>
 
             } ref={ref} data={data} noOption noAddRow checkbox />
         </React.Fragment>
     )
 }
-export { SendToAgency }
+export { GetFromWarranty }

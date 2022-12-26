@@ -6,10 +6,10 @@ const Table = forwardRef((props, ref) => {
     const tableRef = React.useRef(null);
     const addRowRef = React.useRef(null);
     const editRowRef = React.useRef(null);
-    const customerPopupRef = React.useRef(null);
+    const optionPopupRef = React.useRef(null);
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
-    const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
+    const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 25 });
     const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data.length ? props.data[0] : []).map(() => true)]);
 
     useImperativeHandle(ref, () => ({
@@ -46,14 +46,14 @@ const Table = forwardRef((props, ref) => {
         forceEditRowClose() {
             editRowRef.current.forcePopupClose();
         },
-        forceCustomerPopupClose() {
-            customerPopupRef.current.forcePopupClose();
+        forceOptionPopupClose() {
+            optionPopupRef.current.forcePopupClose();
         }
     }));
 
     React.useEffect(() => {
         if (props.data.length === 0) return;
-        
+
         const sortTable = (col, order) => {
             //order = 1: ascending, 2: descending, 0: reset 
             if (order === 0) {
@@ -87,7 +87,9 @@ const Table = forwardRef((props, ref) => {
 
     return (
         <div className='table-container' style={{ width: props.width, height: props.height }}>
-            <h2 className='table-title'>{props.title}</h2>
+            {props.title && <h2 className='table-title'>{props.title}</h2>}
+            {props.multiTitle && <div className='table-multi-title'>{props.multiTitle}</div>}
+
             {props.data.length === 0 ? <div className='no-data'>Không có dữ liệu để hiển thị</div> : <React.Fragment>
                 <TableComponent.Navigation>
                     {props.noAddRow ? null : <TableComponent.Navigation.AddRow
@@ -130,9 +132,10 @@ const Table = forwardRef((props, ref) => {
                             onReset={props.onReset}
                             noOption={props.noOption}
                             checkbox={props.checkbox}
-                            customerPopup={props.customerPopup}
-                            customerPopupRef={customerPopupRef}
-                            onFetchCustomerPopup={props.onFetchCustomerPopup}
+                            optionPopup={props.optionPopup}
+                            optionPopupRef={optionPopupRef}
+                            optionPopupTitle={props.optionPopupTitle}
+                            onFetchOptionPopup={props.onFetchOptionPopup}
                         />
                     </table>
                 </div>

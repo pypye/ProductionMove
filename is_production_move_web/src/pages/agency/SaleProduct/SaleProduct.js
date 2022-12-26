@@ -6,12 +6,10 @@ function SaleProduct(props) {
     const ref = React.useRef()
     const [data, setData] = React.useState([])
     const [loading, setLoading] = React.useState(true)
-
     const [customerProductCode, setCustomerProductCode] = React.useState("")
     const [customerName, setCustomerName] = React.useState("")
     const [customerAddress, setCustomerAddress] = React.useState("")
     const [customerPhone, setCustomerPhone] = React.useState("")
-
     const [error, setError] = React.useState("")
 
     const validCustomerInfo = () => {
@@ -28,7 +26,7 @@ function SaleProduct(props) {
     const onAddCustomerInfo = (productCode) => {
         UseFetch("/backend/agency/product/customer", "POST", { productCode: productCode, name: customerName, address: customerAddress, phone: customerPhone }).then(res => {
             if (res.status.code === "SUCCESS") {
-                ref.current.forceCustomerPopupClose()
+                ref.current.forceOptionPopupClose()
                 var _data = data.filter(item => item.productCode !== productCode)
                 setData(_data)
                 ref.current.updateAllTable(_data)
@@ -63,7 +61,7 @@ function SaleProduct(props) {
                                 </Section>
                             </Popup.Content>
                         </Popup>,
-                        customer: "N/A"
+                        option: "N/A"
                     }
                     return _item
                 })
@@ -77,7 +75,7 @@ function SaleProduct(props) {
     if (loading || !data) return <React.Fragment />
 
     return <React.Fragment>
-        <Table title="Bán sản phẩm" ref={ref} data={data} noOption noAddRow customerPopup={
+        <Table title="Bán sản phẩm" ref={ref} data={data} noOption noAddRow optionPopup={
             <Form noContainer>
                 <Form.Title content="Thông tin khách hàng" />
                 <Form.Input label="Mã sản phẩm" reference={[customerProductCode]} disabled />
@@ -87,6 +85,6 @@ function SaleProduct(props) {
                 <Form.Error enabled={error !== ""} content={error} />
                 <Form.Submit content="Bán sản phẩm" validation={validCustomerInfo} onClick={() => onAddCustomerInfo(customerProductCode)} />
             </Form>
-        } onFetchCustomerPopup={onFetchCustomerPopup} />
+        } optionPopupTitle="Bán sản phẩm này" onFetchOptionPopup={onFetchCustomerPopup} />
     </React.Fragment>
 } export { SaleProduct }

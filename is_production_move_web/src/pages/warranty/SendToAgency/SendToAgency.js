@@ -8,7 +8,7 @@ function SendToAgency(props) {
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        UseFetch(`/backend/factory/product/agency`, "GET", null).then((res) => {
+        UseFetch(`/backend/warranty/product/all`, "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
                     var _item = {
@@ -31,20 +31,7 @@ function SendToAgency(props) {
                                     }
                                 </Section>
                             </Popup.Content>
-                        </Popup>,
-                        customer: item.customer ? <Popup>
-                            <Popup.Trigger><a href="#/">Xem thêm</a></Popup.Trigger>
-                            <Popup.Content>
-                                <Section title="Thông tin khách hàng" noContainer>
-                                    <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
-                                    <div><strong>Tên khách hàng:</strong> {item.customer.name}</div>
-                                    <div><strong>Địa chỉ:</strong> {item.customer.address}</div>
-                                    <div><strong>Số điện thoại:</strong> {item.customer.phone}</div>
-                                    <div><strong>Thời gian bán:</strong> {item.salesTime}</div>
-                                    <div><strong>Số lần bảo hành:</strong> {item.numberOfWarranty}</div>
-                                </Section>
-                            </Popup.Content>
-                        </Popup> : "N/A"
+                        </Popup>
                     }
                     return _item
                 })
@@ -63,16 +50,16 @@ function SendToAgency(props) {
             _id.push(currentData.data[_select[i]].id)
         }
 
-        UseFetch(`/backend/factory/product/agency`, "POST", { "product_id": _id }).then(res => {
+        UseFetch(`/backend/warranty/product/agency/done`, "POST", { "product_id": _id }).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _data = currentData.data.filter((item) => {
                     return !_select.includes(currentData.data.indexOf(item))
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                alert("Xuất sản phẩm thành công")
+                alert("Trả lại sản phẩm cho đại lý thành công")
             } else {
-                alert("Xuất sản phẩm thất bại")
+                alert("Trả lại sản phẩm cho đại lý thất bại")
             }
         })
     }
@@ -82,8 +69,8 @@ function SendToAgency(props) {
         <React.Fragment>
             <Table title={
                 <React.Fragment>
-                    <span style={{ marginRight: '1rem' }}>Xuất sản phẩm tới đại lý</span>
-                    <Button onClick={onRequestProduct}>Xuất sản phẩm đã chọn</Button>
+                    <span style={{ marginRight: '1rem' }}>Trả lại sản phẩm cho đại lý</span>
+                    <Button onClick={onRequestProduct}>Trả lại sản phẩm đã chọn</Button>
                 </React.Fragment>
 
             } ref={ref} data={data} noOption noAddRow checkbox />

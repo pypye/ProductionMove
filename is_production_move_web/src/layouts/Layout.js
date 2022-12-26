@@ -54,8 +54,6 @@ function Layout(props) {
             </nav>
             <main>
                 <header>
-                    <Icon.Notification />
-                    <Icon.People />
                     <Dropdown>
                         <Dropdown.Main item={<Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>} />
                         <Dropdown.Menu right zIndex={5}>

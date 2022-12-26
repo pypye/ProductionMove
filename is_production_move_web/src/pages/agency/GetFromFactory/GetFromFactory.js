@@ -61,7 +61,6 @@ function GetFromFactory(props) {
         for (var i = 0; i < _select.length; i++) {
             _id.push(currentData.data[_select[i]].id)
         }
-
         UseFetch(`/backend/agency/product/factory/${factory}`, "POST", { "product_id": _id }).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _data = currentData.data.filter((item) => {
@@ -70,7 +69,7 @@ function GetFromFactory(props) {
                 setData(_data)
                 ref.current.updateAllTable(_data)
                 alert("Yêu cầu nhập sản phẩm thành công")
-            } else{
+            } else {
                 alert("Yêu cầu nhập sản phẩm thất bại")
             }
         })
@@ -92,7 +91,6 @@ function GetFromFactory(props) {
                     <span style={{ marginRight: '1rem' }}>Danh sách sản phẩm từ nhà máy {factory}</span>
                     <Button onClick={onRequestProduct}>Yêu cầu nhập sản phẩm</Button>
                 </React.Fragment>
-
             } ref={ref} data={data} noOption noAddRow checkbox />}
         </React.Fragment>
 

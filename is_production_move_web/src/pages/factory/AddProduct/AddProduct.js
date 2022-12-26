@@ -21,7 +21,6 @@ function AddProduct(props) {
     const [design, setDesign] = React.useState("");
     const [weight, setWeight] = React.useState("");
 
-
     const description = useMemo(() => {
         return {
             "CPU:": cpu,
@@ -84,7 +83,6 @@ function AddProduct(props) {
             }
         })
     }
-
 
     if (loading) return <React.Fragment />
 

@@ -1,14 +1,15 @@
 import React from "react";
-import { Button, Popup, Section, Table } from "../../../components";
+import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
-function SendToAgency(props) {
+function SendToFactory(props) {
     const ref = React.useRef(null);
     const [data, setData] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
+    const [factoryId, setFactoryId] = React.useState("2");
 
     React.useEffect(() => {
-        UseFetch(`/backend/factory/product/agency`, "GET", null).then((res) => {
+        UseFetch(`/backend/warranty/product/all`, "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
                     var _item = {
@@ -31,20 +32,7 @@ function SendToAgency(props) {
                                     }
                                 </Section>
                             </Popup.Content>
-                        </Popup>,
-                        customer: item.customer ? <Popup>
-                            <Popup.Trigger><a href="#/">Xem thêm</a></Popup.Trigger>
-                            <Popup.Content>
-                                <Section title="Thông tin khách hàng" noContainer>
-                                    <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
-                                    <div><strong>Tên khách hàng:</strong> {item.customer.name}</div>
-                                    <div><strong>Địa chỉ:</strong> {item.customer.address}</div>
-                                    <div><strong>Số điện thoại:</strong> {item.customer.phone}</div>
-                                    <div><strong>Thời gian bán:</strong> {item.salesTime}</div>
-                                    <div><strong>Số lần bảo hành:</strong> {item.numberOfWarranty}</div>
-                                </Section>
-                            </Popup.Content>
-                        </Popup> : "N/A"
+                        </Popup>
                     }
                     return _item
                 })
@@ -62,32 +50,37 @@ function SendToAgency(props) {
         for (var i = 0; i < _select.length; i++) {
             _id.push(currentData.data[_select[i]].id)
         }
-
-        UseFetch(`/backend/factory/product/agency`, "POST", { "product_id": _id }).then(res => {
+        UseFetch(`/backend/warranty/product/factory/error/${factoryId}`, "POST", { "product_id": _id }).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _data = currentData.data.filter((item) => {
                     return !_select.includes(currentData.data.indexOf(item))
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                alert("Xuất sản phẩm thành công")
+                alert("Chuyển sản phẩm về nhà máy thành công")
             } else {
-                alert("Xuất sản phẩm thất bại")
+                alert("Chuyển sản phẩm về nhà máy thất bại")
             }
         })
     }
 
     if (loading) return <React.Fragment />
+
     return (
         <React.Fragment>
-            <Table title={
+            <Table multiTitle={
                 <React.Fragment>
-                    <span style={{ marginRight: '1rem' }}>Xuất sản phẩm tới đại lý</span>
-                    <Button onClick={onRequestProduct}>Xuất sản phẩm đã chọn</Button>
+                    <h2>Sản phẩm không thể bảo hành</h2>
+                    <Option title="Chọn nhà máy" value={factoryId} onChange={setFactoryId}>
+                        <Option.Item value="2" />
+                        <Option.Item value="6" />
+                        <Option.Item value="7" />
+                    </Option>
+                    <Button onClick={onRequestProduct}>Chuyển sản phẩm đã chọn về nhà máy</Button>
                 </React.Fragment>
 
             } ref={ref} data={data} noOption noAddRow checkbox />
         </React.Fragment>
     )
 }
-export { SendToAgency }
+export { SendToFactory }
