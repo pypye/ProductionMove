@@ -2,6 +2,7 @@ package com.example.productmoveapi.repository.entity;
 
 import com.example.productmoveapi.dto.request.user_request.CreateAccountRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serial;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,6 +28,7 @@ import lombok.Setter;
 @Table(name = "account")
 public class ApplicationUser extends BaseEntity {
 
+  @Serial
   private static final long serialVersionUID = 1823759985171944176L;
   @Column(name = "username", nullable = false, unique = true)
   private String username;

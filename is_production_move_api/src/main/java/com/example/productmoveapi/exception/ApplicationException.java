@@ -1,6 +1,7 @@
 package com.example.productmoveapi.exception;
 
 import com.example.productmoveapi.response.ResponseStatusEnum;
+import java.io.Serial;
 import lombok.Getter;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Getter;
 @Getter
 public class ApplicationException extends RuntimeException {
 
+  @Serial
   private static final long serialVersionUID = -578756703743877447L;
 
   private final ResponseStatusEnum responseStatusEnum;

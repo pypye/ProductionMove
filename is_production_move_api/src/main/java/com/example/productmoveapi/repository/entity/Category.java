@@ -1,6 +1,7 @@
 package com.example.productmoveapi.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serial;
 import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,6 +24,7 @@ import lombok.Setter;
 @Table(name = "category")
 public class Category extends BaseEntity {
 
+  @Serial
   private static final long serialVersionUID = -5442339906711889775L;
   @Column(name = "name", nullable = false, unique = true)
   private String category;

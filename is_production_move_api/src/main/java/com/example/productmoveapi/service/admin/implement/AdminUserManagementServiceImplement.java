@@ -111,7 +111,6 @@ public class AdminUserManagementServiceImplement implements AdminUserManagementS
     }
 
     applicationUser.setUsername(updateAccountRequest.getUsername());
-    applicationUser.setPassword(bCryptPasswordEncoder.encode(updateAccountRequest.getPassword()));
     applicationUser.setEmail(updateAccountRequest.getEmail());
     applicationUser.setRole(roleRepository.findRoleById(updateAccountRequest.getRole_id()));
     applicationUser.setAddress(updateAccountRequest.getAddress());

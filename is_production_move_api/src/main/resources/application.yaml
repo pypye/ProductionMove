@@ -23,6 +23,7 @@ spring:
   mail:
     username: vlxx2022tv@gmail.com
     password: qxzdvjbeetfzoqwk
+
 server:
   address: localhost
   port: 3001

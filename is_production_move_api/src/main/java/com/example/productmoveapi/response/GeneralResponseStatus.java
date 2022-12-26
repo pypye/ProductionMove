@@ -1,5 +1,6 @@
 package com.example.productmoveapi.response;
 
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GeneralResponseStatus implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1216664062736095390L;
 
   private String code;
