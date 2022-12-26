@@ -40,7 +40,7 @@ function Auth(props) {
         return <React.Fragment />
     }
 
-    if (props.roles.includes('all')) {
+    if (props.roles.includes('guest')) {
         if (auth && auth.type) {
             return <Navigate to="/" />;
         } else {
@@ -48,8 +48,12 @@ function Auth(props) {
         }
     }
 
-    if (auth && auth.type && props.roles.includes(auth.type)) {
-        return React.cloneElement(props.element, auth);
+    if (auth && auth.type) {
+        if (props.roles.includes(auth.type))
+            return React.cloneElement(props.element, auth);
+        else {
+            return <div>Not Found</div>;
+        }
     } else {
         return <Navigate to="/login" />;
     }

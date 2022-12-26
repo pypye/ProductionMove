@@ -5,7 +5,6 @@
     flex-direction: column;
     row-gap: 1rem;
     padding: 1rem 0;
-    overflow: auto;
 }
 
 .table-container .title {
@@ -17,7 +16,7 @@
 .table-wrapper {
     overflow-x: auto;
     overflow-y: auto;
-    max-height: calc(100vh - 30rem);
+    max-height: calc(100vh - 25rem);
 }
 
 .table {
@@ -33,6 +32,10 @@ thead th {
     top: 0;
     background-color: rgb(255, 255, 255);
     z-index: 1;
+}
+.no-data{
+    margin: 0;
+    padding: 0.5rem 1.5rem;
 }
 
 

@@ -5,7 +5,10 @@ function Option(props) {
     return (
         <div className={"option-wrapper " + (props.maxWidth ? "max-width" : "")}>
             <span className="option-title">{props.title}</span>
-            <select className="option-select" onChange={props.onChange}>
+            <select className="option-select" value={props.value} onChange={(e) => {
+                if(props.onChange) props.onChange(e.target.value)
+            }
+                }>
                 {props.children}
             </select>
         </div>

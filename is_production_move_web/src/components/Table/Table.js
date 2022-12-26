@@ -9,7 +9,9 @@ const Table = forwardRef((props, ref) => {
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
     const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
-    const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data[0]).map(() => true)]);
+
+    const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data.length ? props.data[0] : []).map(() => true)]);
+    console.log(displayColumn);
 
     useImperativeHandle(ref, () => ({
         updateTable(newRow, method) {
@@ -41,6 +43,8 @@ const Table = forwardRef((props, ref) => {
     }));
 
     React.useEffect(() => {
+        if (props.data.length === 0) return;
+        
         const sortTable = (col, order) => {
             //order = 1: ascending, 2: descending, 0: reset 
             if (order === 0) {
@@ -75,54 +79,57 @@ const Table = forwardRef((props, ref) => {
     return (
         <div className='table-container' style={{ width: props.width, height: props.height }}>
             <h2 className='table-title'>{props.title}</h2>
-            <TableComponent.Navigation>
-                <TableComponent.Navigation.AddRow
-                    refs={addRowRef}
-                    addRow={props.addRow}
-                />
-                <TableComponent.Navigation.Setting
-                    columns={Object.keys(props.data[0])}
-                    displayColumn={{ displayColumn, setDisplayColumn }}
-                />
-                <TableComponent.Navigation.Filter
+            {props.data.length === 0 ? <div className='no-data'>Không có dữ liệu để hiển thị</div> : <React.Fragment>
+                <TableComponent.Navigation>
+                    {props.noAddRow ? null : <TableComponent.Navigation.AddRow
+                        refs={addRowRef}
+                        addRow={props.addRow}
+                    />}
+                    <TableComponent.Navigation.Setting
+                        columns={Object.keys(props.data.length ? props.data[0] : [])}
+                        displayColumn={{ displayColumn, setDisplayColumn }}
+                    />
+                    <TableComponent.Navigation.Filter
+                        tableData={tableData}
+                        tablePage={tablePage}
+                        setTableData={setTableData}
+                        setTablePage={setTablePage}
+                        data={props.data}
+                    />
+                </TableComponent.Navigation>
+                <div className='table-wrapper'>
+                    <table className="table" ref={tableRef}>
+                        <TableComponent.Header
+                            tableData={tableData}
+                            sort={sort}
+                            displayColumn={displayColumn}
+                            setTableData={setTableData}
+                            data={props.data}
+                            noOption={props.noOption}
+                        />
+                        <TableComponent.Body
+                            tableData={tableData}
+                            tablePage={tablePage}
+                            displayColumn={displayColumn}
+                            editRowRef={editRowRef}
+                            setTableData={setTableData}
+                            data={props.data}
+                            editRow={props.editRow}
+                            onDelete={props.onDelete}
+                            onFetchEditRow={props.onFetchEditRow}
+                            onReset={props.onReset}
+                            noOption={props.noOption}
+                        />
+                    </table>
+                </div>
+                <TableComponent.Pagination
                     tableData={tableData}
                     tablePage={tablePage}
-                    setTableData={setTableData}
                     setTablePage={setTablePage}
                     data={props.data}
                 />
-            </TableComponent.Navigation>
-            <div className='table-wrapper'>
-                <table className="table" ref={tableRef}>
-                    <TableComponent.Header
-                        tableData={tableData}
-                        sort={sort}
-                        displayColumn={displayColumn}
-                        setTableData={setTableData}
-                        data={props.data}
-                        noOption={props.noOption}
-                    />
-                    <TableComponent.Body
-                        tableData={tableData}
-                        tablePage={tablePage}
-                        displayColumn={displayColumn}
-                        editRowRef={editRowRef}
-                        setTableData={setTableData}
-                        data={props.data}
-                        editRow={props.editRow}
-                        onDelete={props.onDelete}
-                        onFetchEditRow={props.onFetchEditRow}
-                        onReset={props.onReset}
-                        noOption={props.noOption}
-                    />
-                </table>
-            </div>
-            <TableComponent.Pagination
-                tableData={tableData}
-                tablePage={tablePage}
-                setTablePage={setTablePage}
-                data={props.data}
-            />
+            </React.Fragment>}
+
         </div>
     );
 })

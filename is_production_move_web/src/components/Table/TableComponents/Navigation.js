@@ -11,7 +11,8 @@ function Navigation(props) {
     return (
         <ul className="tool">
             {props.children.map((v, i) => {
-                return <li key={i}>{v}</li>
+                if (v) return <li key={i}>{v}</li>
+                return null;
             })}
         </ul>
     );

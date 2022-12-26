@@ -1,14 +1,14 @@
-import { Form, Option, Popup, Section, Table } from "../../../components"
+import {  Popup, Section, Table } from "../../../components"
 import { UseFetch } from "../../../utils"
 import React from "react"
 
 function ProductList() {
     const [data, setData] = React.useState(null)
-    const [categoryData, setCategoryData] = React.useState([])
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
         UseFetch("/backend/product/all", "GET", null).then(res => {
+            console.log(res)
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
                     var _item = {
@@ -54,33 +54,11 @@ function ProductList() {
         })
     }, [])
 
-    React.useEffect(() => {
-        UseFetch("/backend/category/all", "GET", null).then(res => {
-            if (res.status.code === "SUCCESS") {
-                setCategoryData(res.data);
-                setLoading(false);
-            }
-        })
-    }, [])
-
     if (loading || !data) return <React.Fragment />
 
     return (
         <React.Fragment>
-            <Table title='Danh sách sản phẩm' data={data} noOption addRow={
-                <Form>
-                    <Form.Title content="Nhập sản phẩm mới" />
-                    <Form.Input label="productName" type="text" />
-                    <Form.Input label="price" type="text" />
-                    <Option title='category' maxWidth>
-                        {categoryData.map((item) => {
-                            return <Option.Item key={item.category} value={item.category} />
-                        })}
-                    </Option>
-
-                    <Form.Submit content="Nhập sản phẩm" />
-                </Form>
-            } />
+            <Table title='Danh sách sản phẩm trong kho' data={data} noOption noAddRow />
         </React.Fragment>
     )
 }
