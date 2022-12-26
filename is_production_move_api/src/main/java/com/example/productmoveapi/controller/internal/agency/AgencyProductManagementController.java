@@ -1,6 +1,7 @@
 package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
+import com.example.productmoveapi.dto.request.product_request.ChangeProductRequest;
 import com.example.productmoveapi.dto.request.product_request.SaleProductRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
@@ -79,5 +80,27 @@ public class AgencyProductManagementController {
   public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
     return agencyProductManagementService.returnProductToCustomer(addProductListRequest);
+  }
+
+  @GetMapping("/warranty/error")
+  public ResponseEntity<GeneralResponse<Object>> getProductErrorFromWarranty() {
+    return agencyProductManagementService.getProductErrorFromWarranty();
+  }
+
+  @PostMapping("/warranty/error")
+  public ResponseEntity<GeneralResponse<Object>> changeProductErrorToCustomer(
+      @Valid @RequestBody ChangeProductRequest changeProductRequest) {
+    return agencyProductManagementService.changeProductErrorToCustomer(changeProductRequest);
+  }
+
+  @PostMapping("/recall/{categoryId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> recallProduct(@PathVariable(name = "categoryId") String categoryId) {
+    return agencyProductManagementService.recallProduct(categoryId);
+  }
+
+  @PostMapping("/recall/warranty/{warrantyId:^[0-9]*$}")
+  public ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(
+      @PathVariable(name = "warrantyId") String warrantyId) {
+    return agencyProductManagementService.recallProductToWarranty(warrantyId);
   }
 }

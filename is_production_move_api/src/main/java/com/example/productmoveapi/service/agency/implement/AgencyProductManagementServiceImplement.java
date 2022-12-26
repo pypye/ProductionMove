@@ -1,6 +1,7 @@
 package com.example.productmoveapi.service.agency.implement;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
+import com.example.productmoveapi.dto.request.product_request.ChangeProductRequest;
 import com.example.productmoveapi.dto.request.product_request.SaleProductRequest;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.CustomerRepository;
@@ -18,6 +19,7 @@ import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,5 +148,71 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
     operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("7"), p.getLocation(),
         null)).collect(Collectors.toList()));
     return ResponseFactory.success("return successfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductErrorFromWarranty() {
+    return ResponseFactory.success(
+        operationRepository.findAllByStatusAndDestination(status("5"), currentUser()).stream()
+            .map(Operation::getProduct).filter(
+                product -> (product.getStatus() == status("8") || product.getStatus() == status("9")) && (
+                    product.getCustomer() != null)).collect(Collectors.toSet()));
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> changeProductErrorToCustomer(
+      ChangeProductRequest changeProductRequest) {
+    Set<Product> products = operationRepository.findAllByStatusAndDestination(status("5"), currentUser()).stream()
+        .map(Operation::getProduct).filter(
+            product -> (product.getStatus() == status("8") || product.getStatus() == status("9")) && (
+                product.getCustomer() != null)).collect(Collectors.toSet());
+    Product oldProduct =
+        products.stream().filter(p -> p.getProductCode().equals(changeProductRequest.getProductCode())).findFirst()
+            .orElse(null);
+    Product newProduct = productRepository.findByProductCodeAndLocation(changeProductRequest.getChangedProductCode(),
+        currentUser());
+    if (oldProduct == null || newProduct == null || newProduct.getStatus() != status("2")) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    newProduct.setStatus(status("3"));
+    newProduct.setSalesTime(new Date());
+    Customer customer = oldProduct.getCustomer();
+    customerRepository.save(customer);
+    newProduct.setCustomer(customer);
+    oldProduct.setCustomer(null);
+    productRepository.save(newProduct);
+    productRepository.save(oldProduct);
+    operationRepository.save(new Operation(newProduct, status("3"), currentUser(), null));
+    return ResponseFactory.success("change successfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> recallProduct(String categoryId) {
+    List<Product> productList = productRepository.findAllByCategoryIdAndLocation(categoryId, currentUser()).stream()
+        .filter(p -> p.getStatus() == status("2") || p.getStatus() == status("3") || p.getStatus() == status("7"))
+        .collect(Collectors.toList());
+
+    productList = productList.stream().peek(p -> p.setStatus(status("10"))).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    List<Operation> operationList =
+        productList.stream().map(p -> new Operation(p, status("10"), currentUser(), null)).collect(Collectors.toList());
+    operationRepository.saveAll(operationList);
+    return ResponseFactory.success("recall sucessfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(String warrantyId) {
+    List<Product> productList = productRepository.findAllByLocationAndStatus(currentUser(), status("10"));
+    ApplicationUser warranty = applicationUserRepository.findById(warrantyId).orElse(null);
+    if (warranty == null || !warranty.getRole().getRole().equals("warranty")) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    productList = productList.stream().peek(p -> p.setStatus(status("4"))).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    List<Operation> operationList =
+        productList.stream().map(p -> new Operation(p, status("4"), currentUser(), warranty))
+            .collect(Collectors.toList());
+    operationRepository.saveAll(operationList);
+    return ResponseFactory.success("add successfully");
   }
 }
