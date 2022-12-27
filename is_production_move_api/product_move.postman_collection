@@ -1,0 +1,1200 @@
+{
+	"info": {
+		"_postman_id": "033ccf0d-5ec4-4261-a3e0-56d959253780",
+		"name": "binh",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20013056"
+	},
+	"item": [
+		{
+			"name": "localhost:3001/backend/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"username\": \"nhamay02\",\r\n        \"password\": \"Nhamay02\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/user/change_password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNjE4ODk0fQ.JzgZqXNCFjs5Vszk3YJskhrjIUsTSG9_qwHbd3d00qHdZ5KmXtX1lMENzTkG-h1OeLpSKjUFyoG18DMQQrpkXg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"oldPassword\": \"BigCorp123456\",\r\n        \"newPassword\": \"BigCorp1\",\r\n        \"retypePassword\": \"BigCorp1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/user/change_password",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"user",
+						"change_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/user/info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzE1Mzg4MTh9.-dP2dgmpt1stTdCJIeBPWa5nnYuMiLmCVI-xvil5sUlNOy-5-cL5n6ai-36dJCvCONsWQmQ4kOAJN9VTv0pNVg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/user/info",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"user",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/user/all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/admin/user/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"user",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/user/delete/3",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/admin/user/delete/3",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"user",
+						"delete",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/user/update/6",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"username\": \"nhamay02\",\r\n        \"email\": \"nhamay02@gmail.com\",\r\n        \"role_id\": \"2\",\r\n        \"companyName\": \"Nhà máy 2\",\r\n        \"address\": \"148 Xuân Thủy, Cầu Giấy, Hà Nội\",\r\n        \"phone\": \"0123456787\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/admin/user/update/6",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"user",
+						"update",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/category/all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/category/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"category",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/product/all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MTg2MzgzOH0.bdolyA_15tIs9swQeNt12d4XESAWAxHnBPYeQIiH7LuwSdtTSf-_oc8iY60vVU7VXf8xNAX_CzRm7FRHXKMKuQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/product/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"product",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/category/add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"tieu minh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/admin/category/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"category",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/category/delete/86",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/admin/category/delete/86",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"category",
+						"delete",
+						"86"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/category/update/129",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcxNTM0ODA3fQ.-jyI1Oj2dkO2JF5HSfou2CM1gQVAfRyvAFRUWctSiGYM-j75lijksuH0v853-EvtuTkbSZ_7cXhudIj5WeSPgg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"231duc tran 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/admin/category/update/129",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"category",
+						"update",
+						"129"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/product/add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MTc4MjM2Mn0.vMgu_sO4oq0l9vZZ_j54C1ZioLyRwqtA87zbZ5CUDW_tTHgDE6gkBFwxFe1TbAuZdD-wS6RQnEWxNhJi3FwbUA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"7\",\r\n    \"price\": \"9.590.000\",\r\n    \"warrantTime\": \"12\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/product/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"product",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/factory/6",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/factory/6",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"factory",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/factory/6",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [12]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/factory/6",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"factory",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/product/agency",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MTk3NTg0Mn0.oUGY43tzd6p4Pn9YqrnA2rhOsvssnmR3Ua0KN9rUXx9GH4ti93Vozd-9v9SmQAXB4-m8YJPwWnUUR84oVsSqOw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"5\",\r\n    \"price\": \"9.590.000\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/product/agency",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"product",
+						"agency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/product/agency",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MTg4MDE1OX0.FSOcxjWk31QMvu86RHU_vJ-pJ3qH4e_IZbfArcTO5muWzg8HETVarVWffLTNKXArNKOlQ7qbkPfFUH_EJbXNaA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [7,5,12]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/product/agency",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"product",
+						"agency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxODA5OTI2fQ.u5xZn_pwlDlaZHPqFb1QbEZwL5SjiKtZUxLi3voiGRx3WFgrHuFdfGK2wE79NGt-tjPrQM15LIkaJfTGzXetJw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productCode\": \"PMbd150484\",\r\n    \"name\": \"Nguyễn Thái Bình\",\r\n    \"address\": \"Hải Phòng\",\r\n    \"phone\": \"0213456789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/warranty/PMcb9165f8/4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/warranty/PMcb9165f8/4",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"warranty",
+						"PMcb9165f8",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/warranty/product/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzIwMDA2NjF9.nGrxpCk4SitYtcAGHDe4auUlkK3-U_9pmAFdq2hU2qScNmK1Uj_2V3T4fUyWduAXrdOOr25mPCD98z8MRUBjuQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"5\",\r\n    \"price\": \"9.590.000\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/warranty/product/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"warranty",
+						"product",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/warranty/product/agency",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzIwMDA2NjF9.nGrxpCk4SitYtcAGHDe4auUlkK3-U_9pmAFdq2hU2qScNmK1Uj_2V3T4fUyWduAXrdOOr25mPCD98z8MRUBjuQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"5\",\r\n    \"price\": \"9.590.000\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/warranty/product/agency",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"warranty",
+						"product",
+						"agency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/warranty/product/agency",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzE4NzEwNzN9.rsGHFdPuWbqkLX4iRAA8cWKBVmc31q3hO-bZ-QrwAUmDQEC5QWMB4u3sMEICHBsrq220ZDXNzaKioGVuOG1UsQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [3,7,10]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/warranty/product/agency",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"warranty",
+						"product",
+						"agency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/customer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/warranty/product/agency/done",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzE4NzEwNzN9.rsGHFdPuWbqkLX4iRAA8cWKBVmc31q3hO-bZ-QrwAUmDQEC5QWMB4u3sMEICHBsrq220ZDXNzaKioGVuOG1UsQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [3,7]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/warranty/product/agency/done",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"warranty",
+						"product",
+						"agency",
+						"done"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/warranty/done",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/warranty/done",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"warranty",
+						"done"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/warranty/done",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [3,7]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/warranty/done",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"warranty",
+						"done"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/warranty/product/factory/error/7",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzE4NzEwNzN9.rsGHFdPuWbqkLX4iRAA8cWKBVmc31q3hO-bZ-QrwAUmDQEC5QWMB4u3sMEICHBsrq220ZDXNzaKioGVuOG1UsQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [10]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/warranty/product/factory/error/7",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"warranty",
+						"product",
+						"factory",
+						"error",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/product/warranty",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMyIsImlhdCI6MTY3MTc4NDE0M30.xd3IsTmfnZpU3pLO4N47WMLVFDpsXjzR7aE_vUSSKJYd25Ay24pfdXTjO9BfJZGEgwYIHrGvwcT0ULrDDC4lYA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/product/warranty",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"product",
+						"warranty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/product/warranty",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMyIsImlhdCI6MTY3MTc4NDE0M30.xd3IsTmfnZpU3pLO4N47WMLVFDpsXjzR7aE_vUSSKJYd25Ay24pfdXTjO9BfJZGEgwYIHrGvwcT0ULrDDC4lYA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [3,11,5]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/product/warranty",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"product",
+						"warranty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/warranty/error",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/warranty/error",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"warranty",
+						"error"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/warranty/error",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productCode\": \"PM255be7fd\",\r\n    \"changedProductCode\": \"PM6a08bb32\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/warranty/error",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"warranty",
+						"error"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/recall/5",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productCode\": \"PM255be7fd\",\r\n    \"changedProductCode\": \"PM6a08bb32\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/recall/5",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"recall",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/recall/warranty/4",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/recall/warranty/4",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"recall",
+						"warranty",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/unsold",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/unsold",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"unsold"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/unsold",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": [14,13, 15]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/unsold",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"unsold"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/static",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcyMTM4NDI3fQ.qNtTERHbNvT70tHN1jJZT85na2u20oYfeZjCPcZiM-iuER8xPCvvOXc679DBX9YpOWJRleM3xBWnPG2x2-fHaA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"1\",\r\n    \"year\": \"2021\",\r\n    \"quarter\": \"2\",\r\n    \"month\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/static",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"static"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

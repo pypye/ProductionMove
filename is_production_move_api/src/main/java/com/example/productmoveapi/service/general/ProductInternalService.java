@@ -1,5 +1,6 @@
 package com.example.productmoveapi.service.general;
 
+import com.example.productmoveapi.dto.request.static_request.StaticByStatusYearQuarterMonthRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import org.springframework.http.ResponseEntity;
 
@@ -13,4 +14,7 @@ public interface ProductInternalService {
   ResponseEntity<GeneralResponse<Object>> getAllProduct();
 
   ResponseEntity<GeneralResponse<Object>> getAllProductByCategory(String categoryId);
+
+  ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
+      StaticByStatusYearQuarterMonthRequest staticByStatusYearQuarterMonthRequest);
 }

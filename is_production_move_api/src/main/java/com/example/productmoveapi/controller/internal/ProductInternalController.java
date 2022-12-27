@@ -1,13 +1,16 @@
 package com.example.productmoveapi.controller.internal;
 
+import com.example.productmoveapi.dto.request.static_request.StaticByStatusYearQuarterMonthRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.general.ProductInternalService;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -42,4 +45,9 @@ public class ProductInternalController {
     return productInternalService.getAllProductByCategory(categoryId);
   }
 
+  @GetMapping("/static")
+  public ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
+      @Valid @RequestBody StaticByStatusYearQuarterMonthRequest staticByStatusYearQuarterMonthRequest) {
+    return productInternalService.getProductByStatusYearQuarterMonth(staticByStatusYearQuarterMonthRequest);
+  }
 }
