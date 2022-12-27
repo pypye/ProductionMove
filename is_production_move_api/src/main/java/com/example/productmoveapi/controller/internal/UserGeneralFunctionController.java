@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-public class UserInternalController {
+public class UserGeneralFunctionController {
 
   private final UserInternalService userInternalService;
 
-  public UserInternalController(
+  public UserGeneralFunctionController(
       UserInternalService userInternalService) {
     this.userInternalService = userInternalService;
   }

@@ -17,32 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Binh Nguyen Thai at 15:31 on 24/12/2022
+ * @author Binh Nguyen Thai at 22:13 on 27/12/2022
  */
 @CrossOrigin(value = "*")
 @Slf4j
 @RestController
 @RequestMapping("/warranty/product")
 @PreAuthorize("hasAuthority('warranty')")
-public class WarrantyProductManagementController {
+public class WarrantyReturnProductController {
 
   private final WarrantyProductManagementService warrantyProductManagementService;
 
   @Autowired
-  public WarrantyProductManagementController(
+  public WarrantyReturnProductController(
       WarrantyProductManagementService warrantyProductManagementService) {
     this.warrantyProductManagementService = warrantyProductManagementService;
-  }
-
-  @GetMapping("/agency")
-  public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
-    return warrantyProductManagementService.getProductFromAgency();
-  }
-
-  @PostMapping("/agency")
-  public ResponseEntity<GeneralResponse<Object>> addProductFromAgency(
-      @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return warrantyProductManagementService.addProductFromAgency(addProductListRequest);
   }
 
   @GetMapping("/all")

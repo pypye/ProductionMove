@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(value = "*")
 @Slf4j
 @RestController
-public class ProductInternalController {
+public class ProductReportGeneralController {
 
   private final ProductInternalService productInternalService;
 
   @Autowired
-  public ProductInternalController(
+  public ProductReportGeneralController(
       ProductInternalService productInternalService) {
     this.productInternalService = productInternalService;
   }

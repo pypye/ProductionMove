@@ -24,12 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/auth")
-public class UserController {
+public class LoginController {
 
   private final UserService userService;
 
   @Autowired
-  public UserController(UserService userService) {
+  public LoginController(UserService userService) {
     this.userService = userService;
   }
 

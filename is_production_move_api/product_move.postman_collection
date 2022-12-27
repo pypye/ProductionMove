@@ -529,6 +529,33 @@
 		{
 			"name": "localhost:3001/backend/agency/product/customer",
 			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/customer",
+			"request": {
 				"method": "POST",
 				"header": [
 					{
@@ -595,45 +622,6 @@
 						"warranty",
 						"PMcb9165f8",
 						"4"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:3001/backend/warranty/product/all",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzIwMDA2NjF9.nGrxpCk4SitYtcAGHDe4auUlkK3-U_9pmAFdq2hU2qScNmK1Uj_2V3T4fUyWduAXrdOOr25mPCD98z8MRUBjuQ",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"5\",\r\n    \"price\": \"9.590.000\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3001/backend/warranty/product/all",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"backend",
-						"warranty",
-						"product",
-						"all"
 					]
 				}
 			},
@@ -715,27 +703,39 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3001/backend/agency/product/customer",
+			"name": "localhost:3001/backend/warranty/product/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcxNzEyNTUxfQ.nPvCBJXn6qx-Lv_lqoKUB7ru9x_DO7ay4UVKugiY4t6gZU5lAzGTfEDKSOk05gkQhy-cnBfQSZs4UH3JdDZihQ",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzIwMDA2NjF9.nGrxpCk4SitYtcAGHDe4auUlkK3-U_9pmAFdq2hU2qScNmK1Uj_2V3T4fUyWduAXrdOOr25mPCD98z8MRUBjuQ",
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"5\",\r\n    \"price\": \"9.590.000\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:3001/backend/agency/product/customer",
+					"raw": "localhost:3001/backend/warranty/product/all",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
 						"backend",
-						"agency",
+						"warranty",
 						"product",
-						"customer"
+						"all"
 					]
 				}
 			},
