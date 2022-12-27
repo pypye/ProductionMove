@@ -28,4 +28,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
   List<Product> findAllByCategoryIdAndLocation(String id, ApplicationUser location);
 
   List<Product> findAllByLocationAndIdInAndStatus(ApplicationUser location, List<String> id, Status status);
+
+  Product findTopByProductNameAndLocationAndStatus(String name, ApplicationUser location, Status status);
 }

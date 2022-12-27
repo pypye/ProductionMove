@@ -169,10 +169,13 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
     Product oldProduct =
         products.stream().filter(p -> p.getProductCode().equals(changeProductRequest.getProductCode())).findFirst()
             .orElse(null);
-    Product newProduct = productRepository.findByProductCodeAndLocation(changeProductRequest.getChangedProductCode(),
-        currentUser());
-    if (oldProduct == null || newProduct == null || newProduct.getStatus() != status("2")) {
+    if (oldProduct == null) {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
+    Product newProduct = productRepository.findTopByProductNameAndLocationAndStatus(oldProduct.getProductName(),
+        currentUser(), status("2"));
+    if (newProduct == null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
     }
     newProduct.setStatus(status("3"));
     newProduct.setSalesTime(new Date());
@@ -183,7 +186,7 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
     productRepository.save(newProduct);
     productRepository.save(oldProduct);
     operationRepository.save(new Operation(newProduct, status("3"), currentUser(), null));
-    return ResponseFactory.success("change successfully");
+    return ResponseFactory.success(newProduct);
   }
 
   @Override

@@ -18,7 +18,8 @@ public enum ResponseStatusEnum {
   REGISTERED_USERNAME("E-004", "Username is already registered"),
   REGISTERED_EMAIL("E-005", "Email is already registered"),
   REGISTERED_COMPANY_NAME("E-006", "Company name is already registered"),
-  EXISTED_CATEGORY("E-006", "Category is already existed");
+  EXISTED_CATEGORY("E-007", "Category is already existed"),
+  NOT_MATCHING_PRODUCT_FOUND("E-008", "No matching products found");
 
   private final String code;
   private final String message;

@@ -14,7 +14,4 @@ public class ChangeProductRequest {
   @Pattern(message = "Invalid code", regexp = "^[a-zA-Z0-9]*$")
   private String productCode;
 
-  @NotBlank
-  @Pattern(message = "Invalid code", regexp = "^[a-zA-Z0-9]*$")
-  private String changedProductCode;
 }
