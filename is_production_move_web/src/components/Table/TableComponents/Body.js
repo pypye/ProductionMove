@@ -47,7 +47,7 @@ function Body(props) {
                                         {v.role && v.role === 'admin' ? null :
                                             <Dropdown ref={dropdownRef.current[i]}>
                                                 <Dropdown.Main item={<TableComponent.Icon.Option />} />
-                                                <Dropdown.Menu right bottom={i >= Math.min(props.tablePage.page * props.tablePage.pageSize, props.data.length) - 2} zIndex={1}>
+                                                <Dropdown.Menu right bottom={i >= Math.min(props.tablePage.page * props.tablePage.pageSize, props.data.length) - 2} zIndex={2}>
                                                     <Popup ref={props.editRowRef} onReset={props.onReset} onCloseOther={() => onCloseOther(i)}>
                                                         <Popup.Trigger onClick={() => props.onFetchEditRow(v, i + 1)}><Dropdown.Item label="Sửa" /></Popup.Trigger>
                                                         <Popup.Content>

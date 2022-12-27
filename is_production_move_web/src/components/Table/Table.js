@@ -9,7 +9,7 @@ const Table = forwardRef((props, ref) => {
     const optionPopupRef = React.useRef(null);
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
-    const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 25 });
+    const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
     const [displayColumn, setDisplayColumn] = React.useState([...Object.keys(props.data.length ? props.data[0] : []).map(() => true)]);
 
     useImperativeHandle(ref, () => ({

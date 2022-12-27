@@ -61,6 +61,15 @@ Dropdown.MenuWrapper = function DropdownMenuWrapper(props) {
     )
 }
 
+Dropdown.MenuWrapperResponsive = function DropdownMenuWrapperResponsive(props) {
+    return (
+        <div className={'dropdown-menu-wrapper-responsive ' + (props.limitToBorder ? 'dropdown-menu-wrapper-responsive-last' : null)}>
+            {props.children}
+        </div>
+    )
+}
+
+
 Dropdown.Menu = function DropdownMenu(props) {
     return (
         <Dropdown.MenuWrapper width={props.width} right={props.right} bottom={props.bottom} zIndex={props.zIndex}>

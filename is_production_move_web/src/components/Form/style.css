@@ -19,6 +19,13 @@
     column-gap: 1.25rem;
 }
 
+.form-split-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1.25rem;
+}
+
 .form-title {
     margin: 0;
 }
@@ -34,7 +41,8 @@
     padding: 1rem;
     margin: 0;
 }
-.form-warning{
+
+.form-warning {
     display: block;
     color: #000;
     background-color: rgb(255, 233, 213);
@@ -70,4 +78,11 @@
 
 .dashed-bottom {
     border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+    .form-split {
+        flex-direction: column;
+        row-gap: 1.25rem;
+    }
 }

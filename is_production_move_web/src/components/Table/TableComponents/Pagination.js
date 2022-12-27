@@ -14,10 +14,10 @@ function Pagination(props) {
     }
     return (
         <div className='page-pagination'>
-            <Option title='Rows per page:' onChange={onChangePagePaginationSize}>
+            <Option title='Số hàng:' onChange={onChangePagePaginationSize}>
+                <Option.Item value={10} />
                 <Option.Item value={25} />
                 <Option.Item value={50} />
-                <Option.Item value={100} />
             </Option>
             {(props.tablePage.page - 1) * props.tablePage.pageSize + 1}-{Math.min((props.tablePage.page - 1) * props.tablePage.pageSize + props.tablePage.pageSize, props.data.length)} of {props.data.length}
             <div onClick={() => onChangePagePagination(-1)}> <TableComponent.Icon.PaginationPrev /></div>

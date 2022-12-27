@@ -22,9 +22,9 @@ Navigation.AddRow = function NavigationAddRow(props) {
     return (
         <Dropdown ref={props.refs} onReset={props.onReset}>
             <Dropdown.Main item={<TableComponent.Icon.Add label="Thêm" />} />
-            <Dropdown.MenuWrapper width='30rem' right={props.right}>
+            <Dropdown.MenuWrapperResponsive width='30rem' right={props.right}>
                 {props.addRow}
-            </Dropdown.MenuWrapper>
+            </Dropdown.MenuWrapperResponsive>
         </Dropdown>
     )
 }
@@ -38,23 +38,23 @@ Navigation.Setting = function NavigationSetting(props) {
     }
     return (
         <Dropdown>
-            <Dropdown.Main item={<TableComponent.Icon.Column label="Tuỳ chỉnh" />} />
-            <Dropdown.MenuWrapper width='20rem' right={props.right}>
+            <Dropdown.Main item={<TableComponent.Icon.Column label="Cài đặt" />} />
+            <Dropdown.MenuWrapperResponsive limitToBorder>
                 <Section title="Chọn cột hiển thị">
                     {props.columns.map((v, i) => {
                         if (v === 'id') {
-                            return <Form.Split key={i} format='dashed-bottom'>
+                            return <Form.SplitFlex key={i} format='dashed-bottom'>
                                 <Checkbox checked={1} disabled={1}></Checkbox>
                                 <span className='setting-column'>no.</span>
-                            </Form.Split>
+                            </Form.SplitFlex>
                         }
-                        return <Form.Split key={i} format='dashed-bottom'>
+                        return <Form.SplitFlex key={i} format='dashed-bottom'>
                             <Checkbox checked={props.displayColumn.displayColumn[i] ? 1 : 0} onClick={() => onDisplayColumn(i)}></Checkbox>
                             <span className='setting-column'>{v}</span>
-                        </Form.Split>
+                        </Form.SplitFlex>
                     })}
                 </Section>
-            </Dropdown.MenuWrapper>
+            </Dropdown.MenuWrapperResponsive>
         </Dropdown>
     )
 }
@@ -75,11 +75,11 @@ Navigation.Filter = function NavigationFilter(props) {
     return (
         <Dropdown>
             <Dropdown.Main item={<TableComponent.Icon.Filter label="Lọc" />} />
-            <Dropdown.MenuWrapper width='20rem' right={props.right}>
+            <Dropdown.MenuWrapperResponsive limitToBorder>
                 <Section title="Lọc">
                     <Input type="text" label="Giá trị cần lọc" reference={[filterText, onFilter]} />
                 </Section>
-            </Dropdown.MenuWrapper>
+            </Dropdown.MenuWrapperResponsive>
         </Dropdown>
     )
 }

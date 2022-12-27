@@ -1,3 +1,17 @@
+function loginUsername(input) {
+    if (input.length === 0) {
+        return { state: false, content: 'Tên đăng nhập không được để trống' };
+    }
+    return { state: true };
+}
+
+function loginPassword(input) {
+    if (input.length === 0) {
+        return { state: false, content: 'Mật khẩu không được để trống' };
+    }
+    return { state: true };
+}
+
 function username(input) {
     const usernamePattern = /^(?=[a-zA-Z0-9._]{7,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
     if (input.length === 0) {
@@ -124,6 +138,8 @@ function warrantTime(input) {
 
 
 const UseValidation = {
+    loginUsername,
+    loginPassword,
     username,
     password,
     email,

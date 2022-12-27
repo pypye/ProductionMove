@@ -17,6 +17,15 @@ Form.Split = function FormSplit(props) {
     )
 }
 
+Form.SplitFlex = function FormSplitFlex(props) {
+    return (
+        <div className={"form-split-flex " + props.format}>
+            {props.children}
+        </div>
+    )
+}
+
+
 Form.Title = function FormTitle(props) {
     return (
         <h2 className="form-title">{props.content}</h2>

@@ -18,6 +18,14 @@
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    max-height: 90%;
+
+    box-sizing: border-box;
+    overflow: auto;
+}
+@media screen and (max-width: 768px) {
+    .popup-content {
+        width: 70vw;
+    }
 }

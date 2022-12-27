@@ -40,8 +40,8 @@ function Login() {
         <Form width='25rem'>
             <Form.Title content="Đăng nhập hệ thống ProductionMove" />
             <Form.Notify enabled={notify} content="Mật khẩu của bạn đã được đặt lại thành công. Bây giờ, hãy đăng nhập với mật khẩu mới" />
-            <Form.Input label="Tên đăng nhập" type="text" reference={[loginUsername, setLoginUsername, UseValidation.username]} />
-            <Form.Input label="Mật khẩu" type="password" reference={[loginPassword, setLoginPassword, UseValidation.password]} />
+            <Form.Input label="Tên đăng nhập" type="text" reference={[loginUsername, setLoginUsername, UseValidation.loginUsername]} />
+            <Form.Input label="Mật khẩu" type="password" reference={[loginPassword, setLoginPassword, UseValidation.loginPassword]} />
             <Form.Error enabled={error !== ""} content={error} />
             <Form.Submit onClick={onLogin} validation={validLogin} content="Đăng nhập" />
             <Form.Link href="/forgot-password" content="Quên mật khẩu?" />
