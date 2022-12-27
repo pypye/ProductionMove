@@ -1195,6 +1195,123 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/sale/analysis",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcyMTY2OTA5fQ.JCONVbk60YF-p1YE6OahPQL3Z6HMRMQ5ge6WuMDUv5XSMsjwdYsKp7VQdAUUCJ10HmbObcLs2a4ejXTpnv3CGw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"option\": \"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/agency/sale/analysis",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"sale",
+						"analysis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/sale/analysis",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MjE3MDY4OH0.5X0EoNkn11BmYTWJwRjpdcYwgsSI-9j9BiUz0hO-WTooiC45pPT8EJUer6ZQv1RrrnISDyR4UnLXZRVqLnOVEQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"option\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/sale/analysis",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"sale",
+						"analysis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/error/analysis",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MjE3MDY4OH0.5X0EoNkn11BmYTWJwRjpdcYwgsSI-9j9BiUz0hO-WTooiC45pPT8EJUer6ZQv1RrrnISDyR4UnLXZRVqLnOVEQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category\": \"0\",\r\n    \"agency\": \"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3001/backend/factory/error/analysis",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"error",
+						"analysis"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

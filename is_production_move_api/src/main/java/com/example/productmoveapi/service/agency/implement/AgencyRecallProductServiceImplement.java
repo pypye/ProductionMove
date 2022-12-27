@@ -76,7 +76,10 @@ public class AgencyRecallProductServiceImplement implements AgencyRecallProductS
     if (warranty == null || !warranty.getRole().getRole().equals("warranty")) {
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
-    productList = productList.stream().peek(p -> p.setStatus(status("4"))).collect(Collectors.toList());
+    productList = productList.stream().peek(p -> {
+      p.setStatus(status("4"));
+      p.setNumberOfWarranty(p.getNumberOfWarranty() + 1);
+    }).collect(Collectors.toList());
     productRepository.saveAll(productList);
     List<Operation> operationList =
         productList.stream().map(p -> new Operation(p, status("4"), currentUser(), warranty))

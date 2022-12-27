@@ -1,8 +1,8 @@
 package com.example.productmoveapi.controller.internal.factory;
 
-import com.example.productmoveapi.dto.request.static_request.SaleAnalysisRequest;
+import com.example.productmoveapi.dto.request.static_request.ErrorAnalysisRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.factory.FactorySaleAnalysisService;
+import com.example.productmoveapi.service.factory.FactoryErrorAnalysisService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +15,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Binh Nguyen Thai at 02:28 on 28/12/2022
+ * @author Binh Nguyen Thai at 03:02 on 28/12/2022
  */
 @CrossOrigin(value = "*")
 @Slf4j
 @RestController
-@RequestMapping("/factory/sale/analysis")
+@RequestMapping("/factory/error/analysis")
 @PreAuthorize("hasAuthority('factory')")
-public class FactorySaleAnalysisController {
+public class FactoryErrorAnalysisController {
 
-  private final FactorySaleAnalysisService factorySaleAnalysisService;
+  private final FactoryErrorAnalysisService factoryErrorAnalysisService;
 
   @Autowired
-  public FactorySaleAnalysisController(
-      FactorySaleAnalysisService factorySaleAnalysisService) {
-    this.factorySaleAnalysisService = factorySaleAnalysisService;
+  public FactoryErrorAnalysisController(
+      FactoryErrorAnalysisService factoryErrorAnalysisService) {
+    this.factoryErrorAnalysisService = factoryErrorAnalysisService;
   }
 
   @GetMapping
-  public ResponseEntity<GeneralResponse<Object>> saleAnalysis(
-      @Valid @RequestBody SaleAnalysisRequest saleAnalysisRequest) {
-    return factorySaleAnalysisService.saleAnalysis(saleAnalysisRequest);
+  public ResponseEntity<GeneralResponse<Object>> errorAnalysis(
+      @Valid @RequestBody ErrorAnalysisRequest errorAnalysisRequest) {
+    return factoryErrorAnalysisService.errorAnalysis(errorAnalysisRequest);
   }
 }
