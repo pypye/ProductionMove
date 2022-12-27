@@ -17,6 +17,8 @@ import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import java.time.Year;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -75,6 +77,9 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(String factoryId,
       AddProductListRequest addProductListRequest) {
     ApplicationUser factory = applicationUserRepository.findById(factoryId).orElse(null);
+    if (factory == null) {
+      return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+    }
     List<Product> productList = productRepository.findAllByLocationAndIdIn(factory,
             addProductListRequest.getProduct_id()).stream().filter(opt -> opt.getStatus() == status("1"))
         .collect(Collectors.toList());
@@ -216,6 +221,41 @@ public class AgencyProductManagementServiceImplement implements AgencyProductMan
         productList.stream().map(p -> new Operation(p, status("4"), currentUser(), warranty))
             .collect(Collectors.toList());
     operationRepository.saveAll(operationList);
+    return ResponseFactory.success("add successfully");
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> getProductUnsold() {
+    int now = Year.now().getValue();
+    Calendar calendar = Calendar.getInstance();
+    List<Product> productList = productRepository.findAllByLocationAndStatus(currentUser(), status("2")).stream()
+        .filter(product -> {
+          calendar.setTime(product.getLastUpdatedTime());
+          return now != calendar.get(Calendar.YEAR);
+        }).collect(Collectors.toList());
+    return ResponseFactory.success(productList);
+  }
+
+  @Override
+  public ResponseEntity<GeneralResponse<Object>> addProductUnsoldToFactory(
+      AddProductListRequest addProductListRequest) {
+    int now = Year.now().getValue();
+    Calendar calendar = Calendar.getInstance();
+    List<Operation> operationList =
+        operationRepository.findALlByProductIdInAndStatusAndApplicationUser(addProductListRequest.getProduct_id(),
+                status("13"), currentUser()).stream().filter(operation -> operation.getProduct().getStatus() == status("2"))
+            .filter(operation -> {
+              calendar.setTime(operation.getProduct().getLastUpdatedTime());
+              return now != calendar.get(Calendar.YEAR);
+            }).collect(Collectors.toList());
+    List<Product> productList = operationList.stream().peek(p -> {
+      p.getProduct().setStatus(status("12"));
+      p.getProduct().setLocation(p.getDestination());
+    }).map(Operation::getProduct).collect(Collectors.toList());
+    productRepository.saveAll(productList);
+    operationRepository.saveAll(
+        operationList.stream().map(operation -> new Operation(operation.getProduct(), status("12"),
+            operation.getDestination(), null)).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");
   }
 }

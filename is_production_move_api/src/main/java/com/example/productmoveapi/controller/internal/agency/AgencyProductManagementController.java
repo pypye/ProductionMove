@@ -103,4 +103,15 @@ public class AgencyProductManagementController {
       @PathVariable(name = "warrantyId") String warrantyId) {
     return agencyProductManagementService.recallProductToWarranty(warrantyId);
   }
+
+  @GetMapping("/unsold")
+  public ResponseEntity<GeneralResponse<Object>> getProductUnsold() {
+    return agencyProductManagementService.getProductUnsold();
+  }
+
+  @PostMapping("/unsold")
+  public ResponseEntity<GeneralResponse<Object>> addProductUnsoldToFactory(
+      @Valid @RequestBody AddProductListRequest addProductListRequest) {
+    return agencyProductManagementService.addProductUnsoldToFactory(addProductListRequest);
+  }
 }

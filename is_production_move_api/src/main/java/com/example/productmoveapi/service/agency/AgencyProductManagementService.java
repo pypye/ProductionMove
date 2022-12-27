@@ -35,4 +35,8 @@ public interface AgencyProductManagementService {
   ResponseEntity<GeneralResponse<Object>> recallProduct(String categoryId);
 
   ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(String warrantyId);
+
+  ResponseEntity<GeneralResponse<Object>> getProductUnsold();
+
+  ResponseEntity<GeneralResponse<Object>> addProductUnsoldToFactory(AddProductListRequest addProductListRequest);
 }
