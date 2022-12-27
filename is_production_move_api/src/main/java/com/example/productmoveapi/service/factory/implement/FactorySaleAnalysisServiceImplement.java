@@ -1,13 +1,15 @@
-package com.example.productmoveapi.service.agency.implement;
+package com.example.productmoveapi.service.factory.implement;
 
 import com.example.productmoveapi.dto.request.static_request.SaleAnalysisRequest;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.OperationRepository;
+import com.example.productmoveapi.repository.StatusRepository;
 import com.example.productmoveapi.repository.entity.ApplicationUser;
 import com.example.productmoveapi.repository.entity.Operation;
+import com.example.productmoveapi.repository.entity.Status;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
-import com.example.productmoveapi.service.agency.AgencySaleAnalysisService;
+import com.example.productmoveapi.service.factory.FactorySaleAnalysisService;
 import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,20 +23,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Binh Nguyen Thai at 01:33 on 28/12/2022
+ * @author Binh Nguyen Thai at 02:30 on 28/12/2022
  */
 @Service
 @Slf4j
-public class AgencySaleAnalysisServiceImplement implements AgencySaleAnalysisService {
+public class FactorySaleAnalysisServiceImplement implements FactorySaleAnalysisService {
 
   private final ApplicationUserRepository applicationUserRepository;
   private final OperationRepository operationRepository;
+  private final StatusRepository statusRepository;
 
   @Autowired
-  public AgencySaleAnalysisServiceImplement(ApplicationUserRepository applicationUserRepository,
-      OperationRepository operationRepository) {
+  public FactorySaleAnalysisServiceImplement(ApplicationUserRepository applicationUserRepository,
+      OperationRepository operationRepository, StatusRepository statusRepository) {
     this.applicationUserRepository = applicationUserRepository;
     this.operationRepository = operationRepository;
+    this.statusRepository = statusRepository;
   }
 
   private ApplicationUser currentUser() {
@@ -44,12 +48,19 @@ public class AgencySaleAnalysisServiceImplement implements AgencySaleAnalysisSer
     return applicationUserRepository.findByUsername(username);
   }
 
+  private Status status() {
+    return statusRepository.findById("3").orElse(null);
+  }
+
   @Override
   public ResponseEntity<GeneralResponse<Object>> saleAnalysis(SaleAnalysisRequest saleAnalysisRequest) {
     Calendar calendar = Calendar.getInstance();
-    List<Operation> operationList =
-        operationRepository.findAllByStatusId("3").stream()
-            .filter(operation -> operation.getApplicationUser() == currentUser()).collect(Collectors.toList());
+    List<String> productIdList =
+        operationRepository.findAllByStatusId("1").stream()
+            .filter(operation -> operation.getApplicationUser() == currentUser()).map(op -> op.getProduct().getId())
+            .collect(Collectors.toList());
+    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(productIdList,
+        status(), null);
     Map<String, Long> counters = operationList.stream().collect(Collectors.groupingBy(p -> {
           calendar.setTime(p.getCreatedTime());
           String option = saleAnalysisRequest.getOption();
