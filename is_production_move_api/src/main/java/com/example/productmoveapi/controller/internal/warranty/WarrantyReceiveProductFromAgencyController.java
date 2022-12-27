@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.warranty;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.warranty.WarrantyProductManagementService;
+import com.example.productmoveapi.service.warranty.WarrantyReceiveProductFromAgencyService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('warranty')")
 public class WarrantyReceiveProductFromAgencyController {
 
-  private final WarrantyProductManagementService warrantyProductManagementService;
+  private final WarrantyReceiveProductFromAgencyService warrantyReceiveProductFromAgencyService;
 
   @Autowired
   public WarrantyReceiveProductFromAgencyController(
-      WarrantyProductManagementService warrantyProductManagementService) {
-    this.warrantyProductManagementService = warrantyProductManagementService;
+      WarrantyReceiveProductFromAgencyService warrantyReceiveProductFromAgencyService) {
+    this.warrantyReceiveProductFromAgencyService = warrantyReceiveProductFromAgencyService;
   }
 
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
-    return warrantyProductManagementService.getProductFromAgency();
+    return warrantyReceiveProductFromAgencyService.getProductFromAgency();
   }
 
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductFromAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return warrantyProductManagementService.addProductFromAgency(addProductListRequest);
+    return warrantyReceiveProductFromAgencyService.addProductFromAgency(addProductListRequest);
   }
 }

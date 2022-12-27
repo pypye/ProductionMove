@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 /**
  * @author Binh Nguyen Thai at 12:06 on 21/12/2022
  */
-public interface ProductInternalService {
+public interface ProductReportGeneralService {
 
   ResponseEntity<GeneralResponse<Object>> getAllCategory();
 

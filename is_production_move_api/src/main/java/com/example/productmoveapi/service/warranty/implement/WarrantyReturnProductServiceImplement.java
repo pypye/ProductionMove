@@ -12,7 +12,7 @@ import com.example.productmoveapi.repository.entity.Status;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
-import com.example.productmoveapi.service.warranty.WarrantyProductManagementService;
+import com.example.productmoveapi.service.warranty.WarrantyReturnProductService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +27,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Binh Nguyen Thai at 15:32 on 24/12/2022
+ * @author Binh Nguyen Thai at 00:12 on 28/12/2022
  */
-@Service
 @Slf4j
-public class WarrantyProductManagementServiceImplement implements WarrantyProductManagementService {
+@Service
+public class WarrantyReturnProductServiceImplement implements WarrantyReturnProductService {
 
   private final ProductRepository productRepository;
   private final ApplicationUserRepository applicationUserRepository;
@@ -39,7 +39,7 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
   private final StatusRepository statusRepository;
 
   @Autowired
-  public WarrantyProductManagementServiceImplement(ProductRepository productRepository,
+  public WarrantyReturnProductServiceImplement(ProductRepository productRepository,
       ApplicationUserRepository applicationUserRepository, OperationRepository operationRepository,
       StatusRepository statusRepository) {
     this.productRepository = productRepository;
@@ -68,35 +68,6 @@ public class WarrantyProductManagementServiceImplement implements WarrantyProduc
             , (opt1, opt2) -> opt2));
     operationList = new ArrayList<>(operationMap.values());
     return operationList;
-  }
-
-  @Override
-  public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
-    return ResponseFactory.success(
-        operationRepository.findAllByStatusAndDestination(status("4"), currentUser()).stream()
-            .map(Operation::getProduct).filter(product -> product.getStatus() == status("4"))
-            .collect(Collectors.toSet()));
-  }
-
-  @Override
-  public ResponseEntity<GeneralResponse<Object>> addProductFromAgency(AddProductListRequest addProductListRequest) {
-    List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(
-            addProductListRequest.getProduct_id(), status("4"), currentUser()).stream()
-        .filter(opt -> opt.getProduct().getStatus() == status("4")).collect(Collectors.toList());
-    Map<String, Operation> operationMap =
-        operationList.stream().collect(Collectors.toMap(operation -> operation.getProduct().getId(), Function.identity()
-            , (opt1, opt2) -> opt2));
-    operationList = new ArrayList<>(operationMap.values());
-    List<Product> productList = operationList.stream().peek(p -> {
-      p.getProduct().setStatus(status("5"));
-      p.getProduct().setLocation(p.getDestination());
-    }).map(
-        Operation::getProduct).collect(Collectors.toList());
-    productRepository.saveAll(productList);
-    operationRepository.saveAll(
-        operationList.stream().map(p -> new Operation(p.getProduct(), status("5"), p.getDestination(),
-            p.getApplicationUser())).collect(Collectors.toList()));
-    return ResponseFactory.success("add successfully");
   }
 
   @Override

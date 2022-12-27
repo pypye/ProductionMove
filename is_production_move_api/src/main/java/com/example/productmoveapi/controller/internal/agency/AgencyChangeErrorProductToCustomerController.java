@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.dto.request.product_request.ChangeProductRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import com.example.productmoveapi.service.agency.AgencyChangeErrorProductToCustomerService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('agency')")
 public class AgencyChangeErrorProductToCustomerController {
 
-  private final AgencyProductManagementService agencyProductManagementService;
+  private final AgencyChangeErrorProductToCustomerService agencyChangeErrorProductToCustomerService;
 
   @Autowired
   public AgencyChangeErrorProductToCustomerController(
-      AgencyProductManagementService agencyProductManagementService) {
-    this.agencyProductManagementService = agencyProductManagementService;
+      AgencyChangeErrorProductToCustomerService agencyChangeErrorProductToCustomerService) {
+    this.agencyChangeErrorProductToCustomerService = agencyChangeErrorProductToCustomerService;
   }
 
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductErrorFromWarranty() {
-    return agencyProductManagementService.getProductErrorFromWarranty();
+    return agencyChangeErrorProductToCustomerService.getProductErrorFromWarranty();
   }
 
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> changeProductErrorToCustomer(
       @Valid @RequestBody ChangeProductRequest changeProductRequest) {
-    return agencyProductManagementService.changeProductErrorToCustomer(changeProductRequest);
+    return agencyChangeErrorProductToCustomerService.changeProductErrorToCustomer(changeProductRequest);
   }
 }

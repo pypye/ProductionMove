@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import com.example.productmoveapi.service.agency.AgencyReceiveDoneProductFromWarrantyCenterService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,24 +23,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/agency/product/warranty/done")
 @PreAuthorize("hasAuthority('agency')")
-public class AgencyDoneProductFromWarrantyCenterController {
+public class AgencyReceiveDoneProductFromWarrantyCenterController {
 
-  private final AgencyProductManagementService agencyProductManagementService;
+  private final AgencyReceiveDoneProductFromWarrantyCenterService agencyReceiveDoneProductFromWarrantyCenterService;
 
   @Autowired
-  public AgencyDoneProductFromWarrantyCenterController(
-      AgencyProductManagementService agencyProductManagementService) {
-    this.agencyProductManagementService = agencyProductManagementService;
+  public AgencyReceiveDoneProductFromWarrantyCenterController(
+      AgencyReceiveDoneProductFromWarrantyCenterService agencyReceiveDoneProductFromWarrantyCenterService) {
+    this.agencyReceiveDoneProductFromWarrantyCenterService = agencyReceiveDoneProductFromWarrantyCenterService;
   }
 
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
-    return agencyProductManagementService.getProductFromWarranty();
+    return agencyReceiveDoneProductFromWarrantyCenterService.getProductFromWarranty();
   }
 
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return agencyProductManagementService.returnProductToCustomer(addProductListRequest);
+    return agencyReceiveDoneProductFromWarrantyCenterService.returnProductToCustomer(addProductListRequest);
   }
 }

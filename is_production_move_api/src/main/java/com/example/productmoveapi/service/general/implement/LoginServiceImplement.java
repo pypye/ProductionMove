@@ -13,10 +13,9 @@ import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.security.filter.JWT.JwtUtils;
 import com.example.productmoveapi.security.filter.service.UserDetailsImplement;
-import com.example.productmoveapi.service.general.UserService;
+import com.example.productmoveapi.service.general.LoginService;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +34,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class UserServiceImplement implements UserService {
+public class LoginServiceImplement implements LoginService {
 
   @Value("${spring.mail.username}")
   private String username;
@@ -56,7 +55,7 @@ public class UserServiceImplement implements UserService {
   private final EmailService emailService;
 
   @Autowired
-  public UserServiceImplement(ApplicationUserRepository applicationUserRepository,
+  public LoginServiceImplement(ApplicationUserRepository applicationUserRepository,
       BCryptPasswordEncoder bCryptPasswordEncoder,
       IRedisCaching iRedisCaching, AuthenticationManager authenticationManager, JwtUtils jwtUtils,
       EmailService emailService) {
@@ -121,8 +120,7 @@ public class UserServiceImplement implements UserService {
   }
 
   @Override
-  public ResponseEntity<GeneralResponse<Object>> forgotPassword(
-      ForgotPasswordRequest forgotPasswordRequest, HttpServletRequest request) {
+  public ResponseEntity<GeneralResponse<Object>> forgotPassword(ForgotPasswordRequest forgotPasswordRequest) {
     ApplicationUser applicationUser = applicationUserRepository.findByEmail(
         forgotPasswordRequest.getEmail());
     if (applicationUser == null) {

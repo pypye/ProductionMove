@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.factory;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.factory.FactoryProductManagementService;
+import com.example.productmoveapi.service.factory.FactoryReceiveErrorProductFromWarrantyCenterService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('factory')")
 public class FactoryReceiveErrorProductFromWarrantyCenterController {
 
-  private final FactoryProductManagementService factoryProductManagementService;
+  private final FactoryReceiveErrorProductFromWarrantyCenterService factoryReceiveErrorProductFromWarrantyCenterService;
 
   @Autowired
   public FactoryReceiveErrorProductFromWarrantyCenterController(
-      FactoryProductManagementService factoryProductManagementService) {
-    this.factoryProductManagementService = factoryProductManagementService;
+      FactoryReceiveErrorProductFromWarrantyCenterService factoryReceiveErrorProductFromWarrantyCenterService) {
+    this.factoryReceiveErrorProductFromWarrantyCenterService = factoryReceiveErrorProductFromWarrantyCenterService;
   }
 
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
-    return factoryProductManagementService.getProductFromWarranty();
+    return factoryReceiveErrorProductFromWarrantyCenterService.getProductFromWarranty();
   }
 
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductFromWarranty(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return factoryProductManagementService.addProductFromWarranty(addProductListRequest);
+    return factoryReceiveErrorProductFromWarrantyCenterService.addProductFromWarranty(addProductListRequest);
   }
 }

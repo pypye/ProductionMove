@@ -5,13 +5,9 @@ import com.example.productmoveapi.response.GeneralResponse;
 import org.springframework.http.ResponseEntity;
 
 /**
- * @author Binh Nguyen Thai at 15:31 on 24/12/2022
+ * @author Binh Nguyen Thai at 00:09 on 28/12/2022
  */
-public interface WarrantyProductManagementService {
-
-  ResponseEntity<GeneralResponse<Object>> getProductFromAgency();
-
-  ResponseEntity<GeneralResponse<Object>> addProductFromAgency(AddProductListRequest addProductListRequest);
+public interface WarrantyReturnProductService {
 
   ResponseEntity<GeneralResponse<Object>> getProductInWarranty();
 

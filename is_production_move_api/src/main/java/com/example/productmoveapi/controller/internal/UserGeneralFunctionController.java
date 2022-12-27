@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal;
 
 import com.example.productmoveapi.dto.request.user_request.ChangePasswordRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.general.UserInternalService;
+import com.example.productmoveapi.service.general.UserGeneralFunctionService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -24,26 +24,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserGeneralFunctionController {
 
-  private final UserInternalService userInternalService;
+  private final UserGeneralFunctionService userGeneralFunctionService;
 
   public UserGeneralFunctionController(
-      UserInternalService userInternalService) {
-    this.userInternalService = userInternalService;
+      UserGeneralFunctionService userGeneralFunctionService) {
+    this.userGeneralFunctionService = userGeneralFunctionService;
   }
 
   @GetMapping("/info")
   public ResponseEntity<GeneralResponse<Object>> getInfo() {
-    return userInternalService.getInfo();
+    return userGeneralFunctionService.getInfo();
   }
 
   @PostMapping("/change_password")
   public ResponseEntity<GeneralResponse<Object>> changePassword(
       @Valid @RequestBody ChangePasswordRequest changePasswordRequest) {
-    return userInternalService.changePassword(changePasswordRequest);
+    return userGeneralFunctionService.changePassword(changePasswordRequest);
   }
 
   @GetMapping("/account/{role:^[2-4]*$}")
   public ResponseEntity<GeneralResponse<Object>> getAccountByRole(@PathVariable(name = "role") String role) {
-    return userInternalService.getAccountByRole(role);
+    return userGeneralFunctionService.getAccountByRole(role);
   }
 }

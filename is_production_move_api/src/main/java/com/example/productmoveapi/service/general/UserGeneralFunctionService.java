@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 /**
  * @author Binh Nguyen Thai at 13:21 on 14/12/2022
  */
-public interface UserInternalService {
+public interface UserGeneralFunctionService {
 
   ResponseEntity<GeneralResponse<Object>> changePassword(ChangePasswordRequest changePasswordRequest);
 

@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.factory;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.factory.FactoryProductManagementService;
+import com.example.productmoveapi.service.factory.FactoryImportNewProductService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('factory')")
 public class FactoryImportNewProductController {
 
-  private final FactoryProductManagementService factoryProductManagementService;
+  private final FactoryImportNewProductService factoryImportNewProductService;
 
   @Autowired
   public FactoryImportNewProductController(
-      FactoryProductManagementService factoryProductManagementService) {
-    this.factoryProductManagementService = factoryProductManagementService;
+      FactoryImportNewProductService factoryImportNewProductService) {
+    this.factoryImportNewProductService = factoryImportNewProductService;
   }
 
   @PostMapping("/add")
   public ResponseEntity<GeneralResponse<Object>> addProduct(
       @Valid @RequestBody AddProductRequest addProductRequest) {
-    return factoryProductManagementService.addProduct(addProductRequest);
+    return factoryImportNewProductService.addProduct(addProductRequest);
   }
 }

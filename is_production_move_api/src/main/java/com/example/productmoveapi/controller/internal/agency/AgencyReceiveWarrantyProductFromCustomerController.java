@@ -1,7 +1,7 @@
 package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import com.example.productmoveapi.service.agency.AgencyReceiveWarrantyProductFromCustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,24 +23,24 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('agency')")
 public class AgencyReceiveWarrantyProductFromCustomerController {
 
-  private final AgencyProductManagementService agencyProductManagementService;
+  private final AgencyReceiveWarrantyProductFromCustomerService agencyReceiveWarrantyProductFromCustomerService;
 
   @Autowired
   public AgencyReceiveWarrantyProductFromCustomerController(
-      AgencyProductManagementService agencyProductManagementService) {
-    this.agencyProductManagementService = agencyProductManagementService;
+      AgencyReceiveWarrantyProductFromCustomerService agencyReceiveWarrantyProductFromCustomerService) {
+    this.agencyReceiveWarrantyProductFromCustomerService = agencyReceiveWarrantyProductFromCustomerService;
   }
 
   @GetMapping("/{productCode:^[0-9A-Za-z]*$}")
   public ResponseEntity<GeneralResponse<Object>> getProductCustomer(
       @PathVariable(name = "productCode") String productCode) {
-    return agencyProductManagementService.getProductCustomer(productCode);
+    return agencyReceiveWarrantyProductFromCustomerService.getProductCustomer(productCode);
   }
 
   @PostMapping("/warranty/{productCode:^[0-9A-Za-z]*$}/{warrantyId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductToWarranty(
       @PathVariable(name = "productCode") String productCode, @PathVariable(name = "warrantyId") String warrantyId) {
-    return agencyProductManagementService.addProductToWarranty(productCode, warrantyId);
+    return agencyReceiveWarrantyProductFromCustomerService.addProductToWarranty(productCode, warrantyId);
   }
 
 }

@@ -1,7 +1,7 @@
 package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import com.example.productmoveapi.service.agency.AgencyRecallProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,22 +22,22 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('agency')")
 public class AgencyRecallProductController {
 
-  private final AgencyProductManagementService agencyProductManagementService;
+  private final AgencyRecallProductService agencyRecallProductService;
 
   @Autowired
   public AgencyRecallProductController(
-      AgencyProductManagementService agencyProductManagementService) {
-    this.agencyProductManagementService = agencyProductManagementService;
+      AgencyRecallProductService agencyRecallProductService) {
+    this.agencyRecallProductService = agencyRecallProductService;
   }
 
   @PostMapping("/{categoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> recallProduct(@PathVariable(name = "categoryId") String categoryId) {
-    return agencyProductManagementService.recallProduct(categoryId);
+    return agencyRecallProductService.recallProduct(categoryId);
   }
 
   @PostMapping("/warranty/{warrantyId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(
       @PathVariable(name = "warrantyId") String warrantyId) {
-    return agencyProductManagementService.recallProductToWarranty(warrantyId);
+    return agencyRecallProductService.recallProductToWarranty(warrantyId);
   }
 }

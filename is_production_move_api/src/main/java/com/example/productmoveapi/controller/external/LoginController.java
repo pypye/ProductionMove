@@ -4,8 +4,7 @@ import com.example.productmoveapi.dto.request.user_request.ForgotPasswordRequest
 import com.example.productmoveapi.dto.request.user_request.LoginRequest;
 import com.example.productmoveapi.dto.request.user_request.ResetPasswordRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.general.UserService;
-import javax.servlet.http.HttpServletRequest;
+import com.example.productmoveapi.service.general.LoginService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,29 +25,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class LoginController {
 
-  private final UserService userService;
+  private final LoginService loginService;
 
   @Autowired
-  public LoginController(UserService userService) {
-    this.userService = userService;
+  public LoginController(LoginService loginService) {
+    this.loginService = loginService;
   }
 
   @PostMapping("/login")
   public ResponseEntity<GeneralResponse<Object>> login(
       @Valid @RequestBody LoginRequest loginRequest) {
-    return userService.loginAccount(loginRequest);
+    return loginService.loginAccount(loginRequest);
   }
 
   @PostMapping("/forgot")
   public ResponseEntity<GeneralResponse<Object>> forgotPassword(
-      @Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest,
-      HttpServletRequest httpServletRequest) {
-    return userService.forgotPassword(forgotPasswordRequest, httpServletRequest);
+      @Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest) {
+    return loginService.forgotPassword(forgotPasswordRequest);
   }
 
   @PostMapping("/reset")
   public ResponseEntity<GeneralResponse<Object>> resetPassword(
       @Valid @RequestBody ResetPasswordRequest resetPasswordRequest) {
-    return userService.resetPassword(resetPasswordRequest);
+    return loginService.resetPassword(resetPasswordRequest);
   }
 }

@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal;
 
 import com.example.productmoveapi.dto.request.static_request.StaticByStatusYearQuarterMonthRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.general.ProductInternalService;
+import com.example.productmoveapi.service.general.ProductReportGeneralService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,33 +21,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductReportGeneralController {
 
-  private final ProductInternalService productInternalService;
+  private final ProductReportGeneralService productReportGeneralService;
 
   @Autowired
   public ProductReportGeneralController(
-      ProductInternalService productInternalService) {
-    this.productInternalService = productInternalService;
+      ProductReportGeneralService productReportGeneralService) {
+    this.productReportGeneralService = productReportGeneralService;
   }
 
   @GetMapping("/category/all")
   public ResponseEntity<GeneralResponse<Object>> getAllCategory() {
-    return productInternalService.getAllCategory();
+    return productReportGeneralService.getAllCategory();
   }
 
   @GetMapping("/product/all")
   public ResponseEntity<GeneralResponse<Object>> getAllProduct() {
-    return productInternalService.getAllProduct();
+    return productReportGeneralService.getAllProduct();
   }
 
   @GetMapping("/product/{categoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> getAllProductByCategory(
       @PathVariable(name = "categoryId") String categoryId) {
-    return productInternalService.getAllProductByCategory(categoryId);
+    return productReportGeneralService.getAllProductByCategory(categoryId);
   }
 
   @GetMapping("/static")
   public ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
       @Valid @RequestBody StaticByStatusYearQuarterMonthRequest staticByStatusYearQuarterMonthRequest) {
-    return productInternalService.getProductByStatusYearQuarterMonth(staticByStatusYearQuarterMonthRequest);
+    return productReportGeneralService.getProductByStatusYearQuarterMonth(staticByStatusYearQuarterMonthRequest);
   }
 }

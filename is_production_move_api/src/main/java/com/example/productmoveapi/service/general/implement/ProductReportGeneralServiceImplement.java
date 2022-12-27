@@ -11,7 +11,7 @@ import com.example.productmoveapi.repository.entity.Operation;
 import com.example.productmoveapi.repository.entity.Product;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
-import com.example.productmoveapi.service.general.ProductInternalService;
+import com.example.productmoveapi.service.general.ProductReportGeneralService;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class ProductInternalServiceImplement implements ProductInternalService {
+public class ProductReportGeneralServiceImplement implements ProductReportGeneralService {
 
   private final CategoryRepository categoryRepository;
   private final ProductRepository productRepository;
@@ -35,7 +35,7 @@ public class ProductInternalServiceImplement implements ProductInternalService {
   private final OperationRepository operationRepository;
 
   @Autowired
-  public ProductInternalServiceImplement(
+  public ProductReportGeneralServiceImplement(
       CategoryRepository categoryRepository, ProductRepository productRepository,
       ApplicationUserRepository applicationUserRepository, OperationRepository operationRepository) {
     this.categoryRepository = categoryRepository;

@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.warranty;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.warranty.WarrantyProductManagementService;
+import com.example.productmoveapi.service.warranty.WarrantyReturnProductService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,29 +26,29 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('warranty')")
 public class WarrantyReturnProductController {
 
-  private final WarrantyProductManagementService warrantyProductManagementService;
+  private final WarrantyReturnProductService warrantyReturnProductService;
 
   @Autowired
   public WarrantyReturnProductController(
-      WarrantyProductManagementService warrantyProductManagementService) {
-    this.warrantyProductManagementService = warrantyProductManagementService;
+      WarrantyReturnProductService warrantyReturnProductService) {
+    this.warrantyReturnProductService = warrantyReturnProductService;
   }
 
   @GetMapping("/all")
   public ResponseEntity<GeneralResponse<Object>> getProductInWarranty() {
-    return warrantyProductManagementService.getProductInWarranty();
+    return warrantyReturnProductService.getProductInWarranty();
   }
 
   @PostMapping("/agency/done")
   public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return warrantyProductManagementService.addProductDoneToAgency(addProductListRequest);
+    return warrantyReturnProductService.addProductDoneToAgency(addProductListRequest);
   }
 
   @PostMapping("/factory/error/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductErrorToFactory(
       @Valid @RequestBody AddProductListRequest addProductListRequest,
       @PathVariable(name = "factoryId") String factoryId) {
-    return warrantyProductManagementService.addProductErrorToFactory(addProductListRequest, factoryId);
+    return warrantyReturnProductService.addProductErrorToFactory(addProductListRequest, factoryId);
   }
 }

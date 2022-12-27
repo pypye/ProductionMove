@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.factory;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.factory.FactoryProductManagementService;
+import com.example.productmoveapi.service.factory.FactoryExportProductToAgencyService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('factory')")
 public class FactoryExportProductToAgencyController {
 
-  private final FactoryProductManagementService factoryProductManagementService;
+  private final FactoryExportProductToAgencyService factoryExportProductToAgencyService;
 
   @Autowired
   public FactoryExportProductToAgencyController(
-      FactoryProductManagementService factoryProductManagementService) {
-    this.factoryProductManagementService = factoryProductManagementService;
+      FactoryExportProductToAgencyService factoryExportProductToAgencyService) {
+    this.factoryExportProductToAgencyService = factoryExportProductToAgencyService;
   }
 
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
-    return factoryProductManagementService.getProductFromAgency();
+    return factoryExportProductToAgencyService.getProductFromAgency();
   }
 
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductToAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return factoryProductManagementService.addProductToAgency(addProductListRequest);
+    return factoryExportProductToAgencyService.addProductToAgency(addProductListRequest);
   }
 }

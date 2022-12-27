@@ -2,7 +2,7 @@ package com.example.productmoveapi.controller.internal.agency;
 
 import com.example.productmoveapi.dto.request.product_request.AddProductListRequest;
 import com.example.productmoveapi.response.GeneralResponse;
-import com.example.productmoveapi.service.agency.AgencyProductManagementService;
+import com.example.productmoveapi.service.agency.AgencyImportProductFromFactoryService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,23 +26,23 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("hasAuthority('agency')")
 public class AgencyImportProductFromFactoryController {
 
-  private final AgencyProductManagementService agencyProductManagementService;
+  private final AgencyImportProductFromFactoryService agencyImportProductFromFactoryService;
 
   @Autowired
   public AgencyImportProductFromFactoryController(
-      AgencyProductManagementService agencyProductManagementService) {
-    this.agencyProductManagementService = agencyProductManagementService;
+      AgencyImportProductFromFactoryService agencyImportProductFromFactoryService) {
+    this.agencyImportProductFromFactoryService = agencyImportProductFromFactoryService;
   }
 
   @GetMapping("/factory/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> getProductFactory(@PathVariable(name = "factoryId") String factoryId) {
-    return agencyProductManagementService.getProductFactory(factoryId);
+    return agencyImportProductFromFactoryService.getProductFactory(factoryId);
   }
 
   @PostMapping("/factory/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(
       @PathVariable(name = "factoryId") String factoryId,
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
-    return agencyProductManagementService.addProductFromFactory(factoryId, addProductListRequest);
+    return agencyImportProductFromFactoryService.addProductFromFactory(factoryId, addProductListRequest);
   }
 }
