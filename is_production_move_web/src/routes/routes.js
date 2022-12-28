@@ -3,7 +3,7 @@ import { Login } from '../pages/general/Login/Login';
 import { Layout } from '../layouts/Layout';
 import {
     ForgotPassword, Product, Logout, ResetPassword, User, Category,
-    GetFromFactory, SendToAgency, SaleProduct, AddProduct, GetFromCustomer, GetFromAgency, WarrantySendToAgency, GetFromWarranty, SendToFactory, FactoryGetFromWarranty, NotifyErrorProduct, RecallProduct
+    GetFromFactory, SendToAgency, SaleProduct, AddProduct, GetFromCustomer, GetFromAgency, WarrantySendToAgency, GetFromWarranty, SendToFactory, FactoryGetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, FactorySaleAnalysis, ErrorAnalysis, ProductAnalysis
 } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';
@@ -19,6 +19,12 @@ export default function Router() {
             ]
         },
         {
+            element: <UseAuth.Auth element={<Layout />} roles={['factory', 'warranty', 'agency']} />,
+            children: [
+                { path: '/product/analysis', element: <ProductAnalysis /> },
+            ]
+        },
+        {
             element: <UseAuth.Auth element={<Layout />} roles={['admin']} />,
             children: [
                 { path: '/admin/category', element: <Category.CategoryList /> },
@@ -31,6 +37,8 @@ export default function Router() {
                 { path: '/factory/add-product', element: <AddProduct /> },
                 { path: '/factory/send-to-agency', element: <SendToAgency /> },
                 { path: '/factory/get-from-warranty', element: <FactoryGetFromWarranty /> },
+                { path: '/factory/sale-analysis', element: <FactorySaleAnalysis /> },
+                { path: '/factory/error-analysis', element: <ErrorAnalysis /> },
             ]
         },
         {
@@ -42,6 +50,7 @@ export default function Router() {
                 { path: '/agency/get-from-warranty', element: <GetFromWarranty /> },
                 { path: '/agency/notify-error-product', element: <NotifyErrorProduct /> },
                 { path: '/agency/recall-product', element: <RecallProduct /> },
+                { path: '/agency/sale-analysis', element: <SaleAnalysis /> }
             ]
         },
         {

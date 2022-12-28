@@ -7,27 +7,26 @@ function NotifyErrorProduct(props) {
     const [data, setData] = React.useState([])
     const [loading, setLoading] = React.useState(true)
     const [customerProductCode, setCustomerProductCode] = React.useState("")
-    const [warranty, setWarranty] = React.useState("")
+    const [newProductCode, setNewProductCode] = React.useState("")
     const [error, setError] = React.useState("")
 
     const onFetchCustomerPopup = (row) => {
         setCustomerProductCode(row.productCode)
-        setWarranty("")
+        setNewProductCode("")
     }
 
-    const onSendToWarranty = (productCode) => {
-        UseFetch(`/backend/agency/product/warranty/${productCode}/${warranty}`, "POST", null).then(res => {
+    const onExchange = (productCode) => {
+        UseFetch(`/backend/agency/product/warranty/error`, "POST", { productCode: customerProductCode, changedProductCode: newProductCode }).then(res => {
             if (res.status.code === "SUCCESS") {
-                ref.current.forceOptionPopupClose()
                 var _data = data.map(item => {
                     if (item && item.productCode === productCode) {
                         item.status = "Lỗi, cần bảo hành";
                         item.option = <Popup>
-                            <Popup.Trigger><a href="#/">Xem trạng thái bảo hành</a></Popup.Trigger>
+                            <Popup.Trigger><a href="#/">Đã đổi sản phẩm</a></Popup.Trigger>
                             <Popup.Content>
-                                <Section title="Thông tin bảo hành" noContainer>
-                                    <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
-                                    <div>Sản phẩm đã được gửi tới trung tâm bảo hành</div>
+                                <Section title="Thông báo" noContainer>
+                                    <div><strong>Mã sản phẩm:</strong> {customerProductCode}</div>
+                                    <div>Sản phẩm đã được đổi cho khách hàng {item.customer.name} với sản phẩm mới là {newProductCode} </div>
                                 </Section>
                             </Popup.Content>
                         </Popup>
@@ -36,8 +35,11 @@ function NotifyErrorProduct(props) {
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
+                _data = _data.filter(item => item.productCode === productCode)
+                setData(_data)
+                ref.current.updateAllTable(_data)
             } else {
-                setError("Thêm thông tin khách hàng thất bại")
+                setError("Mã sản phẩm không tồn tại hoặc đã được sở hữu bởi khách hàng khác")
             }
         })
     }
@@ -116,11 +118,11 @@ function NotifyErrorProduct(props) {
     return <React.Fragment>
         <Table title="Sản phẩm bị lỗi và đổi trả" ref={ref} data={data} noOption noAddRow optionPopup={
             <Form noContainer>
-                <Form.Title content="Thông tin bảo hành" />
+                <Form.Title content="Đổi sản phẩm mới" />
                 <Form.Input label="Mã sản phẩm" reference={[customerProductCode]} disabled />
-                <Form.Input label="Trung tâm bảo hành" reference={[warranty, setWarranty]} />
+                <Form.Input label="Mã sản phẩm cần đổi" reference={[newProductCode, setNewProductCode]} />
                 <Form.Error enabled={error !== ""} content={error} />
-                <Form.Submit content="Bảo hành sản phẩm" onClick={() => onSendToWarranty(customerProductCode)} />
+                <Form.Submit content="Bảo hành sản phẩm" onClick={() => onExchange(customerProductCode)} />
             </Form>
         } optionPopupTitle="Đổi sản phẩm mới" onFetchOptionPopup={onFetchCustomerPopup} />
     </React.Fragment>

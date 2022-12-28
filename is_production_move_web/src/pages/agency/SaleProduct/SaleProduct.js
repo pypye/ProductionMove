@@ -26,8 +26,24 @@ function SaleProduct(props) {
     const onAddCustomerInfo = (productCode) => {
         UseFetch("/backend/agency/product/customer", "POST", { productCode: productCode, name: customerName, address: customerAddress, phone: customerPhone }).then(res => {
             if (res.status.code === "SUCCESS") {
-                ref.current.forceOptionPopupClose()
-                var _data = data.filter(item => item.productCode !== productCode)
+                var _data = data.map(item => {
+                    if (item && item.productCode === productCode) {
+                        item.option = <Popup>
+                            <Popup.Trigger><a href="#/">Xem chi tiết khách hàng</a></Popup.Trigger>
+                            <Popup.Content>
+                                <Section title="Thông tin sản phẩm" noContainer>
+                                    <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
+                                    <div>Sản phẩm đã bán cho khách hàng <strong>{customerName}</strong></div>
+                                </Section>
+                            </Popup.Content>
+                        </Popup>
+                    }
+                    return item
+                })
+
+                setData(_data)
+                ref.current.updateAllTable(_data)
+                _data = _data.filter(item => item.productCode === productCode)
                 setData(_data)
                 ref.current.updateAllTable(_data)
             } else {

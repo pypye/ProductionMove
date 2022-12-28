@@ -6,7 +6,7 @@ const Table = forwardRef((props, ref) => {
     const tableRef = React.useRef(null);
     const addRowRef = React.useRef(null);
     const editRowRef = React.useRef(null);
-    const optionPopupRef = React.useRef(null);
+
     const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
     const [tableData, setTableData] = React.useState({ data: [...props.data.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
     const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });
@@ -35,8 +35,9 @@ const Table = forwardRef((props, ref) => {
             }
         },
         updateAllTable(newData) {
-            setTableData({ data: [...newData.map((s, i) => Object.assign({}, { "__data_order": i }, s))], selected: [] });
+            setTableData({ data: newData.map((s, i) => Object.assign({}, { "__data_order": i }, s)), selected: [] });
             setTablePage({ page: 1, pageSize: tablePage.pageSize });
+            setDisplayColumn([...Object.keys(newData.length ? newData[0] : []).map(() => true)]);
         },
 
         forceAddRowClose() {
@@ -46,9 +47,9 @@ const Table = forwardRef((props, ref) => {
         forceEditRowClose() {
             editRowRef.current.forcePopupClose();
         },
-        forceOptionPopupClose() {
-            optionPopupRef.current.forcePopupClose();
-        }
+        // forceOptionPopupClose() {
+        //     optionPopupRef.current.forcePopupClose();
+        // }
     }));
 
     React.useEffect(() => {
@@ -133,7 +134,7 @@ const Table = forwardRef((props, ref) => {
                             noOption={props.noOption}
                             checkbox={props.checkbox}
                             optionPopup={props.optionPopup}
-                            optionPopupRef={optionPopupRef}
+                            optionPopupRef={props.optionPopupRef}
                             optionPopupTitle={props.optionPopupTitle}
                             onFetchOptionPopup={props.onFetchOptionPopup}
                         />

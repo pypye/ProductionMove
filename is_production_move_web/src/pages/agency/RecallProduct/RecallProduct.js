@@ -4,12 +4,34 @@ import { UseFetch } from "../../../utils"
 
 function RecallProduct(props) {
     const ref = React.useRef(null);
-    const [categoryId, setCategoryId] = React.useState("5");
-    const [warrantyId, setWarrantyId] = React.useState("4");
+    const [categoryId, setCategoryId] = React.useState("");
+    const [categoryList, setCategoryList] = React.useState([]);
+    const [warrantyId, setWarrantyId] = React.useState("");
+    const [warrantyList, setWarrantyList] = React.useState([]);
     const [data, setData] = React.useState(null);
 
+    React.useEffect(() => {
+        UseFetch("/backend/user/account/3", "GET", null).then((res) => {
+            if (res.status.code === "SUCCESS") {
+                setWarrantyId(res.data[0].name);
+                setWarrantyList(res.data);
+            }
+        });
+    }, []);
+    
+    React.useEffect(() => {
+        UseFetch("/backend/category/all", "GET", null).then((res) => {
+            if (res.status.code === "SUCCESS") {
+                setCategoryId(res.data[0].category);
+                setCategoryList(res.data);
+            }
+        });
+    }, []);
+
+
     const onRecallProduct = () => {
-        UseFetch(`/backend/agency/product/recall/${categoryId}`, "POST", null).then((res) => {
+        var _categoryId = categoryList.filter((item) => { return item.category === categoryId })[0].id
+        UseFetch(`/backend/agency/product/recall/${_categoryId}`, "POST", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 alert("Thu hồi thành công")
             } else {
@@ -19,7 +41,8 @@ function RecallProduct(props) {
     }
 
     const onGetList = () => {
-        UseFetch(`/backend/product/${categoryId}`, "GET", null).then((res) => {
+        var _categoryId = categoryList.filter((item) => { return item.category === categoryId })[0].id
+        UseFetch(`/backend/product/${_categoryId}`, "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.filter(item => item.status.status !== 'Lỗi, cần bảo hành').map((item) => {
                     var _item = {
@@ -67,7 +90,8 @@ function RecallProduct(props) {
 
 
     const onTransferToWarranty = () => {
-        UseFetch(`/backend/agency/product/recall/warranty/${warrantyId}`, "POST", null).then((res) => {
+        var _warrantyId = warrantyList.filter((item) => { return item.name === warrantyId })[0].id
+        UseFetch(`/backend/agency/product/recall/warranty/${_warrantyId}`, "POST", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _data = data.map(item => {
                     if (item) {
@@ -90,9 +114,11 @@ function RecallProduct(props) {
             <Section title="Thu hồi sản phẩm">
                 <Section.Div inline>
                     <Option title="Chọn loại sản phẩm" value={categoryId} onChange={setCategoryId}>
-                        <Option.Item value="5" />
-                        <Option.Item value="6" />
-                        <Option.Item value="7" />
+                        {
+                            categoryList.map((item) => {
+                                return <Option.Item key={item.id} value={item.category} />
+                            })
+                        }
                     </Option>
                     <Button onClick={() => {
                         onRecallProduct();
@@ -104,7 +130,9 @@ function RecallProduct(props) {
                 <React.Fragment>
                     <h2>Sản phẩm đã thu hồi</h2>
                     <Option title="Chọn TTBH" value={warrantyId} onChange={setWarrantyId}>
-                        <Option.Item value="4" />
+                        {warrantyList.map((item) => {
+                            return <Option.Item key={item.id} value={item.name} />
+                        })}
                     </Option>
                     <Button onClick={onTransferToWarranty}>Chuyển sản phẩm TTBH</Button>
                 </React.Fragment>

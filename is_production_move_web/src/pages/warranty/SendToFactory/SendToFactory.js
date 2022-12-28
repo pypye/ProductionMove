@@ -7,6 +7,17 @@ function SendToFactory(props) {
     const [data, setData] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [factoryId, setFactoryId] = React.useState("2");
+    const [factoryList, setFactoryList] = React.useState([]);
+
+    React.useEffect(() => {
+        UseFetch("/backend/user/account/2", "GET", null).then((res) => {
+            if (res.status.code === "SUCCESS") {
+                setFactoryId(res.data[0].name);
+                setFactoryList(res.data);
+            }
+        });
+    }, []);
+
 
     React.useEffect(() => {
         UseFetch(`/backend/warranty/product/all`, "GET", null).then((res) => {
@@ -50,7 +61,8 @@ function SendToFactory(props) {
         for (var i = 0; i < _select.length; i++) {
             _id.push(currentData.data[_select[i]].id)
         }
-        UseFetch(`/backend/warranty/product/factory/error/${factoryId}`, "POST", { "product_id": _id }).then(res => {
+        var _factoryId = factoryList.filter((item) => { return item.name === factoryId })[0].id
+        UseFetch(`/backend/warranty/product/factory/error/${_factoryId}`, "POST", { "product_id": _id }).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _data = currentData.data.filter((item) => {
                     return !_select.includes(currentData.data.indexOf(item))
@@ -72,9 +84,11 @@ function SendToFactory(props) {
                 <React.Fragment>
                     <h2>Sản phẩm không thể bảo hành</h2>
                     <Option title="Chọn nhà máy" value={factoryId} onChange={setFactoryId}>
-                        <Option.Item value="2" />
-                        <Option.Item value="6" />
-                        <Option.Item value="7" />
+                        {
+                            factoryList.map((item) => {
+                                return <Option.Item key={item.id} value={item.name} />
+                            })
+                        }
                     </Option>
                     <Button onClick={onRequestProduct}>Chuyển sản phẩm đã chọn về nhà máy</Button>
                 </React.Fragment>

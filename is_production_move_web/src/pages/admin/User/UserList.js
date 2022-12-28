@@ -138,20 +138,23 @@ function UserList() {
                 <Form>
                     <Form.Title content="Thêm người dùng mới" />
                     <Form.Split>
-                        <Form.Input label="Username" type="text" reference={[username, setUsername, UseValidation.username]} />
+                        <Form.Input label="Tên đăng nhập" type="text" reference={[username, setUsername, UseValidation.username]} />
                         <Form.Input label="Email" type="text" reference={[email, setEmail, UseValidation.email]} />
                     </Form.Split>
                     <Form.Split>
-                        <Form.Input label="Password" type="password" reference={[password, setPassword, UseValidation.password]} />
-                        <Form.Input label="Confirm password" type="password" reference={[confirmPassword, setConfirmPassword, validRetypePassword]} />
+                        <Form.Input label="Mật khẩu" type="password" reference={[password, setPassword, UseValidation.password]} />
+                        <Form.Input label="Nhập lại mật khẩu" type="password" reference={[confirmPassword, setConfirmPassword, validRetypePassword]} />
                     </Form.Split>
                     <Form.Split>
-                        <Form.Input label="Phone" type="text" reference={[phone, setPhone, UseValidation.phone]} />
-                        <Form.Input label="Address" type="text" reference={[address, setAddress, UseValidation.address]} />
+                        <Form.Input label="Số điện thoại" type="text" reference={[phone, setPhone, UseValidation.phone]} />
+                        <Form.Input label="Tên công ty" type="text" reference={[companyName, setCompanyName, UseValidation.companyName]} />
+
                     </Form.Split>
                     <Form.Split>
-                        <Form.Input label="Company name" type="text" reference={[companyName, setCompanyName, UseValidation.companyName]} />
-                        <Option title='Role' maxWidth value={role} onChange={setRole}>
+                        <Form.Input label="Địa chỉ" type="text" reference={[address, setAddress, UseValidation.address]} />
+                    </Form.Split>
+                    <Form.Split>
+                        <Option title='Chức vụ' value={role} onChange={setRole}>
                             <Option.Item value='admin' />
                             <Option.Item value='agency' />
                             <Option.Item value='factory' />
@@ -164,24 +167,27 @@ function UserList() {
             } onDelete={onDeleteRow} editRow={
                 <Form noContainer>
                     <Form.Title content="Sửa thông tin người dùng" />
-                    <Form.Input label="no." type="text" reference={[id]} disabled />
                     <Form.Split>
-                        <Form.Input label="Username" type="text" reference={[username, setUsername, UseValidation.username]} />
+                        <Form.Input label="Stt." type="text" reference={[id]} disabled />
+                        <Form.Input label="Tên đăng nhập" type="text" reference={[username, setUsername, UseValidation.username]} />
+                    </Form.Split>
+                    <Form.Split>
                         <Form.Input label="Email" type="text" reference={[email, setEmail, UseValidation.email]} />
+                        <Form.Input label="Số điện thoại" type="text" reference={[phone, setPhone, UseValidation.phone]} />
                     </Form.Split>
                     <Form.Split>
-                        <Form.Input label="Phone" type="text" reference={[phone, setPhone, UseValidation.phone]} />
-                        <Form.Input label="Address" type="text" reference={[address, setAddress, UseValidation.address]} />
+                        <Form.Input label="Tên công ty" type="text" reference={[companyName, setCompanyName, UseValidation.companyName]} />
+                        <Form.Input label="Địa chỉ" type="text" reference={[address, setAddress, UseValidation.address]} />
                     </Form.Split>
                     <Form.Split>
-                        <Form.Input label="Company name" type="text" reference={[companyName, setCompanyName, UseValidation.companyName]} />
-                        <Option title='Role' maxWidth value={role} onChange={setRole}>
+                        <Option title='Chức vụ' value={role} onChange={setRole}>
                             <Option.Item value='admin' />
                             <Option.Item value='agency' />
                             <Option.Item value='factory' />
                             <Option.Item value='warranty' />
                         </Option>
                     </Form.Split>
+
                     <Form.Error enabled={error !== ""} content={error} />
                     <Form.Submit content="Cập nhật" onClick={onEditRow} />
                 </Form>

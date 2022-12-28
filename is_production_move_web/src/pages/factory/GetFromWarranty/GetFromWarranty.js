@@ -68,6 +68,10 @@ function GetFromWarranty(props) {
                 var _data = currentData.data.filter((item) => {
                     return !_select.includes(currentData.data.indexOf(item))
                 })
+                _data = _data.map((item, index) => {
+                    item['__data_order'] = index
+                    return item
+                })
                 setData(_data)
                 ref.current.updateAllTable(_data)
                 alert("Lấy sản phẩm thành công")

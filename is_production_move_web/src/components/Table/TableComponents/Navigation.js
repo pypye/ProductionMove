@@ -6,6 +6,7 @@ import { Form } from '../../Form/Form';
 import { Input } from '../../Input/Input';
 import { Section } from '../../Section/Section';
 import { TableComponent } from '.';
+import { UseTranslator } from '../../../utils';
 
 function Navigation(props) {
     return (
@@ -45,12 +46,12 @@ Navigation.Setting = function NavigationSetting(props) {
                         if (v === 'id') {
                             return <Form.SplitFlex key={i} format='dashed-bottom'>
                                 <Checkbox checked={1} disabled={1}></Checkbox>
-                                <span className='setting-column'>no.</span>
+                                <span className='setting-column'>Stt.</span>
                             </Form.SplitFlex>
                         }
                         return <Form.SplitFlex key={i} format='dashed-bottom'>
                             <Checkbox checked={props.displayColumn.displayColumn[i] ? 1 : 0} onClick={() => onDisplayColumn(i)}></Checkbox>
-                            <span className='setting-column'>{v}</span>
+                            <span className='setting-column'>{UseTranslator.translate(v)}</span>
                         </Form.SplitFlex>
                     })}
                 </Section>

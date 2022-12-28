@@ -2,6 +2,7 @@ import './style_header.css'
 import React from 'react';
 import { TableComponent } from '.';
 import { Checkbox } from '../..';
+import { UseTranslator } from '../../../utils';
 
 const fakeIconComponent = function () {
     return (
@@ -26,7 +27,7 @@ function TableHeaderCell(props) {
             <th><Checkbox checked={props.checked} onClick={props.onClick} /></th>
             :
             <th ref={thRef} onMouseOver={() => displayFakeIcon(true)} onMouseOut={() => displayFakeIcon(false)}>
-                <span>{props.label}</span>
+                <span>{UseTranslator.translate(props.label)}</span>
                 <div className="th-icon">
                     {((props.order && props.order.sortColumn === thRef.current) ? (
                         props.order.sortOrder === 1 ? <TableComponent.Icon.SortAsc /> : (
@@ -56,7 +57,7 @@ function TableHeader(props) {
                 {props.checkbox && <TableHeaderCell checkbox checked={props.tableData.selected.length === props.tableData.data.length ? 1 : (props.tableData.selected.length === 0 ? 0 : 2)} onClick={() => onSelectAll()} />}
                 {
                     props.data.length > 0 && Object.keys(props.data[0]).map((v, i) => {
-                        if (v === 'id' && props.displayColumn[i]) return <th key={v}>no.</th>
+                        if (v === 'id' && props.displayColumn[i]) return <th key={v}>Stt.</th>
                         if (v !== '__data_order' && props.displayColumn[i]) return <TableHeaderCell key={i} label={v} order={props.sort} />
                         else return null;
                     })

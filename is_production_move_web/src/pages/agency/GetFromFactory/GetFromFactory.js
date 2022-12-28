@@ -4,11 +4,22 @@ import { UseFetch } from "../../../utils"
 
 function GetFromFactory(props) {
     const ref = React.useRef(null);
-    const [factory, setFactory] = React.useState("6");
+    const [factory, setFactory] = React.useState("");
+    const [factoryList, setFactoryList] = React.useState([]);
     const [data, setData] = React.useState(null);
 
+    React.useEffect(() => {
+        UseFetch("/backend/user/account/2", "GET", null).then((res) => {
+            if (res.status.code === "SUCCESS") {
+                setFactory(res.data[0].name);
+                setFactoryList(res.data);
+            }
+        });
+    }, []);
+
     const onGetFactoryProduct = () => {
-        UseFetch(`/backend/agency/product/factory/${factory}`, "GET", null).then((res) => {
+        var _factory = factoryList.filter((item) => { return item.name === factory })[0].id
+        UseFetch(`/backend/agency/product/factory/${_factory}`, "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
                     var _item = {
@@ -61,7 +72,9 @@ function GetFromFactory(props) {
         for (var i = 0; i < _select.length; i++) {
             _id.push(currentData.data[_select[i]].id)
         }
-        UseFetch(`/backend/agency/product/factory/${factory}`, "POST", { "product_id": _id }).then(res => {
+        var _factory = factoryList.filter((item) => { return item.name === factory })[0].id
+
+        UseFetch(`/backend/agency/product/factory/${_factory}`, "POST", { "product_id": _id }).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _data = currentData.data.filter((item) => {
                     return !_select.includes(currentData.data.indexOf(item))
@@ -77,11 +90,14 @@ function GetFromFactory(props) {
 
     return (
         <React.Fragment>
-            <Section title="Nhập sản phẩm từ nhà máy">
+            <Section title="Nhập sản phẩm từ">
                 <Section.Div inline>
                     <Option title="Chọn nhà máy" value={factory} onChange={setFactory}>
-                        <Option.Item value="6" />
-                        <Option.Item value="7" />
+                        {
+                            factoryList.map((item) => {
+                                return <Option.Item key={item.name} value={item.name} />
+                            })
+                        }
                     </Option>
                     <Button onClick={onGetFactoryProduct}>Lấy thông tin sản phẩm</Button>
                 </Section.Div>

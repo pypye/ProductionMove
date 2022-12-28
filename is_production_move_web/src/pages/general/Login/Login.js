@@ -20,7 +20,7 @@ function Login() {
 
 
     const validLogin = () => {
-        return UseValidation.username(loginUsername).state && UseValidation.password(loginPassword).state
+        return UseValidation.loginUsername(loginUsername).state && UseValidation.loginUsername(loginPassword).state
     }
 
     const onLogin = () => {

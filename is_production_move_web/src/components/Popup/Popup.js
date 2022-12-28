@@ -10,11 +10,12 @@ const Popup = forwardRef((props, ref) => {
             setIsOpen(true);
         },
         forcePopupClose() {
+            console.log("forcePopupClose")
             setIsOpen(false);
             if (props.onReset) props.onReset()
             if (props.onCloseOther) props.onCloseOther();
         }
-    }), [props]);
+    }));
 
     React.useEffect(() => {
         document.addEventListener("mousedown", onPopupClose);
@@ -42,13 +43,15 @@ const Popup = forwardRef((props, ref) => {
     return (
         <React.Fragment>
             {React.cloneElement(props.children[0], { onToggle: togglePopup })}
-            <div className="popup-wrapper" style={{ display: isOpen ? 'block' : 'none' }}>
-                {isOpen &&
+
+            {isOpen &&
+                <div className="popup-wrapper">
                     <div className="popup-content" ref={container}>
                         {props.children[1]}
                     </div>
-                }
-            </div>
+                </div>
+            }
+
         </React.Fragment>
     )
 });

@@ -1,24 +1,32 @@
 import React from "react"
-import { Form, Popup, Section, Table } from "../../../components"
+import { Form, Option, Popup, Section, Table } from "../../../components"
 import { UseFetch } from "../../../utils"
 
 function GetFromCustomer(props) {
     const ref = React.useRef()
-    const [data, setData] = React.useState([])
+    const [data, setData] = React.useState(null)
     const [loading, setLoading] = React.useState(true)
     const [customerProductCode, setCustomerProductCode] = React.useState("")
     const [warranty, setWarranty] = React.useState("")
+    const [warrantyList, setWarrantyList] = React.useState([]);
     const [error, setError] = React.useState("")
+
 
     const onFetchCustomerPopup = (row) => {
         setCustomerProductCode(row.productCode)
         setWarranty("")
+        UseFetch("/backend/user/account/3", "GET", null).then((res) => {
+            if (res.status.code === "SUCCESS") {
+                setWarranty(res.data[0].name);
+                setWarrantyList(res.data);
+            }
+        });
     }
 
     const onSendToWarranty = (productCode) => {
-        UseFetch(`/backend/agency/product/warranty/${productCode}/${warranty}`, "POST", null).then(res => {
+        var _warranty = warrantyList.filter((item) => { return item.name === warranty })[0].id
+        UseFetch(`/backend/agency/product/warranty/${productCode}/${_warranty}`, "POST", null).then(res => {
             if (res.status.code === "SUCCESS") {
-                ref.current.forceOptionPopupClose()
                 var _data = data.map(item => {
                     if (item && item.productCode === productCode) {
                         item.status = "Lỗi, cần bảo hành";
@@ -34,6 +42,7 @@ function GetFromCustomer(props) {
                     }
                     return item
                 })
+                
                 setData(_data)
                 ref.current.updateAllTable(_data)
             } else {
@@ -118,7 +127,11 @@ function GetFromCustomer(props) {
             <Form noContainer>
                 <Form.Title content="Thông tin bảo hành" />
                 <Form.Input label="Mã sản phẩm" reference={[customerProductCode]} disabled />
-                <Form.Input label="Trung tâm bảo hành" reference={[warranty, setWarranty]} />
+                <Option title="Chọn TTBH" value={warranty} onChange={setWarranty}>
+                    {warrantyList.map((item) => {
+                        return <Option.Item key={item.id} value={item.name} />
+                    })}
+                </Option>
                 <Form.Error enabled={error !== ""} content={error} />
                 <Form.Submit content="Bảo hành sản phẩm" onClick={() => onSendToWarranty(customerProductCode)} />
             </Form>

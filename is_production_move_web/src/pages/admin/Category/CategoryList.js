@@ -85,15 +85,15 @@ function CategoryList() {
             <Table title='Danh sách dòng sản phẩm' ref={ref} data={data} addRow={
                 <Form>
                     <Form.Title content="Thêm dòng sản phẩm mới" />
-                    <Form.Input label="Category name" type="text" reference={[category, setCategory, UseValidation.category]} />
+                    <Form.Input label="Tên dòng sản phẩm" type="text" reference={[category, setCategory, UseValidation.category]} />
                     <Form.Error enabled={error !== ""} content={error} />
                     <Form.Submit content="Thêm dòng sản phẩm" validation={onValidCategory} onClick={onAddCategory} />
                 </Form>
             } onDelete={onDeleteRow} editRow={
                 <Form noContainer>
                     <Form.Title content="Sửa dòng sản phẩm" />
-                    <Form.Input label="no." type="text" reference={[id]} disabled />
-                    <Form.Input label="Category name" type="text" reference={[category, setCategory, UseValidation.category]} />
+                    <Form.Input label="Stt." type="text" reference={[id]} disabled />
+                    <Form.Input label="Tên dòng sản phẩm" type="text" reference={[category, setCategory, UseValidation.category]} />
                     <Form.Error enabled={error !== ""} content={error} />
                     <Form.Submit content="Cập nhật" validation={onValidCategory} onClick={onEditRow} />
                 </Form>

@@ -61,20 +61,29 @@ function NavigationComponent(props) {
             </div>
             <div className='navigation'>
                 <Navigation>
-                    <Navigation.Category label="Chung" role={['admin', 'factory', 'warranty', 'agency']} type={props.type}>
-                        <Navigation.Item label={props.type === 'admin' ? "Danh sách sản phẩm" : "Danh sách sản phẩm trong kho"} link='/product' />
-                    </Navigation.Category>
-
                     <Navigation.Category label="Ban quản lý" role={['admin']} type={props.type}>
+                        <Navigation.Item label="Danh sách sản phẩm" link='/product' />
                         <Navigation.Item label="Quản lý dòng sản phẩm" link='/admin/category' />
                         <Navigation.Item label="Quản lý người dùng" link='/admin/user' />
                     </Navigation.Category>
+                    <Navigation.Category label="Thống kê" role={['admin']} type={props.type}>
+                        <Navigation.Item label="Thống kê sản phẩm toàn quốc" link='/admin/analysis' />
+                    </Navigation.Category>
+
                     <Navigation.Category label="Quản lý nhà máy" role={['factory']} type={props.type}>
+                        <Navigation.Item label="Danh sách sản phẩm trong kho" link='/product' />
                         <Navigation.Item label="Nhập sản phẩm" link='/factory/add-product' />
                         <Navigation.Item label="Xuất sản phẩm tới đại lý" link='/factory/send-to-agency' />
                         <Navigation.Item label="Nhận sản phẩm lỗi từ TTBH" link='/factory/get-from-warranty' />
                     </Navigation.Category>
+                    <Navigation.Category label="Thống kê" role={['factory']} type={props.type}>
+                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm đã bán" link='/factory/sale-analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm bị lỗi" link='/factory/error-analysis' />
+                    </Navigation.Category>
+
                     <Navigation.Category label="Quản lý đại lý" role={['agency']} type={props.type}>
+                        <Navigation.Item label="Danh sách sản phẩm trong kho" link='/product' />
                         <Navigation.Item label="Nhập sản phẩm từ nhà máy" link='/agency/get-from-factory' />
                         <Navigation.Item label="Bán sản phẩm" link='/agency/sale-product' />
                         <Navigation.Item label="Lấy sản phẩm cần bảo hành từ khách hàng" link='/agency/get-from-customer' />
@@ -82,11 +91,21 @@ function NavigationComponent(props) {
                         <Navigation.Item label="Sản phẩm không thể sửa" link='/agency/notify-error-product' />
                         <Navigation.Item label="Thu hồi sản phẩm" link='/agency/recall-product' />
                     </Navigation.Category>
+                    <Navigation.Category label="Thống kê" role={['agency']} type={props.type}>
+                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm đã bán" link='/agency/sale-analysis' />
+                    </Navigation.Category>
+
                     <Navigation.Category label="Quản lý trung tâm bảo hành" role={['warranty']} type={props.type}>
+                        <Navigation.Item label="Danh sách sản phẩm trong kho" link='/product' />
                         <Navigation.Item label="Lấy sản phầm từ đại lý" link='/warranty/get-from-agency' />
                         <Navigation.Item label="Trả sản phẩm về đại lý" link='/warranty/send-to-agency' />
                         <Navigation.Item label="Chuyển sản phẩm về cơ sở sản xuất" link='/warranty/send-to-factory' />
                     </Navigation.Category>
+                    <Navigation.Category label="Thống kê" role={['warranty']} type={props.type}>
+                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />
+                    </Navigation.Category>
+
                 </Navigation>
             </div>
         </React.Fragment>
