@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OperationRepository extends JpaRepository<Operation, String> {
 
+  List<Operation> findAllByStatusId(String id);
+
+  List<Operation> findAllByStatusIdAndApplicationUser(String id, ApplicationUser location);
+
   List<Operation> findAllByStatusAndDestination(Status status, ApplicationUser des);
 
   List<Operation> findALlByProductIdInAndStatusAndDestination(List<String> id, Status status, ApplicationUser des);

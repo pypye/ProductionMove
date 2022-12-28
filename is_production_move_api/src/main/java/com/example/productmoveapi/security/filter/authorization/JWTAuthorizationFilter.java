@@ -1,6 +1,5 @@
 package com.example.productmoveapi.security.filter.authorization;
 
-import static com.example.productmoveapi.security.SecurityConstants.HEADER_STRING;
 import static com.example.productmoveapi.security.SecurityConstants.SECRET;
 import static com.example.productmoveapi.security.SecurityConstants.TOKEN_PREFIX;
 
@@ -39,7 +38,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
       HttpServletResponse response,
       FilterChain chain) throws IOException, ServletException {
     try {
-      String jwt = parseJwt(request, HEADER_STRING);
+      String jwt = parseJwt(request);
       if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
         String username = jwtUtils.getUserNameFromJwtToken(jwt, SECRET);
 
@@ -56,8 +55,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     chain.doFilter(request, response);
   }
 
-  private String parseJwt(HttpServletRequest request, String token) {
-    String headerAuth = request.getHeader(token);
+  private String parseJwt(HttpServletRequest request) {
+    String headerAuth = request.getHeader(com.example.productmoveapi.security.SecurityConstants.HEADER_STRING);
 
     if (StringUtils.hasText(headerAuth) && headerAuth.startsWith(TOKEN_PREFIX)) {
       return headerAuth.substring(7);
