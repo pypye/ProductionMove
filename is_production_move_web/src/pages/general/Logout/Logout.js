@@ -5,4 +5,4 @@ function Logout() {
         localStorage.removeItem('auth');
         window.location.href = '/login';
     }, [])
-} export default Logout;
+} export { Logout };

@@ -1,27 +1,24 @@
 import React from "react";
 import "./style.css"
-/*@function Input
-    @param {object} props - Properties for the component
-        * @param {boolean} disabled - Boolean to disable the input
-        * @param {string} label - Label for the input
-        * @param {string} type - Type of input (text, password, etc.)
-        * @param {string} value - Value for the input
-        * @param {function} validation - Function to validate the input
-*/
-export default function Input(props) {
+
+function Input(props) {
+    const ref = React.useRef(null);
     const [error, setError] = React.useState("");
 
     const changeLabelPosition = (event, focus) => {
         var label = event.target.previousSibling;
         if (focus) {
             label.classList.add("focus");
-
         } else {
             if (event.target.value === '') {
                 label.classList.remove("focus");
             }
         }
     }
+
+    React.useEffect(() => {
+        if (ref.current.value) ref.current.previousSibling.classList.add("focus");
+    }, [ref])
 
     const displayValidation = (event, validation_function) => {
         var result = validation_function(event.target.value);
@@ -30,7 +27,6 @@ export default function Input(props) {
             label.classList.add("error");
             event.target.classList.add("error");
             setError(result.content);
-
         } else {
             label.classList.remove("error");
             event.target.classList.remove("error");
@@ -42,18 +38,19 @@ export default function Input(props) {
         <div className="input-wrapper">
             <label className="label" disabled={props.disabled}>{props.label}</label>
             <input
+                ref={ref}
                 className="input"
                 type={props.type}
-                value={props.reference[0]}
+                value={props.reference && props.reference[0]}
                 disabled={props.disabled}
                 onInput={(event) => {
-                    displayValidation(event, props.reference[2])
-                    props.reference[1](event.target.value)
+                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2]);
+                    if (props.reference && props.reference[1]) props.reference[1](event.target.value);
                 }}
                 onFocus={(event) => changeLabelPosition(event, true)}
                 onBlur={(event) => {
                     changeLabelPosition(event, false);
-                    displayValidation(event, props.reference[2])
+                    if (props.reference && props.reference[2]) displayValidation(event, props.reference[2]);
                 }}
             />
             <p style={{ "display": error === "" ? "none" : "block" }} className="error">{error}</p>
@@ -61,3 +58,4 @@ export default function Input(props) {
 
     );
 }
+export { Input }            

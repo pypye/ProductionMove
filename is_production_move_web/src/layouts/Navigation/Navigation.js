@@ -10,10 +10,11 @@ function Navigation(props) {
 
 Navigation.Category = function NavigationCategory(props) {
     return (
-        <div className='navigation-category'>
-            {props.label}
-            {props.children}
-        </div>
+        props.role.includes(props.type) ?
+            <div className='navigation-category'>
+                {props.label}
+                {props.children}
+            </div> : null
     )
 }
 

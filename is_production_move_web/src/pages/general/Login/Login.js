@@ -3,7 +3,7 @@ import { Form } from "../../../components";
 import { useLocation } from 'react-router-dom';
 import { UseAuth, UseFetch, UseValidation } from '../../../utils';
 
-export default function Login() {
+function Login() {
     const [loginUsername, setLoginUsername] = React.useState("");
     const [loginPassword, setLoginPassword] = React.useState("");
     const loginInfo = React.useMemo(() => ({ username: loginUsername, password: loginPassword }), [loginUsername, loginPassword]);
@@ -20,7 +20,7 @@ export default function Login() {
 
 
     const validLogin = () => {
-        return UseValidation.username(loginUsername).state && UseValidation.password(loginPassword).state
+        return UseValidation.loginUsername(loginUsername).state && UseValidation.loginUsername(loginPassword).state
     }
 
     const onLogin = () => {
@@ -40,11 +40,12 @@ export default function Login() {
         <Form width='25rem'>
             <Form.Title content="Đăng nhập hệ thống ProductionMove" />
             <Form.Notify enabled={notify} content="Mật khẩu của bạn đã được đặt lại thành công. Bây giờ, hãy đăng nhập với mật khẩu mới" />
-            <Form.Input label="Tên đăng nhập" type="text" reference={[loginUsername, setLoginUsername, UseValidation.username]} />
-            <Form.Input label="Mật khẩu" type="password" reference={[loginPassword, setLoginPassword, UseValidation.password]} />
+            <Form.Input label="Tên đăng nhập" type="text" reference={[loginUsername, setLoginUsername, UseValidation.loginUsername]} />
+            <Form.Input label="Mật khẩu" type="password" reference={[loginPassword, setLoginPassword, UseValidation.loginPassword]} />
             <Form.Error enabled={error !== ""} content={error} />
             <Form.Submit onClick={onLogin} validation={validLogin} content="Đăng nhập" />
             <Form.Link href="/forgot-password" content="Quên mật khẩu?" />
         </Form>
     )
 }
+export { Login }

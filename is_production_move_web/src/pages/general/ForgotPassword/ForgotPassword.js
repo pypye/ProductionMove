@@ -34,7 +34,7 @@ function ForgotPassword() {
             <Form.Input label="Email" type="email" reference={[forgotEmail, setForgotEmail, UseValidation.email]} />
             <Form.Error enable={error !== ""} content={error} />
             <Form.Submit content="Gửi yêu cầu" onClick={(e) => onForgot(e)} validation={validForgot} />
-            <Form.Link content="Quay lại đăng nhập" to="/login" />
+            <Form.Link content="Quay lại đăng nhập" href="/login" />
         </Form>
     )
-} export default ForgotPassword
+} export { ForgotPassword }
