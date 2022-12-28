@@ -3,14 +3,12 @@ package com.example.productmoveapi.controller.internal;
 import com.example.productmoveapi.dto.request.static_request.StaticByStatusYearQuarterMonthRequest;
 import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.service.general.ProductReportGeneralService;
-import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -45,9 +43,11 @@ public class ProductReportGeneralController {
     return productReportGeneralService.getAllProductByCategory(categoryId);
   }
 
-  @GetMapping("/static")
+  @GetMapping("/static/{statusId}/{year}/{quarter}/{month}")
   public ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
-      @Valid @RequestBody StaticByStatusYearQuarterMonthRequest staticByStatusYearQuarterMonthRequest) {
-    return productReportGeneralService.getProductByStatusYearQuarterMonth(staticByStatusYearQuarterMonthRequest);
+      @PathVariable(name = "statusId") String statusId, @PathVariable(name = "year") String year,
+      @PathVariable(name = "quarter") String quarter, @PathVariable(name = "month") String month) {
+    return productReportGeneralService.getProductByStatusYearQuarterMonth(
+        new StaticByStatusYearQuarterMonthRequest(statusId, year, quarter, month));
   }
 }
