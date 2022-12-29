@@ -1,8 +1,8 @@
 package com.example.productmoveapi.service.general.implement;
 
 import com.example.productmoveapi.dto.request.user_request.ChangePasswordRequest;
-import com.example.productmoveapi.dto.response.AccountByRoleResponse;
-import com.example.productmoveapi.dto.response.UserInfoResponse;
+import com.example.productmoveapi.dto.response.user_response.AccountByRoleResponse;
+import com.example.productmoveapi.dto.response.user_response.UserInfoResponse;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.RoleRepository;
 import com.example.productmoveapi.repository.entity.ApplicationUser;

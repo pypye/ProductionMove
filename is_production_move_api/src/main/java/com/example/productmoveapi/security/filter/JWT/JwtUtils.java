@@ -1,5 +1,6 @@
 package com.example.productmoveapi.security.filter.JWT;
 
+import static com.example.productmoveapi.security.SecurityConstants.EXPIRATION_TIME;
 import static com.example.productmoveapi.security.SecurityConstants.SECRET;
 
 import com.example.productmoveapi.security.filter.service.UserDetailsImplement;
@@ -28,7 +29,7 @@ public class JwtUtils {
         .setHeaderParam("typ", "JWT")
         .setSubject((username))
         .setIssuedAt(new Date())
-        //.setExpiration(new Date((new Date()).getTime() + EXPIRATION_TIME * 500))
+        .setExpiration(new Date((new Date()).getTime() + EXPIRATION_TIME * 500))
         .signWith(SignatureAlgorithm.HS512, SECRET)
         .compact();
   }
@@ -38,7 +39,6 @@ public class JwtUtils {
     UserDetailsImplement userPrincipal = (UserDetailsImplement) authentication.getPrincipal();
     return generateJWTByUsername(userPrincipal.getUsername());
   }
-
 
   public String getUserNameFromJwtToken(String token, String secret) {
     return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();

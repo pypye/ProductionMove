@@ -1,7 +1,7 @@
 package com.example.productmoveapi.service.agency.statistic.implement;
 
 import com.example.productmoveapi.dto.request.statistic_request.SaleAnalysisRequest;
-import com.example.productmoveapi.dto.response.SaleAnalysisResponse;
+import com.example.productmoveapi.dto.response.product_response.SaleAnalysisResponse;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.OperationRepository;
 import com.example.productmoveapi.repository.entity.ApplicationUser;

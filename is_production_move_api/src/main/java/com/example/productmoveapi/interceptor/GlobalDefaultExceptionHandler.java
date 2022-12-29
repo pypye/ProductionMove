@@ -20,10 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Binh Nguyen Thai at 22:40 on 28/11/2022
  */
 
-
 @Slf4j
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
+
+  // The message is used when you have a detail message which is difference code
+  // The message is only used to log, is wont show to end user
 
   @ExceptionHandler(value = Exception.class)
   @ResponseBody

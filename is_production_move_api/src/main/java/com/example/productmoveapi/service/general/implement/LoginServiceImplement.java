@@ -3,7 +3,7 @@ package com.example.productmoveapi.service.general.implement;
 import com.example.productmoveapi.dto.request.user_request.ForgotPasswordRequest;
 import com.example.productmoveapi.dto.request.user_request.LoginRequest;
 import com.example.productmoveapi.dto.request.user_request.ResetPasswordRequest;
-import com.example.productmoveapi.dto.response.LoginResponse;
+import com.example.productmoveapi.dto.response.user_response.LoginResponse;
 import com.example.productmoveapi.mail_sender.EmailService;
 import com.example.productmoveapi.redis.service.IRedisCaching;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
