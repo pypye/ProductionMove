@@ -29,4 +29,8 @@ public class AddProductRequest {
   @NotBlank
   private String description;
 
+  @NotBlank
+  @Pattern(message = "Invalid number of batch", regexp = "^[0-9]*$")
+  private String numberOfBatch;
+
 }

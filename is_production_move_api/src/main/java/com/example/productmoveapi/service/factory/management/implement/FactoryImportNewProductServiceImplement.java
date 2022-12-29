@@ -15,6 +15,8 @@ import com.example.productmoveapi.response.GeneralResponse;
 import com.example.productmoveapi.response.ResponseFactory;
 import com.example.productmoveapi.response.ResponseStatusEnum;
 import com.example.productmoveapi.service.factory.management.FactoryImportNewProductService;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,23 +69,31 @@ public class FactoryImportNewProductServiceImplement implements FactoryImportNew
       return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
     }
 
-    String uuid;
-    do {
-      uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
-      uuid = "PM" + uuid;
-    } while (productRepository.findByProductCode(uuid) != null);
-    Product product = new Product();
-    product.setProductCode(uuid);
-    product.setProductName(addProductRequest.getProductName());
-    product.setCategory(category);
-    product.setPrice(addProductRequest.getPrice());
-    product.setDescription(addProductRequest.getDescription());
-    product.setStatus(status());
-    product.setLocation(currentUser());
-    product.setWarrantTime(Long.parseLong(addProductRequest.getWarrantTime()));
-    productRepository.save(product);
-    Operation operation = new Operation(product, status(), currentUser(), null);
-    operationRepository.save(operation);
+    List<Product> productList = new ArrayList<>();
+    List<Operation> operationList = new ArrayList<>();
+    for (int i = 0; i < Integer.parseInt(addProductRequest.getNumberOfBatch()); i++){
+      String uuid;
+      do {
+        uuid = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
+        uuid = "PM" + uuid;
+      } while (productRepository.findByProductCode(uuid) != null);
+      Product product = new Product(uuid, addProductRequest.getProductName(), category, addProductRequest.getPrice(),
+          addProductRequest.getDescription(), status(), currentUser(), null, null, 0,
+          Long.parseLong(addProductRequest.getWarrantTime()), null);
+//      product.setProductCode(uuid);
+//      product.setProductName(addProductRequest.getProductName());
+//      product.setCategory(category);
+//      product.setPrice(addProductRequest.getPrice());
+//      product.setDescription(addProductRequest.getDescription());
+//      product.setStatus(status());
+//      product.setLocation(currentUser());
+//      product.setWarrantTime(Long.parseLong(addProductRequest.getWarrantTime()));
+      Operation operation = new Operation(product, status(), currentUser(), null);
+      productList.add(product);
+      operationList.add(operation);
+    }
+    productRepository.saveAll(productList);
+    operationRepository.saveAll(operationList);
     return ResponseFactory.success("add successfully");
   }
 }

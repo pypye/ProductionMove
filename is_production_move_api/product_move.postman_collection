@@ -363,7 +363,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"7\",\r\n    \"price\": \"9.590.000\",\r\n    \"warrantTime\": \"12\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\"\r\n}",
+					"raw": "{\r\n    \"productName\": \"Laptop ProductionMove Aspire 3 A314 35 P6JF N6000/4GB/512GB/Win10\",\r\n    \"category_id\": \"7\",\r\n    \"price\": \"9.590.000\",\r\n    \"warrantTime\": \"12\",\r\n    \"description\": \"{'CPU:': 'Pentium', 'RAM:': '4 GB', 'Ổ cứng:': '512 GB SSD NVMe PCIe', 'Màn hình:': '14', 'Card màn hình:': 'Card tích hợp', 'Cổng kết nối:': '2 x USB 3.2', 'Hệ điều hành:': 'Windows 10 Home SL', 'Thiết kế:': 'Vỏ nhựa', 'Kích thước, trọng lượng:': 'Dài 328 mm - Rộng 236 mm - Dày 19.9 mm - Nặng 1.45 kg', 'Thời điểm ra mắt:': '2020'}\",\r\n    \"numberOfBatch\": 10\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
