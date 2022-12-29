@@ -67,7 +67,7 @@ public class AgencyProductReportServiceImplement implements AgencyProductReportS
           calendar.setTime(p.getCreatedTime());
           String option = staticByStatusYearQuarterMonthRequest.getOption();
           if (option.equals("0")) {
-            return calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.YEAR);
+            return (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR);
           } else if (option.equals("1")) {
             return ((calendar.get(Calendar.MONTH) / 3) + 1) + "-" + calendar.get(Calendar.YEAR);
           } else {

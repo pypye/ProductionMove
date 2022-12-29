@@ -1,6 +1,7 @@
 package com.example.productmoveapi.service.factory.statistic.implement;
 
 import com.example.productmoveapi.dto.request.statistic_request.SaleAnalysisRequest;
+import com.example.productmoveapi.dto.response.SaleAnalysisResponse;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.OperationRepository;
 import com.example.productmoveapi.repository.StatusRepository;
@@ -61,18 +62,21 @@ public class FactorySaleAnalysisServiceImplement implements FactorySaleAnalysisS
             .collect(Collectors.toList());
     List<Operation> operationList = operationRepository.findALlByProductIdInAndStatusAndDestination(productIdList,
         status(), null);
-    Map<String, Long> counters = operationList.stream().collect(Collectors.groupingBy(p -> {
-          calendar.setTime(p.getCreatedTime());
-          String option = saleAnalysisRequest.getOption();
-          if (option.equals("0")) {
-            return calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.YEAR);
-          } else if (option.equals("1")) {
-            return ((calendar.get(Calendar.MONTH) / 3) + 1) + "-" + calendar.get(Calendar.YEAR);
-          } else {
-            return Integer.toString(calendar.get(Calendar.YEAR));
-          }
-        }, LinkedHashMap::new,
-        Collectors.counting()));
+    Map<String, SaleAnalysisResponse> counters = operationList.stream().collect(Collectors.groupingBy(p -> {
+              calendar.setTime(p.getCreatedTime());
+              String option = saleAnalysisRequest.getOption();
+              if (option.equals("0")) {
+                return (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.YEAR);
+              } else if (option.equals("1")) {
+                return ((calendar.get(Calendar.MONTH) / 3) + 1) + "-" + calendar.get(Calendar.YEAR);
+              } else {
+                return Integer.toString(calendar.get(Calendar.YEAR));
+              }
+            }, LinkedHashMap::new,
+            Collectors.summarizingLong(opt -> Long.parseLong(opt.getProduct().getPrice().replace(".", ""))))).entrySet()
+        .stream().collect(Collectors.toMap(Map.Entry::getKey,
+            e -> new SaleAnalysisResponse(e.getValue().getCount(), e.getValue().getSum()), (x, y) -> y,
+            LinkedHashMap::new));
     return ResponseFactory.success(counters);
   }
 }
