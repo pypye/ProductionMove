@@ -1,5 +1,8 @@
 import './style.css'
 
+/*
+* @description: Side bar navigation component
+*/
 function Navigation(props) {
     return (
         <div className='navigation'>

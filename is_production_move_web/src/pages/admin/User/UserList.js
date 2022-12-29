@@ -2,6 +2,10 @@ import { Form, Option, Table } from "../../../components"
 import { UseFetch, UseValidation } from "../../../utils"
 import React from "react"
 
+
+/*
+* @description: show and manage user list
+*/
 function UserList() {
     const rolePos = {
         "admin": 1,

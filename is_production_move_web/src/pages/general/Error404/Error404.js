@@ -1,5 +1,8 @@
 import './style.css'
 
+/*
+* @description: Error 404 page
+*/
 function Error404() {
     return (
         <div className="error404">

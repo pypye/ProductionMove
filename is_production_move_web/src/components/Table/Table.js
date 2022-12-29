@@ -2,6 +2,10 @@ import './style.css'
 import React, { forwardRef, useImperativeHandle } from 'react'
 import { TableComponent } from './TableComponents';
 
+
+/*
+* @description: Table custom component
+*/
 const Table = forwardRef((props, ref) => {
     const tableRef = React.useRef(null);
     const addRowRef = React.useRef(null);

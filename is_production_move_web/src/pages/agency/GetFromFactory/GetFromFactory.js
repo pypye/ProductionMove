@@ -2,6 +2,9 @@ import React from "react";
 import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
+/*
+* @description: request product from factory
+*/
 function GetFromFactory(props) {
     const ref = React.useRef(null);
     const [factory, setFactory] = React.useState("");

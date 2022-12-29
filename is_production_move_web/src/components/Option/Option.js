@@ -1,6 +1,9 @@
 import React from "react"
 import './style.css'
 
+/*
+* @description: Option custom component
+*/
 function Option(props) {
     return (
         <div className={"option-wrapper " + (props.maxWidth ? "max-width" : "")}>

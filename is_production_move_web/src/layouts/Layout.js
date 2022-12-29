@@ -5,6 +5,9 @@ import { Navigation } from './Navigation/Navigation';
 import { ResponsiveNavigation } from './Navigation/ResponsiveNavigation';
 import './style.css'
 
+/*
+* @description: Layout for main page
+*/
 function Layout(props) {
     const onLogout = () => {
         localStorage.removeItem('auth');

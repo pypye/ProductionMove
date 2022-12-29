@@ -8,6 +8,10 @@ import { Section } from '../../Section/Section';
 import { TableComponent } from '.';
 import { UseTranslator } from '../../../utils';
 
+
+/*
+* @description: Table Navigation custom component
+*/
 function Navigation(props) {
     return (
         <ul className="tool">

@@ -2,6 +2,9 @@ import React, { forwardRef } from 'react'
 import { useImperativeHandle } from 'react'
 import './style_responsive.css'
 
+/*
+* @description: Responsive Navigation component for small screen
+*/
 const ResponsiveNavigation = forwardRef((props, ref) => {
     const container = React.useRef(null);
     const [isOpen, setIsOpen] = React.useState(false);

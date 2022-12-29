@@ -5,6 +5,10 @@ import { Dropdown } from "../../Dropdown/Dropdown";
 import { Form } from "../../Form/Form";
 import { Popup } from "../../Popup/Popup";
 
+
+/*
+* @description: Table body component
+*/
 function Body(props) {
     const dropdownRef = React.useRef(props.tableData.data.map(() => React.createRef()))
 

@@ -1,5 +1,8 @@
 import "./style.css";
 
+/*
+* @description: Button custom component
+*/
 function Button(props) {
     return (
         <button

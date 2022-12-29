@@ -4,6 +4,9 @@ import { Form } from "../../../components";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UseFetch, UseValidation } from '../../../utils';
 
+/*
+* @description: Reset password
+*/
 function ResetPassword(props) {
     const [resetToken, setResetToken] = React.useState('');
     const [resetPassword, setResetPassword] = React.useState('');

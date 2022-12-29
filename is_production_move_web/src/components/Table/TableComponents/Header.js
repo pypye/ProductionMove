@@ -12,6 +12,9 @@ const fakeIconComponent = function () {
     )
 }
 
+/*
+* @description: Table Header Cell custom component
+*/
 function TableHeaderCell(props) {
     const thRef = React.useRef(null);
 

@@ -1,5 +1,9 @@
 import React from 'react'
 import './style_icon.css'
+
+/*
+* @description: Table Icon custom component
+*/
 function TableIcon(props, icon) {
     const btn_ref = React.useRef(null);
 

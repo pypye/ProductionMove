@@ -2,6 +2,9 @@ import React from "react";
 import { Form } from "../../../components";
 import { UseFetch, UseValidation } from "../../../utils";
 
+/*
+* @description: Change password page
+*/
 function ChangePassword(props) {
     const [currentPassword, setCurrentPassword] = React.useState("");
     const [newPassword, setNewPassword] = React.useState("");

@@ -1,6 +1,9 @@
 import './style.css'
 import React, { forwardRef, useImperativeHandle } from 'react'
 
+/*
+* @description: Dropdown custom component
+*/
 const Dropdown = forwardRef((props, ref) => {
     const container = React.useRef(null)
     const [isOpen, setIsOpen] = React.useState(false)

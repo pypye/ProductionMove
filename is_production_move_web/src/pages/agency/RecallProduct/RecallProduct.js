@@ -2,6 +2,9 @@ import React from "react";
 import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
+/*
+* @description: recall product from customer
+*/
 function RecallProduct(props) {
     const ref = React.useRef(null);
     const [categoryId, setCategoryId] = React.useState("");

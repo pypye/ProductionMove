@@ -2,6 +2,9 @@ import React from "react"
 import { Form, Option, Popup, Section, Table } from "../../../components"
 import { UseFetch } from "../../../utils"
 
+/*
+* @description: get product from customer
+*/
 function GetFromCustomer(props) {
     const ref = React.useRef()
     const [data, setData] = React.useState(null)

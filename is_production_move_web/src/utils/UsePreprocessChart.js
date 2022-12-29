@@ -1,5 +1,7 @@
 import { UseTranslator } from "./UseTranslator";
-
+/*
+* @description: Preprocess data for chart
+*/
 const UsePreprocessChart = {}
 UsePreprocessChart.Line = function (data, name, type) {
     const key = Object.keys(data);

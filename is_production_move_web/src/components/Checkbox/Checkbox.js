@@ -5,6 +5,9 @@ const Checked = <svg className="checked" focusable="false" aria-hidden="true" vi
 const Unchecked = <svg className="unchecked" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M17.9 2.318A5 5 0 0 1 22.895 7.1l.005.217v10a5 5 0 0 1-4.783 4.995l-.217.005h-10a5 5 0 0 1-4.995-4.783l-.005-.217v-10a5 5 0 0 1 4.783-4.996l.217-.004h10Zm-.5 1.5h-9a4 4 0 0 0-4 4v9a4 4 0 0 0 4 4h9a4 4 0 0 0 4-4v-9a4 4 0 0 0-4-4Z"></path></svg>
 const SomeChecked = <svg className="checked" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M17,2 C19.7614,2 22,4.23858 22,7 L22,7 L22,17 C22,19.7614 19.7614,22 17,22 L17,22 L7,22 C4.23858,22 2,19.7614 2,17 L2,17 L2,7 C2,4.23858 4.23858,2 7,2 L7,2 Z M15,11 L9,11 C8.44772,11 8,11.4477 8,12 C8,12.5523 8.44772,13 9,13 L15,13 C15.5523,13 16,12.5523 16,12 C16,11.4477 15.5523,11 15,11 Z"></path></svg>
 
+/*
+* @description: Checkbox custom component
+*/
 function Checkbox(props) {
     const [checked, setChecked] = React.useState(props.checked || 0);
     const ref = React.useRef(null);

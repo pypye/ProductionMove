@@ -3,6 +3,9 @@ import Chart from 'react-apexcharts'
 import { Option, Section } from '../../../components';
 import { UseFetch, UsePreprocessChart } from '../../../utils';
 
+/*
+* @description: sale analysis feature
+*/
 function SaleAnalysis(props) {
     const [data, setData] = React.useState({ options: {}, series: [] });
     const posOption = useMemo(() => ({ 'Tháng': 0, 'Quý': 1, 'Năm': 2 }), []);

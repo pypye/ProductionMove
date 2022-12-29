@@ -1,6 +1,9 @@
 import React, { forwardRef, useImperativeHandle } from "react";
 import './style.css'
 
+/*
+* @description: Popup custom component
+*/
 const Popup = forwardRef((props, ref) => {
     const container = React.useRef(null);
     const [isOpen, setIsOpen] = React.useState(false);

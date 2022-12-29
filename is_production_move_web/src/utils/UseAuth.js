@@ -1,7 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom"
 import { UseFetch } from "./UseFetch";
-
+/*
+* @description: Authentication
+*/
 function get() {
     const auth = localStorage.getItem('auth');
     return auth ? JSON.parse(auth) : null;

@@ -1,5 +1,8 @@
 import React from "react";
 
+/*
+* @description: Logout
+*/
 function Logout() {
     React.useEffect(() => {
         localStorage.removeItem('auth');

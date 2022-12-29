@@ -2,6 +2,9 @@ import { Form, Table } from "../../../components"
 import { UseFetch, UseValidation } from "../../../utils"
 import React from "react"
 
+/*
+* @description: show category list
+*/
 function CategoryList() {
     const ref = React.useRef(null)
     const [data, setData] = React.useState(null)

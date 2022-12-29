@@ -1,6 +1,9 @@
 import { TableComponent } from ".";
 import { Option } from "../../Option/Option";
 
+/*
+* @description: Table Pagination custom component
+*/
 function Pagination(props) {
     function onChangePagePaginationSize(value) {
         props.setTablePage(t => ({ page: Math.min(Math.max(1, Math.ceil(t.page * t.pageSize / value)), Math.ceil(props.tableData.data.length / value)), pageSize: value }));

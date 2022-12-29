@@ -2,6 +2,9 @@ import {  Popup, Section, Table } from "../../../components"
 import { UseFetch } from "../../../utils"
 import React from "react"
 
+/*
+* @description: product list
+*/
 function ProductList() {
     const [data, setData] = React.useState(null)
     const [loading, setLoading] = React.useState(true)

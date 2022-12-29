@@ -2,6 +2,10 @@ import './style.css'
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
 
+
+/*
+* @description: Form custom component
+*/
 function Form(props) {
     return (
         <form className={"form " + (props.noContainer ? "" : "form-container")} style={{ width: props.width }}>

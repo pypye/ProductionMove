@@ -1,5 +1,8 @@
 import './style.css'
 
+/*
+* @description: Icon custom component
+*/
 function IconWrapper(props) {
     return (
         <div className="icon-wrapper">

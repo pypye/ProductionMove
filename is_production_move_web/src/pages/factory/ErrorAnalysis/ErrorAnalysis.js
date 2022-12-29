@@ -3,6 +3,9 @@ import { Option, Section } from "../../../components";
 import { UseFetch, UsePreprocessChart } from "../../../utils";
 import Chart from "react-apexcharts";
 
+/*
+* @description: error analysis feature
+*/
 function ErrorAnalysis(props) {
     const [data, setData] = React.useState({ options: {}, series: [] });
     const [category, setCategory] = React.useState("");

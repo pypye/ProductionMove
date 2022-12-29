@@ -1,3 +1,6 @@
+/*
+* @description: Translate the key of object to Vietnamese
+*/
 const key = {
     "no.": "Stt.",
     "productCode": "Mã sản phẩm",

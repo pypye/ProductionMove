@@ -2,6 +2,9 @@ import React from "react";
 import { Button, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
+/*
+* @description: get product from agency
+*/
 function GetFromAgency(props) {
     const ref = React.useRef(null);
     const [data, setData] = React.useState(null);

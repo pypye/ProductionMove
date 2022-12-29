@@ -1,5 +1,8 @@
 import './style.css'
 
+/*
+* @description: Section custom component
+*/
 function Section(props) {
     return (
         <div className={'section-wrapper ' + (props.noContainer ? "" : "section-container")}>

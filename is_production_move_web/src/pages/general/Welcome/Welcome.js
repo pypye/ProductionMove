@@ -1,5 +1,8 @@
 import { Section } from "../../../components";
 
+/*
+* @description: welcome page
+*/
 function Welcome() {
     return <Section title="Chào mừng bạn đến với hệ thống Production Move">
         <div>

@@ -1,5 +1,8 @@
 import { UseAuth } from "./UseAuth";
 
+/*
+* @description: This function is used to fetch data from the server
+*/
 export async function UseFetch(urls, method, body) {
     const baseUrl = "http://localhost:3001";
     const token = UseAuth.get();

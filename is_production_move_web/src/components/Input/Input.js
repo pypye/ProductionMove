@@ -1,6 +1,9 @@
 import React from "react";
 import "./style.css"
 
+/*
+* @description: Input custom component
+*/
 function Input(props) {
     const ref = React.useRef(null);
     const [error, setError] = React.useState("");

@@ -2,6 +2,9 @@ import React from "react"
 import { Form, Popup, Section, Table } from "../../../components"
 import { UseFetch } from "../../../utils"
 
+/*
+* @description: notify error for customer
+*/
 function NotifyErrorProduct(props) {
     const ref = React.useRef()
     const [data, setData] = React.useState([])

@@ -1,3 +1,7 @@
+/*
+* @description: Validation function
+*/
+
 function loginUsername(input) {
     if (input.length === 0) {
         return { state: false, content: 'Tên đăng nhập không được để trống' };

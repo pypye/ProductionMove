@@ -4,6 +4,9 @@ import { Form } from "../../../components";
 import { useNavigate } from 'react-router-dom';
 import { UseFetch, UseValidation } from '../../../utils';
 
+/*
+* @description: Forgot password page
+*/
 function ForgotPassword() {
     const [forgotUsername, setForgotUsername] = React.useState('');
     const [forgotEmail, setForgotEmail] = React.useState('');

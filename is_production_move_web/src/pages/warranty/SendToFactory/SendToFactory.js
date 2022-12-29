@@ -2,6 +2,9 @@ import React from "react";
 import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
+/*
+* @description: send product to factory
+*/
 function SendToFactory(props) {
     const ref = React.useRef(null);
     const [data, setData] = React.useState(null);

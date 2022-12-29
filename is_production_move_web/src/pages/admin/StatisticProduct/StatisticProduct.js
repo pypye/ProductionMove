@@ -3,6 +3,9 @@ import { Option, Section } from "../../../components";
 import { UseFetch, UsePreprocessChart } from "../../../utils";
 import Chart from 'react-apexcharts'
 
+/*
+* @description: statistic product feature
+*/
 function StatisticProduct() {
     const [data, setData] = React.useState({ options: {}, series: [] });
     const posOption = React.useMemo(() => ({ 'Nhà máy': 2, 'TTBH': 3, 'Đại lý': 4 }), []);

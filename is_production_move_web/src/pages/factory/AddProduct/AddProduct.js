@@ -2,6 +2,9 @@ import React, { useMemo } from "react"
 import { Form, Option } from "../../../components"
 import { UseFetch, UseValidation } from "../../../utils";
 
+/*
+* @description: add product
+*/
 function AddProduct(props) {
     const [loading, setLoading] = React.useState(true);
     const [category, setCategory] = React.useState("");
