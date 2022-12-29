@@ -17,14 +17,7 @@ public class StaticByStatusYearQuarterMonthRequest {
   private String status;
 
   @NotBlank
-  @Pattern(message = "Invalid year", regexp = "(^0$)|^(20(1[1-9]|[2-9][0-9]))$")
-  private String year;
+  @Pattern(message = "Invalid option", regexp = "^[0-2]$")
+  private String option;
 
-  @NotBlank
-  @Pattern(message = "Invalid quarter", regexp = "^[0-4]$")
-  private String quarter;
-
-  @NotBlank
-  @Pattern(message = "Invalid month", regexp = "^([0-9]|1[012])$")
-  private String month;
 }
