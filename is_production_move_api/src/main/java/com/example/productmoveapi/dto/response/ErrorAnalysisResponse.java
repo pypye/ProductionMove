@@ -11,5 +11,5 @@ import lombok.Data;
 public class ErrorAnalysisResponse {
 
   private int numberOfErrorProduct;
-  private int numberOfProduct;
+  private int numberOfRestProduct;
 }

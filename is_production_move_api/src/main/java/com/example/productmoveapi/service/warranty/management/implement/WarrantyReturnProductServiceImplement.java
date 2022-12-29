@@ -86,7 +86,7 @@ public class WarrantyReturnProductServiceImplement implements WarrantyReturnProd
         Operation::getProduct).collect(Collectors.toList());
     productRepository.saveAll(productList);
     operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("6"), p.getLocation(),
-        null)).collect(Collectors.toList()));
+        currentUser())).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");
   }
 
