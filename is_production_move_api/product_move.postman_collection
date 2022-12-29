@@ -1161,9 +1161,6 @@
 		},
 		{
 			"name": "localhost:3001/backend/static",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -1173,24 +1170,19 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"status\": \"1\",\r\n    \"year\": \"2021\",\r\n    \"quarter\": \"2\",\r\n    \"month\": \"2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:3001/backend/static",
+					"raw": "localhost:3001/backend/static/1/2021/1/2",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
 						"backend",
-						"static"
+						"static",
+						"1",
+						"2021",
+						"1",
+						"2"
 					]
 				}
 			},
@@ -1198,9 +1190,6 @@
 		},
 		{
 			"name": "localhost:3001/backend/agency/sale/analysis",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -1210,17 +1199,8 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"option\": \"0\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:3001/backend/agency/sale/analysis",
+					"raw": "localhost:3001/backend/agency/sale/analysis/2",
 					"host": [
 						"localhost"
 					],
@@ -1229,7 +1209,8 @@
 						"backend",
 						"agency",
 						"sale",
-						"analysis"
+						"analysis",
+						"2"
 					]
 				}
 			},
@@ -1237,9 +1218,6 @@
 		},
 		{
 			"name": "localhost:3001/backend/factory/sale/analysis",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -1249,17 +1227,8 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"option\": \"2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:3001/backend/factory/sale/analysis",
+					"raw": "localhost:3001/backend/factory/sale/analysis/0",
 					"host": [
 						"localhost"
 					],
@@ -1268,7 +1237,8 @@
 						"backend",
 						"factory",
 						"sale",
-						"analysis"
+						"analysis",
+						"0"
 					]
 				}
 			},
@@ -1276,9 +1246,6 @@
 		},
 		{
 			"name": "localhost:3001/backend/factory/error/analysis",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -1288,17 +1255,8 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"category\": \"0\",\r\n    \"agency\": \"0\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "localhost:3001/backend/factory/error/analysis",
+					"raw": "localhost:3001/backend/factory/error/analysis/0/0",
 					"host": [
 						"localhost"
 					],
@@ -1307,7 +1265,9 @@
 						"backend",
 						"factory",
 						"error",
-						"analysis"
+						"analysis",
+						"0",
+						"0"
 					]
 				}
 			},
