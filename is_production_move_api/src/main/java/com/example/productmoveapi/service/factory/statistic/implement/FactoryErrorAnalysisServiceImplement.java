@@ -73,8 +73,8 @@ public class FactoryErrorAnalysisServiceImplement implements FactoryErrorAnalysi
           .collect(Collectors.toList());
     }
 
+    int numberOfErrorProduct = (int) productList.stream().filter(p -> p.getNumberOfWarranty() > 0).count();
     return ResponseFactory.success(
-        new ErrorAnalysisResponse((int) productList.stream().filter(p -> p.getNumberOfWarranty() > 0).count(),
-            productList.size()));
+        new ErrorAnalysisResponse(numberOfErrorProduct, productList.size() - numberOfErrorProduct));
   }
 }

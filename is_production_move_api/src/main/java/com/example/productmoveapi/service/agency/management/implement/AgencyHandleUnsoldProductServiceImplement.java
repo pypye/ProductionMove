@@ -87,7 +87,7 @@ public class AgencyHandleUnsoldProductServiceImplement implements AgencyHandleUn
     productRepository.saveAll(productList);
     operationRepository.saveAll(
         operationList.stream().map(operation -> new Operation(operation.getProduct(), status("12"),
-            operation.getDestination(), null)).collect(Collectors.toList()));
+            operation.getDestination(), currentUser())).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");
   }
 }

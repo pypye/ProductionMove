@@ -1160,35 +1160,6 @@
 			"response": []
 		},
 		{
-			"name": "localhost:3001/backend/static",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcyMTM4NDI3fQ.qNtTERHbNvT70tHN1jJZT85na2u20oYfeZjCPcZiM-iuER8xPCvvOXc679DBX9YpOWJRleM3xBWnPG2x2-fHaA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "localhost:3001/backend/static/1/2021/1/2",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"backend",
-						"static",
-						"1",
-						"2021",
-						"1",
-						"2"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "localhost:3001/backend/agency/sale/analysis",
 			"request": {
 				"method": "GET",
@@ -1267,6 +1238,64 @@
 						"error",
 						"analysis",
 						"0",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/factory/product/static/0",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaGFtYXkwMiIsImlhdCI6MTY3MjE3MDY4OH0.5X0EoNkn11BmYTWJwRjpdcYwgsSI-9j9BiUz0hO-WTooiC45pPT8EJUer6ZQv1RrrnISDyR4UnLXZRVqLnOVEQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/factory/product/statistic/1/0",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"factory",
+						"product",
+						"statistic",
+						"1",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/warranty/product/statistic/6/0",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW9oYW5oMDEiLCJpYXQiOjE2NzIzMTc3OTh9.BhjjbKDovU8k9SU-ER74UJTqEAj-KZZO_q4u1ag6lUm-iBSpm-cx6zboW5nZe1GGQeMrwqgB71qaajplvQ0IcQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/warranty/product/statistic/6/0",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"warranty",
+						"product",
+						"statistic",
+						"6",
 						"0"
 					]
 				}

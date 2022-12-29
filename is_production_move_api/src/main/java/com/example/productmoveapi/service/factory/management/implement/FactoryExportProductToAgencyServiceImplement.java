@@ -74,9 +74,8 @@ public class FactoryExportProductToAgencyServiceImplement implements FactoryExpo
     }).map(
         Operation::getProduct).collect(Collectors.toList());
     productRepository.saveAll(productList);
-    operationRepository.saveAll(
-        operationList.stream().map(operation -> new Operation(operation.getProduct(), status("2"),
-            operation.getApplicationUser(), operation.getDestination())).collect(Collectors.toList()));
+    operationRepository.saveAll(productList.stream().map(p -> new Operation(p, status("2"), p.getLocation(),
+        currentUser())).collect(Collectors.toList()));
     return ResponseFactory.success("add successfully");
   }
 }
