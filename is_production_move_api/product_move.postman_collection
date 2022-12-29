@@ -1301,6 +1301,76 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/agency/product/statistic/12/0?",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkYWlseTAxIiwiaWF0IjoxNjcyMTY2OTA5fQ.JCONVbk60YF-p1YE6OahPQL3Z6HMRMQ5ge6WuMDUv5XSMsjwdYsKp7VQdAUUCJ10HmbObcLs2a4ejXTpnv3CGw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/agency/product/statistic/12/0?",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"agency",
+						"product",
+						"statistic",
+						"12",
+						"0"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3001/backend/admin/product/statistic/1/2?",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCaWdDb3JwIiwiaWF0IjoxNjcyMzM3MjgxfQ.JT9S2BG3oNcMVExTBbTeu2FX37DtQ5Zg-vXhXp0ZnXqlyMVMjtIdB64wNnXj47Wja4r6ll9Jy-A_g7SNwgVzhg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3001/backend/admin/product/statistic/1/2?",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"backend",
+						"admin",
+						"product",
+						"statistic",
+						"1",
+						"2"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

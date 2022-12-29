@@ -1,7 +1,7 @@
 package com.example.productmoveapi.service.factory.statistic.implement;
 
 import com.example.productmoveapi.dto.request.statistic_request.ErrorAnalysisRequest;
-import com.example.productmoveapi.dto.response.ErrorAnalysisResponse;
+import com.example.productmoveapi.dto.response.product_response.ErrorAnalysisResponse;
 import com.example.productmoveapi.repository.ApplicationUserRepository;
 import com.example.productmoveapi.repository.OperationRepository;
 import com.example.productmoveapi.repository.StatusRepository;

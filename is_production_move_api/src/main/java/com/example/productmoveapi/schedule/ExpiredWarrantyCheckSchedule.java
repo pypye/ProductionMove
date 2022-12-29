@@ -36,6 +36,10 @@ public class ExpiredWarrantyCheckSchedule {
     return statusRepository.findById("11").orElse(null);
   }
 
+  /*
+  * @description: At 0:00 every day, the system will check the warranty period of the products
+  */
+
   @Scheduled(cron = "0 0 0 * * *")
   public void checkExpireProduct() {
     Date now = new Date();

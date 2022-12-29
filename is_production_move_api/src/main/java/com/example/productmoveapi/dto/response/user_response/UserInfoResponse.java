@@ -1,4 +1,4 @@
-package com.example.productmoveapi.dto.response;
+package com.example.productmoveapi.dto.response.user_response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
