@@ -1,3 +1,6 @@
+bc:
+  strength: 8
+
 token:
   ttl: 300
 
@@ -18,9 +21,12 @@ spring:
     port: 6379
 
   mail:
-    username: invitacmcapp2021@gmail.com
-    password: invitacmcapp_Password
+    username: productionmove7@gmail.com
+    password: wlklfwwownmpnmdf
+
 server:
-  port: 8088
+  address: localhost
+  port: 3001
   servlet:
     context-path: /backend
+

@@ -1,11 +1,11 @@
 package com.example.productmoveapi.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author Binh Nguyen Thai at 22:31 on 28/11/2022
  */
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @Setter

@@ -1,0 +1,43 @@
+.icon-wrapper .icon {
+    width: 2rem;
+    height: 2rem;
+    color: rgb(99, 115, 129);
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.icon-wrapper-raw {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+}
+
+.icon-wrapper:hover {
+    background-color: rgba(99, 115, 129, 0.1);
+}
+
+
+.avatar-box {
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}

@@ -5,7 +5,8 @@
     column-gap: 0.1rem;
     cursor: pointer;
 }
-.checkbox div{
+
+.checkbox div {
     display: inline-flex;
     align-items: center;
 }
@@ -15,10 +16,10 @@
     width: 1.15rem;
 }
 
-.checkmark .checked{
+.checkmark .checked {
     fill: rgb(0, 171, 85);
 }
 
-.checkmark .unchecked{
+.checkmark .unchecked {
     fill: rgb(99, 115, 129);
 }

@@ -19,15 +19,15 @@ public class UserDetailsServiceImplement implements UserDetailsService {
   private final ApplicationUserRepository applicationUserRepository;
 
   @Autowired
-  public UserDetailsServiceImplement(ApplicationUserRepository applicationUserRepository){
+  public UserDetailsServiceImplement(ApplicationUserRepository applicationUserRepository) {
     this.applicationUserRepository = applicationUserRepository;
   }
 
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    ApplicationUser applicationUser =  applicationUserRepository.findByUsername(username);
-    if (applicationUser == null){
+    ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
+    if (applicationUser == null) {
       throw new UsernameNotFoundException("User not found with " + username);
     }
     return UserDetailsImplement.build(applicationUser);

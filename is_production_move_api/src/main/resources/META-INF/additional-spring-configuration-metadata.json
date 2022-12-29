@@ -4,5 +4,10 @@
       "name": "token.ttl",
       "type": "java.lang.String",
       "description": "Description for time to life of token."
+    },
+    {
+      "name": "bc.strength",
+      "type": "java.lang.String",
+      "description": "Description for BC.strength."
     }
   ] }

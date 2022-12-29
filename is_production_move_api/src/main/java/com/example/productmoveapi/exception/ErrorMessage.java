@@ -1,17 +1,19 @@
 package com.example.productmoveapi.exception;
 
+import java.util.Date;
+import lombok.Getter;
+
 /**
  * @author Binh Nguyen Thai at 22:37 on 28/11/2022
  */
 
-import java.util.Date;
-
+@Getter
 public class ErrorMessage {
 
-  private int statusCode;
-  private Date timestamp;
-  private String message;
-  private String description;
+  private final int statusCode;
+  private final Date timestamp;
+  private final String message;
+  private final String description;
 
   public ErrorMessage(int statusCode, Date timestamp, String message, String description) {
     this.statusCode = statusCode;
@@ -20,19 +22,8 @@ public class ErrorMessage {
     this.description = description;
   }
 
-  public int getStatusCode() {
-    return statusCode;
-  }
-
-  public Date getTimestamp() {
-    return timestamp;
-  }
-
   public String getMessage() {
     return message;
   }
 
-  public String getDescription() {
-    return description;
-  }
 }

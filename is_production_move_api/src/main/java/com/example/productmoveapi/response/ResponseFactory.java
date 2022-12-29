@@ -1,11 +1,11 @@
 package com.example.productmoveapi.response;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 /**
  * @author Binh Nguyen Thai at 22:32 on 28/11/2022
  */
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 public class ResponseFactory {
 
@@ -14,16 +14,6 @@ public class ResponseFactory {
     generalResponse.setStatus(new GeneralResponseStatus(ResponseStatusEnum.SUCCESS));
     generalResponse.setData(data);
     return ResponseEntity.ok(generalResponse);
-  }
-
-  public static <T> ResponseEntity<GeneralResponse<T>> success(GeneralResponse<T> responseObject) {
-    return ResponseEntity.ok(responseObject);
-  }
-
-  public static ResponseEntity<GeneralResponse<Object>> success() {
-    GeneralResponse<Object> responseObject = new GeneralResponse<>();
-    responseObject.setStatus(new GeneralResponseStatus(ResponseStatusEnum.SUCCESS));
-    return ResponseEntity.ok(responseObject);
   }
 
   public static ResponseEntity<GeneralResponse<Object>> success(Object data, Class<?> clazz) {

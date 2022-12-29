@@ -1,0 +1,41 @@
+.icon-btn .icon {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.icon-btn .icon path {
+    fill: rgb(33, 43, 54);
+}
+
+.icon-btn {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    color: rgb(33, 43, 54);
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    justify-content: center;
+    outline: none;
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+
+.icon-btn:hover {
+    background-color: rgba(99, 115, 129, 0.08);
+}
+
+.icon-btn .icon-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.icon-btn.icon-only {
+    border-radius: 50%;
+    column-gap: 0;
+    padding: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+}

@@ -1,0 +1,22 @@
+.th-fake-icon {
+    opacity: 0;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.th-icon {
+    margin-left: 0.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+th {
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+th>* {
+    display: inline-flex;
+    vertical-align: middle;
+    column-gap: 0.5rem;
+}
