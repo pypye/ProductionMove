@@ -8,7 +8,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencyReceiveWarrantyProductFromCustomerService {
 
+  /*
+   * @description: Get customer product information and check warranty period
+   */
   ResponseEntity<GeneralResponse<Object>> getProductCustomer(String productCode);
 
+  /*
+   * @description: Agency send products to warranty center
+   */
   ResponseEntity<GeneralResponse<Object>> addProductToWarranty(String productCode, String warrantyId);
 }

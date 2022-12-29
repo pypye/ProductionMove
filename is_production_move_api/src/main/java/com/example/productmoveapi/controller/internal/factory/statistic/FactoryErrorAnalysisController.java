@@ -31,6 +31,9 @@ public class FactoryErrorAnalysisController {
     this.factoryErrorAnalysisService = factoryErrorAnalysisService;
   }
 
+  /*
+   * @description: Statistics on the percentage of error products by category, factory and warranty center.
+   */
   @GetMapping("/{category}/{agency}")
   public ResponseEntity<GeneralResponse<Object>> errorAnalysis(@PathVariable(name = "category") String category,
       @PathVariable(name = "agency") String agency) {

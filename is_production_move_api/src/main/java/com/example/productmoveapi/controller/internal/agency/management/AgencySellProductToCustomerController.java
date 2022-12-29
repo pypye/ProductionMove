@@ -33,11 +33,17 @@ public class AgencySellProductToCustomerController {
     this.agencySellProductToCustomerService = agencySellProductToCustomerService;
   }
 
+  /*
+   * @description: Get a list of products available in the agency
+   */
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductNotCustomer() {
     return agencySellProductToCustomerService.getProductNotCustomer();
   }
 
+  /*
+   * @description: Sell products and save customer information
+   */
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> saleForCustomer(
       @Valid @RequestBody SaleProductRequest saleProductRequest) {

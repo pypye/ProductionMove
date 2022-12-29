@@ -33,11 +33,17 @@ public class FactoryReceiveErrorProductFromWarrantyCenterController {
     this.factoryReceiveErrorProductFromWarrantyCenterService = factoryReceiveErrorProductFromWarrantyCenterService;
   }
 
+  /*
+   * @description: Get information about error products from the warranty center
+   */
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromWarranty() {
     return factoryReceiveErrorProductFromWarrantyCenterService.getProductFromWarranty();
   }
 
+  /*
+   * @description: Receive error products from warranty centers.
+   */
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductFromWarranty(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {

@@ -34,11 +34,17 @@ public class AgencyImportProductFromFactoryController {
     this.agencyImportProductFromFactoryService = agencyImportProductFromFactoryService;
   }
 
+  /*
+   * @description: View products at the factory
+   */
   @GetMapping("/factory/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> getProductFactory(@PathVariable(name = "factoryId") String factoryId) {
     return agencyImportProductFromFactoryService.getProductFactory(factoryId);
   }
 
+  /*
+   * @description: Import new products from factory
+   */
   @PostMapping("/factory/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductFromFactory(
       @PathVariable(name = "factoryId") String factoryId,

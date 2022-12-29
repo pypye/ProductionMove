@@ -31,6 +31,9 @@ public class AgencyProductReportController {
     this.agencyProductReportService = agencyProductReportService;
   }
 
+  /*
+   * @description: Statistics and reports on product data by status, by month, quarter, year.
+   */
   @GetMapping("/{statusId}/{option}")
   public ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
       @PathVariable(name = "statusId") String statusId, @PathVariable(name = "option") String option) {

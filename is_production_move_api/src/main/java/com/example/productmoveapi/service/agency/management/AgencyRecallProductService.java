@@ -8,7 +8,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencyRecallProductService {
 
+  /*
+   * @description: Recall a category product
+   */
   ResponseEntity<GeneralResponse<Object>> recallProduct(String categoryId);
 
+  /*
+   * @description: Bring the recalled product for warranty
+   */
   ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(String warrantyId);
 }

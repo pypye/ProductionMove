@@ -33,11 +33,17 @@ public class FactoryExportProductToAgencyController {
     this.factoryExportProductToAgencyService = factoryExportProductToAgencyService;
   }
 
+  /*
+   * @description: Receive product production requests from agency
+   */
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
     return factoryExportProductToAgencyService.getProductFromAgency();
   }
 
+  /*
+   * @description: Export product to agency
+   */
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductToAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {

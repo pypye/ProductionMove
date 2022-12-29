@@ -31,17 +31,26 @@ public class UserGeneralFunctionController {
     this.userGeneralFunctionService = userGeneralFunctionService;
   }
 
+  /*
+   * @description: User function to get their information
+   */
   @GetMapping("/info")
   public ResponseEntity<GeneralResponse<Object>> getInfo() {
     return userGeneralFunctionService.getInfo();
   }
 
+  /*
+   * @description: User function to change their password after authentication
+   */
   @PostMapping("/change_password")
   public ResponseEntity<GeneralResponse<Object>> changePassword(
       @Valid @RequestBody ChangePasswordRequest changePasswordRequest) {
     return userGeneralFunctionService.changePassword(changePasswordRequest);
   }
 
+  /*
+   * @description: Get other factory, agency and warranty information
+   */
   @GetMapping("/account/{role:^[2-4]*$}")
   public ResponseEntity<GeneralResponse<Object>> getAccountByRole(@PathVariable(name = "role") String role) {
     return userGeneralFunctionService.getAccountByRole(role);

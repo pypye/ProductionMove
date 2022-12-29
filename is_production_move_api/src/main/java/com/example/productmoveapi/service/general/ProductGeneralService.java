@@ -10,8 +10,14 @@ public interface ProductGeneralService {
 
   ResponseEntity<GeneralResponse<Object>> getAllCategory();
 
+  /*
+   * @description: Get information of all current user's products
+   */
   ResponseEntity<GeneralResponse<Object>> getAllProduct();
 
+  /*
+   * @description: Get information of all current user's products by category
+   */
   ResponseEntity<GeneralResponse<Object>> getAllProductByCategory(String categoryId);
 
 }

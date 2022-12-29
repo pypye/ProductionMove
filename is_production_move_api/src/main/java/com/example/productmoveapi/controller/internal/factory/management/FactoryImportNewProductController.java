@@ -33,6 +33,9 @@ public class FactoryImportNewProductController {
     this.factoryImportNewProductService = factoryImportNewProductService;
   }
 
+  /*
+   * @description: Enter the new batch of products just produced into the warehouse.
+   */
   @PostMapping("/add")
   public ResponseEntity<GeneralResponse<Object>> addProduct(
       @Valid @RequestBody AddProductRequest addProductRequest) {

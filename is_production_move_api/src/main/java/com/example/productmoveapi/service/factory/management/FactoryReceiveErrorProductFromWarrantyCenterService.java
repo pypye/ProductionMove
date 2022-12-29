@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface FactoryReceiveErrorProductFromWarrantyCenterService {
 
+  /*
+   * @description: Get information about error products from the warranty center
+   */
   ResponseEntity<GeneralResponse<Object>> getProductFromWarranty();
 
+  /*
+   * @description: Receive error products from warranty centers.
+   */
   ResponseEntity<GeneralResponse<Object>> addProductFromWarranty(AddProductListRequest addProductListRequest);
 }

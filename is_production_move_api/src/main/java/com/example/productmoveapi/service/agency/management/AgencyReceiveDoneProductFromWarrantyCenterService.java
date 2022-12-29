@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencyReceiveDoneProductFromWarrantyCenterService {
 
+  /*
+   * @description: Get information about repaired products from the warranty
+   */
   ResponseEntity<GeneralResponse<Object>> getProductFromWarranty();
 
+  /*
+   * @description: return repaired products to customer
+   */
   ResponseEntity<GeneralResponse<Object>> returnProductToCustomer(AddProductListRequest addProductListRequest);
 }

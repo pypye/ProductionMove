@@ -35,6 +35,10 @@ public class AdminCategoryManagementController {
     this.adminCategoryManagementService = adminCategoryManagementService;
   }
 
+  /*
+   * @description: Admin can CRUD with product category
+   */
+
   @PostMapping("/add")
   public ResponseEntity<GeneralResponse<Object>> addCategory(
       @Valid @RequestBody CategoryRequest categoryRequest) {

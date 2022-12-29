@@ -33,11 +33,17 @@ public class AgencyChangeErrorProductToCustomerController {
     this.agencyChangeErrorProductToCustomerService = agencyChangeErrorProductToCustomerService;
   }
 
+  /*
+   * @description: Agency receive product error messages from the warranty center
+   */
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductErrorFromWarranty() {
     return agencyChangeErrorProductToCustomerService.getProductErrorFromWarranty();
   }
 
+  /*
+   * @description: agency exchange error product for customers
+   */
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> changeProductErrorToCustomer(
       @Valid @RequestBody ChangeProductRequest changeProductRequest) {

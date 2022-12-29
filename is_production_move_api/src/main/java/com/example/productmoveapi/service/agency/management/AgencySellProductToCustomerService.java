@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencySellProductToCustomerService {
 
+  /*
+   * @description: Get a list of products available in the agency
+   */
   ResponseEntity<GeneralResponse<Object>> getProductNotCustomer();
 
+  /*
+   * @description: Sell products and save customer information
+   */
   ResponseEntity<GeneralResponse<Object>> saleForCustomer(SaleProductRequest saleProductRequest);
 }

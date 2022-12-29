@@ -31,11 +31,17 @@ public class ProductGeneralController {
     return productGeneralService.getAllCategory();
   }
 
+  /*
+   * @description: Get information of all current user's products
+   */
   @GetMapping("/product/all")
   public ResponseEntity<GeneralResponse<Object>> getAllProduct() {
     return productGeneralService.getAllProduct();
   }
 
+  /*
+   * @description: Get information of all current user's products by category
+   */
   @GetMapping("/product/{categoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> getAllProductByCategory(
       @PathVariable(name = "categoryId") String categoryId) {

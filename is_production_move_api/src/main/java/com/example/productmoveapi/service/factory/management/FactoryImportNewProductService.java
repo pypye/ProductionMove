@@ -9,5 +9,8 @@ import org.springframework.http.ResponseEntity;
  */
 public interface FactoryImportNewProductService {
 
+  /*
+   * @description: Enter the new batch of products just produced into the warehouse.
+   */
   ResponseEntity<GeneralResponse<Object>> addProduct(AddProductRequest addProductRequest);
 }

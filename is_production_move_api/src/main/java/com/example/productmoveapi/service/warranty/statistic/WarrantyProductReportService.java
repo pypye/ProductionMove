@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
  */
 public interface WarrantyProductReportService {
 
+  /*
+   * @description: Statistics and reports on product data by type (interstate), by month, quarter, year.
+   */
   ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
       StaticByStatusYearQuarterMonthRequest staticByStatusYearQuarterMonthRequest);
 }

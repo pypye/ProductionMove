@@ -9,9 +9,18 @@ import org.springframework.http.ResponseEntity;
  */
 public interface UserGeneralFunctionService {
 
+  /*
+   * @description: User function to change their password after authentication
+   */
   ResponseEntity<GeneralResponse<Object>> changePassword(ChangePasswordRequest changePasswordRequest);
 
+  /*
+   * @description: User function to get their information
+   */
   ResponseEntity<GeneralResponse<Object>> getInfo();
 
+  /*
+   * @description: Get other factory, agency and warranty information
+   */
   ResponseEntity<GeneralResponse<Object>> getAccountByRole(String role);
 }
