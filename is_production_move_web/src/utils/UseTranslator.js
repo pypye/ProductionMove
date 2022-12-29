@@ -3,6 +3,7 @@
 */
 const key = {
     "no.": "Stt.",
+    "productName": "Tên sản phẩm",
     "productCode": "Mã sản phẩm",
     "category": "Dòng sản phẩm",
     "price": "Giá tiền",

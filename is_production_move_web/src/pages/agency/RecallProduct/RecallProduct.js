@@ -3,7 +3,7 @@ import { Button, Option, Popup, Section, Table } from "../../../components";
 import { UseFetch } from "../../../utils"
 
 /*
-* @description: recall product from customer
+* @description: recall product from customers
 */
 function RecallProduct(props) {
     const ref = React.useRef(null);
@@ -51,6 +51,7 @@ function RecallProduct(props) {
                     var _item = {
                         id: item.id,
                         productCode: item.productCode,
+                        productName: item.productName,
                         category: item.category.category,
                         price: item.price,
                         status: 'Lỗi cần triệu hồi',

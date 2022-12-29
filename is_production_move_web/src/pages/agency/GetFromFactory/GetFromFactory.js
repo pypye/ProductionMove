@@ -28,6 +28,7 @@ function GetFromFactory(props) {
                     var _item = {
                         id: item.id,
                         productCode: item.productCode,
+                        productName: item.productName,
                         category: item.category.category,
                         price: item.price,
                         status: item.status.status,

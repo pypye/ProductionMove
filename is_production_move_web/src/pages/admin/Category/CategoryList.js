@@ -100,7 +100,7 @@ function CategoryList() {
                     <Form.Error enabled={error !== ""} content={error} />
                     <Form.Submit content="Cập nhật" validation={onValidCategory} onClick={onEditRow} />
                 </Form>
-            } onFetchEditRow={onFetchEditRow} onReset={onReset}/>
+            } onFetchEditRow={onFetchEditRow} onReset={onReset} />
         </React.Fragment>
     )
 } export { CategoryList }
