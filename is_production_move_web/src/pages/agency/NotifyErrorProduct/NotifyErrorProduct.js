@@ -113,6 +113,7 @@ function NotifyErrorProduct(props) {
                     }
                     return null
                 })
+                _res = _res.filter((item) => item !== null)
                 setData(_res)
                 if (ref.current) ref.current.updateAllTable(_res)
                 setLoading(false)

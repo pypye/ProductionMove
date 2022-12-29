@@ -18,7 +18,7 @@ function RecallProduct(props) {
             }
         });
     }, []);
-    
+
     React.useEffect(() => {
         UseFetch("/backend/category/all", "GET", null).then((res) => {
             if (res.status.code === "SUCCESS") {

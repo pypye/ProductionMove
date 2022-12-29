@@ -37,7 +37,7 @@ function AddProduct(props) {
     }, [cpu, ram, hdd, screen, gpu, port, os, design, weight]);
 
     const onValidation = () => {
-        return UseValidation.companyName(name).state && UseValidation.price(price).state && UseValidation.warrantTime(warranty).state
+        return UseValidation.productName(name).state && UseValidation.price(price).state && UseValidation.warrantTime(warranty).state
     }
 
     const onReset = () => {
@@ -106,12 +106,11 @@ function AddProduct(props) {
                 </Form.Split>
 
                 <Form.Subtitle content="Thông tin sản phẩm" />
-                <Form.Notify enabled content="RAM, ổ cứng, màn hình đã có sẵn đơn vị. Ví dụ: 4GB RAM chỉ cần ghi 4 thay vì 4GB" />
                 <Form.Split>
                     <Form.Input label="CPU" reference={[cpu, setCpu]} />
-                    <Form.Input label="RAM (GB)" reference={[ram, setRam]} />
-                    <Form.Input label="Ổ cứng (GB)" reference={[hdd, setHdd]} />
-                    <Form.Input label="Màn hình (inch)" reference={[screen, setScreen]} />
+                    <Form.Input label="RAM" reference={[ram, setRam]} />
+                    <Form.Input label="Ổ cứng " reference={[hdd, setHdd]} />
+                    <Form.Input label="Màn hình" reference={[screen, setScreen]} />
                 </Form.Split>
                 <Form.Split>
                     <Form.Input label="GPU" reference={[gpu, setGpu]} />
