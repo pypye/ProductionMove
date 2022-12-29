@@ -58,6 +58,7 @@ public class FactoryExportProductToAgencyServiceImplement implements FactoryExpo
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
     return ResponseFactory.success(
         operationRepository.findAllByStatusAndDestination(status("13"), currentUser()).stream()
+            .peek(ope -> ope.getProduct().setLocation(ope.getApplicationUser()))
             .map(Operation::getProduct)
             .filter(product -> product.getStatus() == status("13")).collect(Collectors.toList()));
   }
