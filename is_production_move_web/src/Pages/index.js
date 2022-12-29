@@ -4,6 +4,7 @@ import { ForgotPassword } from "./general/ForgotPassword/ForgotPassword";
 import { ResetPassword } from "./general/ResetPassword/ResetPassword";
 import { Product } from "./general/Product";
 import { ProductAnalysis } from "./general/ProductAnalysis/ProductAnalysis";
+import { Welcome } from "./general/Welcome/Welcome";
 
 import { User } from "./admin/User";
 import { Category } from "./admin/Category";
@@ -21,15 +22,16 @@ import { GetFromWarranty } from "./agency/GetFromWarranty/GetFromWarranty";
 import { NotifyErrorProduct } from "./agency/NotifyErrorProduct/NotifyErrorProduct";
 import { RecallProduct } from "./agency/RecallProduct/RecallProduct";
 import { SaleAnalysis } from "./agency/SaleAnalysis/SaleAnalysis";
+import { UnsoldProduct } from "./agency/UnsoldProduct/UnsoldProduct";
 
 import { GetFromAgency } from "./warranty/GetFromAgency/GetFromAgency";
 import { SendToFactory } from "./warranty/SendToFactory/SendToFactory";
 import { SendToAgency as WarrantySendToAgency } from "./warranty/SendToAgency/SendToAgency";
 
 export {
-    Login, Logout, ForgotPassword, ResetPassword, ProductAnalysis, Product,
+    Login, Logout, ForgotPassword, ResetPassword, ProductAnalysis, Product, Welcome,
     User, Category,
     SendToAgency, AddProduct, FactoryGetFromWarranty, FactorySaleAnalysis, ErrorAnalysis,
-    GetFromFactory, SaleProduct, GetFromCustomer, GetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis,
+    GetFromFactory, SaleProduct, GetFromCustomer, GetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, UnsoldProduct,
     GetFromAgency, WarrantySendToAgency, SendToFactory
 };

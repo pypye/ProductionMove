@@ -42,7 +42,7 @@ function GetFromCustomer(props) {
                     }
                     return item
                 })
-                
+
                 setData(_data)
                 ref.current.updateAllTable(_data)
             } else {
@@ -71,7 +71,7 @@ function GetFromCustomer(props) {
                                         <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
                                         {
                                             Object.entries(JSON.parse(item.description.replaceAll("'", '"'))).map(([key, value]) => {
-                                                return <div key={key}><strong>{key}</strong> {value}</div>
+                                                return <div key={key}><strong>{key}</strong> {value ? value : "N/A"}</div>
                                             })
                                         }
                                     </Section>
@@ -90,7 +90,8 @@ function GetFromCustomer(props) {
                                     </Section>
                                 </Popup.Content>
                             </Popup> : "N/A",
-                            option: (item.status.status === "Lỗi, cần bảo hành") ? <Popup>
+                            option: (item.status.status === "Hết thời gian bảo hành") ? <div>
+                            </div> : (item.status.status === "Lỗi, cần bảo hành") ? <Popup>
                                 <Popup.Trigger><a href="#/">Xem trạng thái bảo hành</a></Popup.Trigger>
                                 <Popup.Content>
                                     <Section title="Thông tin bảo hành" noContainer>
@@ -98,16 +99,15 @@ function GetFromCustomer(props) {
                                         <div>Sản phẩm đã được gửi tới trung tâm bảo hành</div>
                                     </Section>
                                 </Popup.Content>
-                            </Popup>
-                                : (item.status.status === "Đã bảo hành xong") ? <Popup>
-                                    <Popup.Trigger><a href="#/">Xem trạng thái bảo hành</a></Popup.Trigger>
-                                    <Popup.Content>
-                                        <Section title="Thông tin bảo hành" noContainer>
-                                            <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
-                                            <div>Sản phẩm đã bảo hành xong, có thể lấy từ trung tâm bảo hành và gửi trả lại khách hàng</div>
-                                        </Section>
-                                    </Popup.Content>
-                                </Popup> : "N/A"
+                            </Popup> : (item.status.status === "Đã bảo hành xong") ? <Popup>
+                                <Popup.Trigger><a href="#/">Xem trạng thái bảo hành</a></Popup.Trigger>
+                                <Popup.Content>
+                                    <Section title="Thông tin bảo hành" noContainer>
+                                        <div><strong>Mã sản phẩm:</strong> {item.productCode}</div>
+                                        <div>Sản phẩm đã bảo hành xong, có thể lấy từ trung tâm bảo hành và gửi trả lại khách hàng</div>
+                                    </Section>
+                                </Popup.Content>
+                            </Popup> : "N/A"
                         }
                         return _item
                     }

@@ -90,6 +90,7 @@ function NavigationComponent(props) {
                         <Navigation.Item label="Lấy sản phẩm từ TTBH" link='/agency/get-from-warranty' />
                         <Navigation.Item label="Sản phẩm không thể sửa" link='/agency/notify-error-product' />
                         <Navigation.Item label="Thu hồi sản phẩm" link='/agency/recall-product' />
+                        <Navigation.Item label="Sản phẩm tồn kho" link='/agency/unsold-product' />
                     </Navigation.Category>
                     <Navigation.Category label="Thống kê" role={['agency']} type={props.type}>
                         <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />

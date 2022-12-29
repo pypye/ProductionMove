@@ -7,26 +7,33 @@ function NotifyErrorProduct(props) {
     const [data, setData] = React.useState([])
     const [loading, setLoading] = React.useState(true)
     const [customerProductCode, setCustomerProductCode] = React.useState("")
-    const [newProductCode, setNewProductCode] = React.useState("")
     const [error, setError] = React.useState("")
 
     const onFetchCustomerPopup = (row) => {
         setCustomerProductCode(row.productCode)
-        setNewProductCode("")
+
     }
 
     const onExchange = (productCode) => {
-        UseFetch(`/backend/agency/product/warranty/error`, "POST", { productCode: customerProductCode, changedProductCode: newProductCode }).then(res => {
+        UseFetch(`/backend/agency/product/warranty/error`, "POST", { productCode: customerProductCode }).then(res => {
             if (res.status.code === "SUCCESS") {
-                var _data = data.map(item => {
-                    if (item && item.productCode === productCode) {
+                var _data = data.map((item, index) => {
+                    if (item && item.productCode === customerProductCode) {
                         item.status = "Lỗi, cần bảo hành";
                         item.option = <Popup>
                             <Popup.Trigger><a href="#/">Đã đổi sản phẩm</a></Popup.Trigger>
                             <Popup.Content>
                                 <Section title="Thông báo" noContainer>
                                     <div><strong>Mã sản phẩm:</strong> {customerProductCode}</div>
-                                    <div>Sản phẩm đã được đổi cho khách hàng {item.customer.name} với sản phẩm mới là {newProductCode} </div>
+                                    <div>Sản phẩm đã được đổi cho khách hàng với mã sản phẩm mới: <strong>{res.data.productCode}</strong></div>
+                                    <h3>Chi tiết sản phẩm</h3>
+                                    <div><strong>Dòng sản phẩm:</strong> {res.data.category.category}</div>
+                                    {
+                                        Object.entries(JSON.parse(res.data.description.replaceAll("'", '"'))).map(([key, value]) => {
+                                            return <div key={key}><strong>{key}</strong> {value ? value : "N/A"}</div>
+                                        })
+                                    }
+                                    <div><strong>Số lần bảo hành:</strong> {res.data.numberOfWarranty}</div>
                                 </Section>
                             </Popup.Content>
                         </Popup>
@@ -35,11 +42,11 @@ function NotifyErrorProduct(props) {
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                _data = _data.filter(item => item.productCode === productCode)
+                _data = _data.filter(item => item.productCode === customerProductCode)
                 setData(_data)
                 ref.current.updateAllTable(_data)
             } else {
-                setError("Mã sản phẩm không tồn tại hoặc đã được sở hữu bởi khách hàng khác")
+                setError("Không tìm thấy sản phẩm phù hợp trong kho để đổi trả")
             }
         })
     }
@@ -120,9 +127,8 @@ function NotifyErrorProduct(props) {
             <Form noContainer>
                 <Form.Title content="Đổi sản phẩm mới" />
                 <Form.Input label="Mã sản phẩm" reference={[customerProductCode]} disabled />
-                <Form.Input label="Mã sản phẩm cần đổi" reference={[newProductCode, setNewProductCode]} />
                 <Form.Error enabled={error !== ""} content={error} />
-                <Form.Submit content="Bảo hành sản phẩm" onClick={() => onExchange(customerProductCode)} />
+                <Form.Submit content="Đổi sản phẩm" onClick={() => onExchange(customerProductCode)} />
             </Form>
         } optionPopupTitle="Đổi sản phẩm mới" onFetchOptionPopup={onFetchCustomerPopup} />
     </React.Fragment>

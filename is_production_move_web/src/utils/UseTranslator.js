@@ -5,7 +5,7 @@ const key = {
     "price": "Giá tiền",
     "status": "Trạng thái",
     "location": "Vị trí",
-    "warrantTime": "T/g bảo hành",
+    "warrantTime": "Bảo hành",
     "description": "Chi tiết",
     "customer": "Khách hàng",
     "username": "Tên đăng nhập",

@@ -3,7 +3,7 @@ import { Login } from '../pages/general/Login/Login';
 import { Layout } from '../layouts/Layout';
 import {
     ForgotPassword, Product, Logout, ResetPassword, User, Category,
-    GetFromFactory, SendToAgency, SaleProduct, AddProduct, GetFromCustomer, GetFromAgency, WarrantySendToAgency, GetFromWarranty, SendToFactory, FactoryGetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, FactorySaleAnalysis, ErrorAnalysis, ProductAnalysis
+    GetFromFactory, SendToAgency, SaleProduct, AddProduct, GetFromCustomer, GetFromAgency, WarrantySendToAgency, GetFromWarranty, SendToFactory, FactoryGetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, FactorySaleAnalysis, ErrorAnalysis, ProductAnalysis, Welcome, UnsoldProduct
 } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';
@@ -13,7 +13,7 @@ export default function Router() {
         {
             element: <UseAuth.Auth element={<Layout />} roles={['admin', 'factory', 'warranty', 'agency']} />,
             children: [
-                { path: '/', element: <div></div> },
+                { path: '/', element: <Welcome/> },
                 { path: '/product', element: <Product.ProductList /> },
                 { path: '/logout', element: <Logout /> },
             ]
@@ -50,6 +50,7 @@ export default function Router() {
                 { path: '/agency/get-from-warranty', element: <GetFromWarranty /> },
                 { path: '/agency/notify-error-product', element: <NotifyErrorProduct /> },
                 { path: '/agency/recall-product', element: <RecallProduct /> },
+                { path: '/agency/unsold-product', element: <UnsoldProduct />},
                 { path: '/agency/sale-analysis', element: <SaleAnalysis /> }
             ]
         },

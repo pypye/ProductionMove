@@ -30,6 +30,7 @@ function Body(props) {
                                 {
                                     Object.keys(v).map((v2, i2) => {
                                         if (v2 === 'id' && props.displayColumn[i2 - 1]) return <td key={v2}>{i + 1}</td>;
+                                        if (v2 === 'warrantTime' && props.displayColumn[i2 - 1]) return <td key={v2}>{v[v2] + ' tháng'}</td>;
                                         if (v2 === 'option' && props.displayColumn[i2 - 1] && props.optionPopup && v[v2] === "N/A") return <td key={v2}>
                                             <Popup ref={props.optionPopupRef}>
                                                 <Popup.Trigger onClick={() => props.onFetchOptionPopup(v)}><a href="#/">{props.optionPopupTitle}</a></Popup.Trigger>
