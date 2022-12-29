@@ -21,8 +21,8 @@ spring:
     port: 6379
 
   mail:
-    username: vlxx2022tv@gmail.com
-    password: qxzdvjbeetfzoqwk
+    username: productionmove7@gmail.com
+    password: wlklfwwownmpnmdf
 
 server:
   address: localhost

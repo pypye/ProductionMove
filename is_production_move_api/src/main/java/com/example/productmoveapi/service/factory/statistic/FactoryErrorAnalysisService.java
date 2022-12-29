@@ -9,5 +9,8 @@ import org.springframework.http.ResponseEntity;
  */
 public interface FactoryErrorAnalysisService {
 
+  /*
+   * @description: Statistics on the percentage of error products by category, factory and warranty center.
+   */
   ResponseEntity<GeneralResponse<Object>> errorAnalysis(ErrorAnalysisRequest errorAnalysisRequest);
 }

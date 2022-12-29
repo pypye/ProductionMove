@@ -33,11 +33,17 @@ public class AgencyHandleUnsoldProductController {
     this.agencyHandleUnsoldProductService = agencyHandleUnsoldProductService;
   }
 
+  /*
+   * @description: Check inventory products from 1 year or more
+   */
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductUnsold() {
     return agencyHandleUnsoldProductService.getProductUnsold();
   }
 
+  /*
+   * @description: Return to the factory (due to not selling for a long time)
+   */
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductUnsoldToFactory(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {

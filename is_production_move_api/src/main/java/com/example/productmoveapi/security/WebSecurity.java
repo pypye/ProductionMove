@@ -53,6 +53,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   @Autowired
   public AuthEntryPointJWT unauthorizedHandler;
 
+  /*
+   * @description:
+   * Declare Restfull API
+   * Only allow API like AUTH access without authentication
+   */
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()

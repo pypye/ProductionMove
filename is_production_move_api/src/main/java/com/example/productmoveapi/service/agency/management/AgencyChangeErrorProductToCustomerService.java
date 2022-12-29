@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencyChangeErrorProductToCustomerService {
 
+  /*
+   * @description: Agency receive product error messages from the warranty center
+   */
   ResponseEntity<GeneralResponse<Object>> getProductErrorFromWarranty();
 
+  /*
+   * @description: agency exchange error product for customers
+   */
   ResponseEntity<GeneralResponse<Object>> changeProductErrorToCustomer(ChangeProductRequest changeProductRequest);
 }

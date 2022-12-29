@@ -6,7 +6,7 @@ package com.example.productmoveapi.mail_sender;
 public interface EmailService {
 
   /*
-  * @description: configure mailing service for system users
-  */
+   * @description: configure mailing service for system users
+   */
   void sendEmail(String from, String to, String subject, String body);
 }

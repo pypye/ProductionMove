@@ -9,6 +9,10 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AdminCategoryManagementService {
 
+  /*
+   * @description: Admin can CRUD with product category
+   */
+
   ResponseEntity<GeneralResponse<Object>> addCategory(CategoryRequest categoryRequest);
 
   ResponseEntity<GeneralResponse<Object>> deleteCategory(String categoryId);

@@ -31,6 +31,9 @@ public class WarrantyProductReportController {
     this.warrantyProductReportService = warrantyProductReportService;
   }
 
+  /*
+   * @description: Statistics and reports on product data by type (interstate), by month, quarter, year.
+   */
   @GetMapping("/{statusId}/{option}")
   public ResponseEntity<GeneralResponse<Object>> getProductByStatusYearQuarterMonth(
       @PathVariable(name = "statusId") String statusId, @PathVariable(name = "option") String option) {

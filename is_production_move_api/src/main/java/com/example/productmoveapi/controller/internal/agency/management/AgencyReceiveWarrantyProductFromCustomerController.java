@@ -31,12 +31,18 @@ public class AgencyReceiveWarrantyProductFromCustomerController {
     this.agencyReceiveWarrantyProductFromCustomerService = agencyReceiveWarrantyProductFromCustomerService;
   }
 
+  /*
+   * @description: Get customer product information and check warranty period
+   */
   @GetMapping("/{productCode:^[0-9A-Za-z]*$}")
   public ResponseEntity<GeneralResponse<Object>> getProductCustomer(
       @PathVariable(name = "productCode") String productCode) {
     return agencyReceiveWarrantyProductFromCustomerService.getProductCustomer(productCode);
   }
 
+  /*
+   * @description: Agency send products to warranty center
+   */
   @PostMapping("/warranty/{productCode:^[0-9A-Za-z]*$}/{warrantyId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductToWarranty(
       @PathVariable(name = "productCode") String productCode, @PathVariable(name = "warrantyId") String warrantyId) {

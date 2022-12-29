@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencyHandleUnsoldProductService {
 
+  /*
+   * @description: Check inventory products from 1 year or more
+   */
   ResponseEntity<GeneralResponse<Object>> getProductUnsold();
 
+  /*
+   * @description: Return to the factory (due to not selling for a long time)
+   */
   ResponseEntity<GeneralResponse<Object>> addProductUnsoldToFactory(AddProductListRequest addProductListRequest);
 }

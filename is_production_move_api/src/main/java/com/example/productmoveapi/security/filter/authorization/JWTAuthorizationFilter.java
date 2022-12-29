@@ -34,8 +34,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
   private static final Logger logger = LoggerFactory.getLogger(JWTAuthorizationFilter.class);
 
   /*
-  * @description: filter requests with valid jwt
-  */
+   * @description: filter requests by validating jwt
+   */
   @Override
   protected void doFilterInternal(HttpServletRequest request,
       HttpServletResponse response,

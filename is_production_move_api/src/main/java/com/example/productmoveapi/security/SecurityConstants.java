@@ -6,8 +6,8 @@ package com.example.productmoveapi.security;
 public class SecurityConstants {
 
   /*
-  * @description: some param for creating jwt and authorization
-  */
+   * @description: some param for creating jwt and authorization
+   */
   public static final String SECRET = "NguyenThaiBinhTranVanDuc";
   public static final long EXPIRATION_TIME = 86400_000;
   public static final String TOKEN_PREFIX = "Bearer ";

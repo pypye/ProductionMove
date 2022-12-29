@@ -31,6 +31,9 @@ public class FactorySaleAnalysisController {
     this.factorySaleAnalysisService = factorySaleAnalysisService;
   }
 
+  /*
+   * @description: Statistics and analysis of the number of products sold monthly, quarterly and annually.
+   */
   @GetMapping("/{option:^[0-2]$}")
   public ResponseEntity<GeneralResponse<Object>> saleAnalysis(@PathVariable(name = "option") String option) {
     return factorySaleAnalysisService.saleAnalysis(new SaleAnalysisRequest(option));

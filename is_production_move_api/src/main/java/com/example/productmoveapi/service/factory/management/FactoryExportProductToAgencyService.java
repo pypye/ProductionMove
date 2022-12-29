@@ -9,7 +9,13 @@ import org.springframework.http.ResponseEntity;
  */
 public interface FactoryExportProductToAgencyService {
 
+  /*
+   * @description: Receive product production requests from agency
+   */
   ResponseEntity<GeneralResponse<Object>> getProductFromAgency();
 
+  /*
+   * @description: Export product to agency
+   */
   ResponseEntity<GeneralResponse<Object>> addProductToAgency(AddProductListRequest addProductListRequest);
 }

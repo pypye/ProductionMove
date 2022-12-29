@@ -9,5 +9,8 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AgencySaleAnalysisService {
 
+  /*
+   * @description: Statistics and analysis of the number of products sold monthly, quarterly and annually.
+   */
   ResponseEntity<GeneralResponse<Object>> saleAnalysis(SaleAnalysisRequest saleAnalysisRequest);
 }

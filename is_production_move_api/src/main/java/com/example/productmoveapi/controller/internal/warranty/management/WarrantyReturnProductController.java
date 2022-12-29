@@ -34,17 +34,26 @@ public class WarrantyReturnProductController {
     this.warrantyReturnProductService = warrantyReturnProductService;
   }
 
+  /*
+   * @description: Get information about the products in the warranty center
+   */
   @GetMapping("/all")
   public ResponseEntity<GeneralResponse<Object>> getProductInWarranty() {
     return warrantyReturnProductService.getProductInWarranty();
   }
 
+  /*
+   * @description: Return the repaired product to the agency.
+   */
   @PostMapping("/agency/done")
   public ResponseEntity<GeneralResponse<Object>> addProductDoneToAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {
     return warrantyReturnProductService.addProductDoneToAgency(addProductListRequest);
   }
 
+  /*
+   * @description: Return the product that cannot be repaired to the factory
+   */
   @PostMapping("/factory/error/{factoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> addProductErrorToFactory(
       @Valid @RequestBody AddProductListRequest addProductListRequest,

@@ -32,12 +32,18 @@ public class LoginController {
     this.loginService = loginService;
   }
 
+  /*
+   * @description: system login user function
+   */
   @PostMapping("/login")
   public ResponseEntity<GeneralResponse<Object>> login(
       @Valid @RequestBody LoginRequest loginRequest) {
     return loginService.loginAccount(loginRequest);
   }
 
+  /*
+   * @description: Function to support users to change password when forgotten
+   */
   @PostMapping("/forgot")
   public ResponseEntity<GeneralResponse<Object>> forgotPassword(
       @Valid @RequestBody ForgotPasswordRequest forgotPasswordRequest) {

@@ -11,8 +11,14 @@ import org.springframework.http.ResponseEntity;
  */
 public interface LoginService {
 
+  /*
+   * @description: system login user function
+   */
   ResponseEntity<GeneralResponse<Object>> loginAccount(LoginRequest loginRequest);
 
+  /*
+   * @description: Function to support users to change password when forgotten
+   */
   ResponseEntity<GeneralResponse<Object>> forgotPassword(ForgotPasswordRequest forgotPasswordRequest);
 
   ResponseEntity<GeneralResponse<Object>> resetPassword(ResetPasswordRequest resetPasswordRequest);

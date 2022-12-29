@@ -30,11 +30,17 @@ public class AgencyRecallProductController {
     this.agencyRecallProductService = agencyRecallProductService;
   }
 
+  /*
+   * @description: Recall a category product
+   */
   @PostMapping("/{categoryId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> recallProduct(@PathVariable(name = "categoryId") String categoryId) {
     return agencyRecallProductService.recallProduct(categoryId);
   }
 
+  /*
+   * @description: Bring the recalled product for warranty
+   */
   @PostMapping("/warranty/{warrantyId:^[0-9]*$}")
   public ResponseEntity<GeneralResponse<Object>> recallProductToWarranty(
       @PathVariable(name = "warrantyId") String warrantyId) {

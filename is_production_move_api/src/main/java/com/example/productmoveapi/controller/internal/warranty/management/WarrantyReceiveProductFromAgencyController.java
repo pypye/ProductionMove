@@ -33,11 +33,17 @@ public class WarrantyReceiveProductFromAgencyController {
     this.warrantyReceiveProductFromAgencyService = warrantyReceiveProductFromAgencyService;
   }
 
+  /*
+   * @description: Get information about products that need warranty from agency
+   */
   @GetMapping
   public ResponseEntity<GeneralResponse<Object>> getProductFromAgency() {
     return warrantyReceiveProductFromAgencyService.getProductFromAgency();
   }
 
+  /*
+   * @description: Receive warranty or recall products from agency.
+   */
   @PostMapping
   public ResponseEntity<GeneralResponse<Object>> addProductFromAgency(
       @Valid @RequestBody AddProductListRequest addProductListRequest) {

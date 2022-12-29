@@ -38,6 +38,10 @@ public class AdminUserManagementController {
     this.adminUserManagementService = adminUserManagementService;
   }
 
+  /*
+   * @description: Admin can CRUD with all accounts that do not have admin rights
+   */
+
   @PostMapping("/sign-up")
   public ResponseEntity<GeneralResponse<Object>> signUp(
       @Valid @RequestBody CreateAccountRequest createAccountRequest) {

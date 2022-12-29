@@ -8,5 +8,8 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AdminProductReportService {
 
+  /*
+   * @description: Track and view product statistics nationwide, by state and by factory, agency, warranty center.
+   */
   ResponseEntity<GeneralResponse<Object>> getProductByStatusAndRole(String statusId, String roleId);
 }

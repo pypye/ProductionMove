@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
  */
 public interface AdminUserManagementService {
 
+  /*
+   * @description: Admin can CRUD with all accounts that do not have admin rights
+   */
   ResponseEntity<GeneralResponse<Object>> signupAccount(CreateAccountRequest createAccountRequest);
 
   ResponseEntity<GeneralResponse<Object>> getAllAccount();

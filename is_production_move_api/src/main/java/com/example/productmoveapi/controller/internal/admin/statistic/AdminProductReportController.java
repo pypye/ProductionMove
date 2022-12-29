@@ -30,6 +30,9 @@ public class AdminProductReportController {
     this.adminProductReportService = adminProductReportService;
   }
 
+  /*
+   * @description: Track and view product statistics nationwide, by state and by factory, agency, warranty center.
+   */
   @GetMapping("/{statusId}/{roleId}")
   public ResponseEntity<GeneralResponse<Object>> getProductByStatusAndRole(
       @PathVariable(name = "statusId") String statusId, @PathVariable(name = "roleId") String roleId) {
