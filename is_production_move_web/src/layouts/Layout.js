@@ -11,6 +11,10 @@ function Layout(props) {
         window.location.href = '/login';
     }
 
+    const onForgotPassword = () => {
+        window.location.href = "/change-password";
+    }
+
     return (
         <div className="container">
             <nav>
@@ -32,7 +36,7 @@ function Layout(props) {
                             <Dropdown.Main item={<Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>} />
                             <Dropdown.Menu right zIndex={5}>
                                 <Dropdown.Info userName={props.companyName} userEmail={props.email} />
-                                <Dropdown.Item label="Đổi mật khẩu" />
+                                <Dropdown.Item label="Đổi mật khẩu" onClick={onForgotPassword} />
                                 <Dropdown.Item label="Đăng xuất" onClick={onLogout} />
                             </Dropdown.Menu>
                         </Dropdown>
@@ -51,13 +55,13 @@ function NavigationComponent(props) {
         <React.Fragment>
             <div className='info'>
                 <span>Hệ thống ProductionMove</span>
-                <div className='personal-info'>
+                <a className='personal-info' href='/'>
                     <Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>
                     <div>
                         <div><strong>{props.companyName}</strong></div>
                         <div>{props.type}</div>
                     </div>
-                </div>
+                </a>
             </div>
             <div className='navigation'>
                 <Navigation>
@@ -77,7 +81,7 @@ function NavigationComponent(props) {
                         <Navigation.Item label="Nhận sản phẩm lỗi từ TTBH" link='/factory/get-from-warranty' />
                     </Navigation.Category>
                     <Navigation.Category label="Thống kê" role={['factory']} type={props.type}>
-                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/factory/statistic-product' />
                         <Navigation.Item label="Thống kê sản phẩm đã bán" link='/factory/sale-analysis' />
                         <Navigation.Item label="Thống kê sản phẩm bị lỗi" link='/factory/error-analysis' />
                     </Navigation.Category>
@@ -93,7 +97,7 @@ function NavigationComponent(props) {
                         <Navigation.Item label="Sản phẩm tồn kho" link='/agency/unsold-product' />
                     </Navigation.Category>
                     <Navigation.Category label="Thống kê" role={['agency']} type={props.type}>
-                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/agency/statistic-product' />
                         <Navigation.Item label="Thống kê sản phẩm đã bán" link='/agency/sale-analysis' />
                     </Navigation.Category>
 
@@ -104,7 +108,7 @@ function NavigationComponent(props) {
                         <Navigation.Item label="Chuyển sản phẩm về cơ sở sản xuất" link='/warranty/send-to-factory' />
                     </Navigation.Category>
                     <Navigation.Category label="Thống kê" role={['warranty']} type={props.type}>
-                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/product/analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm theo từng loại" link='/warranty/statistic-product' />
                     </Navigation.Category>
 
                 </Navigation>

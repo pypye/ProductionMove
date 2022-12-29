@@ -2,9 +2,11 @@
     width: 1.15rem;
     height: 1.15rem;
 }
-.icon-btn .icon path{
+
+.icon-btn .icon path {
     fill: rgb(33, 43, 54);
 }
+
 .icon-btn {
     align-items: center;
     background-color: transparent;

@@ -15,6 +15,7 @@
     position: absolute;
     z-index: 2;
 }
+
 .dropdown-menu-wrapper-responsive-last {
     max-width: 27vw;
 }

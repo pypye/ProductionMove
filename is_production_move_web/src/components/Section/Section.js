@@ -16,6 +16,4 @@ Section.Div = function (props) {
         </div>
     )
 }
-
-
 export { Section }

@@ -23,6 +23,7 @@
     font-weight: 500;
     cursor: pointer;
 }
-.navigation-item:hover{
+
+.navigation-item:hover {
     background-color: rgba(242, 243, 245);
 }

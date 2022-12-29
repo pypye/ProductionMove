@@ -46,10 +46,7 @@ const Table = forwardRef((props, ref) => {
 
         forceEditRowClose() {
             editRowRef.current.forcePopupClose();
-        },
-        // forceOptionPopupClose() {
-        //     optionPopupRef.current.forcePopupClose();
-        // }
+        }
     }));
 
     React.useEffect(() => {
@@ -90,7 +87,6 @@ const Table = forwardRef((props, ref) => {
         <div className='table-container' style={{ width: props.width, height: props.height }}>
             {props.title && <h2 className='table-title'>{props.title}</h2>}
             {props.multiTitle && <div className='table-multi-title'>{props.multiTitle}</div>}
-
             {props.data.length === 0 ? <div className='no-data'>Không có dữ liệu để hiển thị</div> : <React.Fragment>
                 <TableComponent.Navigation>
                     {props.noAddRow ? null : <TableComponent.Navigation.AddRow
@@ -147,7 +143,6 @@ const Table = forwardRef((props, ref) => {
                     data={props.data}
                 />
             </React.Fragment>}
-
         </div>
     );
 })

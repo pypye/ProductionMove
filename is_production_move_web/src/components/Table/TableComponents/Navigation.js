@@ -37,6 +37,7 @@ Navigation.Setting = function NavigationSetting(props) {
             return [...prev];
         })
     }
+
     return (
         <Dropdown>
             <Dropdown.Main item={<TableComponent.Icon.Column label="Cài đặt" />} />
@@ -84,5 +85,4 @@ Navigation.Filter = function NavigationFilter(props) {
         </Dropdown>
     )
 }
-
 export { Navigation };

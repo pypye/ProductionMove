@@ -64,6 +64,7 @@ ResponsiveNavigation.Trigger = function ResponsiveNavigationTrigger(props) {
         </div>
     )
 }
+
 ResponsiveNavigation.Content = function ResponsiveNavigationContent(props) {
     return (
         <div className='navigation-content'>

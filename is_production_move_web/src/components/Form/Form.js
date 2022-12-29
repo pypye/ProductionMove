@@ -9,6 +9,7 @@ function Form(props) {
         </form>
     )
 }
+
 Form.Split = function FormSplit(props) {
     return (
         <div className={"form-split " + props.format}>
@@ -24,7 +25,6 @@ Form.SplitFlex = function FormSplitFlex(props) {
         </div>
     )
 }
-
 
 Form.Title = function FormTitle(props) {
     return (
@@ -57,6 +57,7 @@ Form.Error = function FormError(props) {
 }
 
 Form.Input = Input;
+
 Form.Submit = function FormSubmit(props) {
     return (
         <Button type={props.type ? props.type : "primary"} onClick={props.onClick} validation={props.validation}>{props.content}</Button>

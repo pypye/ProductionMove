@@ -19,6 +19,7 @@ function Body(props) {
     function onCloseOther(i) {
         dropdownRef.current[i].current.forceDropdownClose();
     }
+    
     return (
         <tbody>
             {

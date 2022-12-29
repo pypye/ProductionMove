@@ -1,9 +1,10 @@
-.icon-wrapper .icon{
+.icon-wrapper .icon {
     width: 2rem;
     height: 2rem;
     color: rgb(99, 115, 129);
 }
-.icon-wrapper{
+
+.icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,7 +15,8 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
-.icon-wrapper-raw{
+
+.icon-wrapper-raw {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,7 +24,7 @@
     min-height: 1.5rem;
 }
 
-.icon-wrapper:hover{
+.icon-wrapper:hover {
     background-color: rgba(99, 115, 129, 0.1);
 }
 
@@ -33,6 +35,7 @@
     overflow: hidden;
     border-radius: 50%;
 }
+
 .avatar-box img {
     width: 100%;
     height: 100%;

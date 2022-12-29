@@ -2,7 +2,6 @@ import { TableComponent } from ".";
 import { Option } from "../../Option/Option";
 
 function Pagination(props) {
-
     function onChangePagePaginationSize(value) {
         props.setTablePage(t => ({ page: Math.min(Math.max(1, Math.ceil(t.page * t.pageSize / value)), Math.ceil(props.tableData.data.length / value)), pageSize: value }));
     }
@@ -12,6 +11,7 @@ function Pagination(props) {
             props.setTablePage(t => ({ ...t, page: props.tablePage.page + value }));
         }
     }
+
     return (
         <div className='page-pagination'>
             <Option title='Số hàng:' onChange={onChangePagePaginationSize}>
@@ -19,7 +19,7 @@ function Pagination(props) {
                 <Option.Item value={25} />
                 <Option.Item value={50} />
             </Option>
-            {(props.tablePage.page - 1) * props.tablePage.pageSize + 1}-{Math.min((props.tablePage.page - 1) * props.tablePage.pageSize + props.tablePage.pageSize, props.data.length)} of {props.data.length}
+            {(props.tablePage.page - 1) * props.tablePage.pageSize + 1}-{Math.min((props.tablePage.page - 1) * props.tablePage.pageSize + props.tablePage.pageSize, props.data.length)} trên {props.data.length}
             <div onClick={() => onChangePagePagination(-1)}> <TableComponent.Icon.PaginationPrev /></div>
             <div onClick={() => onChangePagePagination(1)}> <TableComponent.Icon.PaginationNext /></div>
         </div>

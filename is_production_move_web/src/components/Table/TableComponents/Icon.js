@@ -1,7 +1,6 @@
 import React from 'react'
 import './style_icon.css'
 function TableIcon(props, icon) {
-
     const btn_ref = React.useRef(null);
 
     React.useEffect(() => {
@@ -22,6 +21,7 @@ function TableIcon(props, icon) {
         </button>
     )
 }
+
 let Icon = {}
 Icon.SortAsc = (props) => TableIcon(props, <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>)
 Icon.SortDesc = (props) => TableIcon(props, <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>)
@@ -31,11 +31,5 @@ Icon.Filter = (props) => TableIcon(props, <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H
 Icon.Export = (props) => TableIcon(props, <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"></path>)
 Icon.PaginationNext = (props) => TableIcon(props, <path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"></path>)
 Icon.PaginationPrev = (props) => TableIcon(props, <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"></path>)
-Icon.Option = (props) => TableIcon(props,
-    <>
-        <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
-        <circle cx="12" cy="5" r="2" fill="currentColor"></circle>
-        <circle cx="12" cy="19" r="2" fill="currentColor"></circle>
-    </>
-)
+Icon.Option = (props) => TableIcon(props, <><circle cx="12" cy="12" r="2" fill="currentColor"></circle><circle cx="12" cy="5" r="2" fill="currentColor"></circle><circle cx="12" cy="19" r="2" fill="currentColor"></circle></>)
 export { Icon }

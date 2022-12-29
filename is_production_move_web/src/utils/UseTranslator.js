@@ -16,7 +16,7 @@ const key = {
     "phone": "Số điện thoại",
     "option": "Tùy chọn",
     "numberOfErrorProduct": "Số lượng sản phẩm lỗi",
-    "numberOfProduct": "Số lượng sản phẩm",
+    "numberOfRestProduct": "Số lượng sản phẩm không có lỗi",
 }
 const UseTranslator = {}
 

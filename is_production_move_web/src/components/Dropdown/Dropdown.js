@@ -4,6 +4,7 @@ import React, { forwardRef, useImperativeHandle } from 'react'
 const Dropdown = forwardRef((props, ref) => {
     const container = React.useRef(null)
     const [isOpen, setIsOpen] = React.useState(false)
+    
     useImperativeHandle(ref, () => ({
         forceDropdownOpen() {
             setIsOpen(true);
@@ -68,7 +69,6 @@ Dropdown.MenuWrapperResponsive = function DropdownMenuWrapperResponsive(props) {
         </div>
     )
 }
-
 
 Dropdown.Menu = function DropdownMenu(props) {
     return (

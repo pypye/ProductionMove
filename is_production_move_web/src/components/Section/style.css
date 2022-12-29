@@ -11,17 +11,27 @@
     background-color: rgb(255, 255, 255);
 }
 
-.section-div-flex{
+.section-div-flex {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
 }
-.section-div-inline{
+
+.section-div-inline {
     display: inline-flex;
     column-gap: 1rem;
+    overflow: hidden;
 }
 
 .section-wrapper .section-title {
     margin: 0;
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .section-div-inline {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+    }
 }

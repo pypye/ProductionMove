@@ -17,13 +17,14 @@
     column-gap: 0.35rem;
 }
 
-.tool .dropdown-add{
+.tool .dropdown-add {
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     row-gap: 0.5rem;
 }
-.tool .setting-column{
+
+.tool .setting-column {
     overflow: hidden;
     text-overflow: ellipsis;
 }

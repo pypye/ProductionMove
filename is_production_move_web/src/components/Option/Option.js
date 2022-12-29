@@ -6,9 +6,9 @@ function Option(props) {
         <div className={"option-wrapper " + (props.maxWidth ? "max-width" : "")}>
             <span className="option-title">{props.title}</span>
             <select className="option-select" value={props.value} onChange={(e) => {
-                if(props.onChange) props.onChange(e.target.value)
+                if (props.onChange) props.onChange(e.target.value)
             }
-                }>
+            }>
                 {props.children}
             </select>
         </div>

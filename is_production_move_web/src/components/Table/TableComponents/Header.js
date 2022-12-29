@@ -11,6 +11,7 @@ const fakeIconComponent = function () {
         </div>
     )
 }
+
 function TableHeaderCell(props) {
     const thRef = React.useRef(null);
 
@@ -67,6 +68,4 @@ function TableHeader(props) {
         </thead>
     );
 }
-
-
 export { TableHeader };

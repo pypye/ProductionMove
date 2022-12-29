@@ -49,7 +49,7 @@ UsePreprocessChart.Line = function (data, name, type) {
                 newDataValue.push(data[key]);
             }
         }
-        
+
         return {
             options: { xaxis: { categories: newDataKey } },
             series: [{ name: name, data: newDataValue }]
@@ -66,7 +66,16 @@ UsePreprocessChart.Pie = function (data) {
     })
 
     return {
-        options: { labels: key, },
+        options: {
+            labels: key, responsive: [{
+                breakpoint: 768,
+                options: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        },
         series: value,
     }
 }

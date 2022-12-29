@@ -9,6 +9,7 @@ function IconWrapper(props) {
         </div>
     )
 }
+
 function IconWrapperRaw(props) {
     return (
         <div className="icon-wrapper-raw">
@@ -19,9 +20,7 @@ function IconWrapperRaw(props) {
     )
 }
 
-const Icon = {
-
-}
+const Icon = {}
 
 Icon.Navigation = function IconNavigation(props) {
     return (
