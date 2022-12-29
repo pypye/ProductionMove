@@ -140,6 +140,16 @@ function warrantTime(input) {
     return { state: true };
 }
 
+function numberInBatch(input) {
+    const numberInBatchPattern = /^[0-9]+$/;
+    if (input.length === 0) {
+        return { state: false, content: 'Số lượng sản phẩm không được để trống' };
+    } else if (!numberInBatchPattern.test(input)) {
+        return { state: false, content: 'Số lượng sản phẩm chỉ được chứa số' };
+    }
+    return { state: true };
+}
+
 
 const UseValidation = {
     loginUsername,
@@ -157,6 +167,7 @@ const UseValidation = {
     productName,
     price,
     warrantTime,
+    numberInBatch,
 };
 
 export { UseValidation };

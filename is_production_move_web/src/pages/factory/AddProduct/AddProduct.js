@@ -13,6 +13,7 @@ function AddProduct(props) {
     const [type, setType] = React.useState("");
     const [price, setPrice] = React.useState("");
     const [warranty, setWarranty] = React.useState("");
+    const [numberInBatch, setNumberInBatch] = React.useState("");
 
     const [cpu, setCpu] = React.useState("");
     const [hdd, setHdd] = React.useState("");
@@ -75,7 +76,8 @@ function AddProduct(props) {
             "category_id": category.find(item => item.category === type).id,
             "price": price,
             "warrantTime": warranty,
-            "description": JSON.stringify(description)
+            "description": JSON.stringify(description),
+            "numberOfBatch": numberInBatch
         }
         UseFetch("/backend/factory/product/add", "POST", data).then(data => {
             if (data.status.code === "SUCCESS") {
@@ -95,17 +97,21 @@ function AddProduct(props) {
                 <Form.Title content="Thêm sản phẩm" />
                 <Form.Split>
                     <Form.Input label="Tên sản phẩm" reference={[name, setName, UseValidation.productName]} />
-                    <Option title='Loại sản phẩm' maxWidth value={type} onChange={setType}>
-                        {
-                            category.map((item, index) => {
-                                return <Option.Item key={index} value={item.category} />
-                            })
-                        }
-                    </Option>
+                    <Form.Input label="Số lượng sản phẩm trong lô" reference={[numberInBatch, setNumberInBatch, UseValidation.numberInBatch]} />
+
                 </Form.Split>
+                <Option title='Loại sản phẩm' maxWidth value={type} onChange={setType}>
+                    {
+                        category.map((item, index) => {
+                            return <Option.Item key={index} value={item.category} />
+                        })
+                    }
+                </Option>
                 <Form.Split>
+
                     <Form.Input label="Giá sản phẩm" reference={[price, setPrice, UseValidation.price]} />
                     <Form.Input label="Thời gian bảo hành" reference={[warranty, setWarranty, UseValidation.warrantTime]} />
+
                 </Form.Split>
 
                 <Form.Subtitle content="Thông tin sản phẩm" />
