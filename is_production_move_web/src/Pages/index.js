@@ -9,6 +9,7 @@ import { Error404 } from "./general/Error404/Error404";
 
 import { User } from "./admin/User";
 import { Category } from "./admin/Category";
+import { StatisticProduct as AdminStatisticProduct } from "./admin/StatisticProduct/StatisticProduct";
 
 import { SendToAgency } from "./factory/SendToAgency/SendToAgency";
 import { AddProduct } from "./factory/AddProduct/AddProduct";
@@ -34,7 +35,7 @@ import { StatisticProduct as WarrantyStatisticProduct } from "./warranty/Statist
 
 export {
     Login, Logout, ForgotPassword, ResetPassword, Product, Welcome, ChangePassword, Error404,
-    User, Category,
+    User, Category, AdminStatisticProduct,
     SendToAgency, AddProduct, FactoryGetFromWarranty, FactorySaleAnalysis, ErrorAnalysis, FactoryStatisticProduct,
     GetFromFactory, SaleProduct, GetFromCustomer, GetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, UnsoldProduct, AgencyStatisticProduct,
     GetFromAgency, WarrantySendToAgency, SendToFactory, WarrantyStatisticProduct

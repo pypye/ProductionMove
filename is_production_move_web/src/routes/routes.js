@@ -3,7 +3,7 @@ import { Login } from '../pages/general/Login/Login';
 import { Layout } from '../layouts/Layout';
 import {
     ForgotPassword, Product, Logout, ResetPassword, User, Category,
-    GetFromFactory, SendToAgency, SaleProduct, AddProduct, GetFromCustomer, GetFromAgency, WarrantySendToAgency, GetFromWarranty, SendToFactory, FactoryGetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, FactorySaleAnalysis, ErrorAnalysis, Welcome, UnsoldProduct, Error404, FactoryStatisticProduct, ChangePassword, WarrantyStatisticProduct, AgencyStatisticProduct
+    GetFromFactory, SendToAgency, SaleProduct, AddProduct, GetFromCustomer, GetFromAgency, WarrantySendToAgency, GetFromWarranty, SendToFactory, FactoryGetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, FactorySaleAnalysis, ErrorAnalysis, Welcome, UnsoldProduct, Error404, FactoryStatisticProduct, ChangePassword, WarrantyStatisticProduct, AgencyStatisticProduct, AdminStatisticProduct
 } from '../pages';
 import { UseAuth } from '../utils';
 import { LoginLayout } from '../layouts';
@@ -24,6 +24,7 @@ export default function Router() {
             children: [
                 { path: '/admin/category', element: <Category.CategoryList /> },
                 { path: '/admin/user', element: <User.UserList /> },
+                { path: '/admin/statistic-product', element: <AdminStatisticProduct /> },
             ]
         },
         {

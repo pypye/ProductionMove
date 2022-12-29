@@ -11,8 +11,11 @@ function SaleAnalysis(props) {
     useEffect(() => {
         UseFetch(`/backend/agency/sale/analysis/${posOption[option]}`, 'GET').then((res) => {
             if (res.status.code === 'SUCCESS') {
-                if (Object.keys(res.data).length === 0) return;
-                let _data = UsePreprocessChart.Line(res.data, 'Số lượng sản phẩm', posOption[option])
+                if (Object.keys(res.data).length === 0) {
+                    setData({ options: {}, series: [] });
+                    return;
+                }
+                let _data = UsePreprocessChart.Mix(res.data, 'Số lượng sản phẩm', 'Doanh thu', posOption[option])
                 setData(_data);
             }
         });
@@ -26,7 +29,7 @@ function SaleAnalysis(props) {
                 <Option.Item value='Năm' />
             </Option>
             {
-                data.series.length === 0 ? <div className="text-center">Không có dữ liệu</div> : <Chart options={data.options} series={data.series} type="area" height={'200%'} />
+                data.series.length === 0 ? <div className="text-center">Không có dữ liệu</div> : <Chart options={data.options} series={data.series} type="line" height={'200%'} />
             }
         </React.Fragment>
     </Section>

@@ -15,7 +15,7 @@ function SaleAnalysis(props) {
                     setData({ options: {}, series: [] });
                     return;
                 }
-                let _data = UsePreprocessChart.Line(res.data, 'Số lượng sản phẩm', posOption[option])
+                let _data = UsePreprocessChart.Mix(res.data, 'Số lượng sản phẩm', 'Doanh thu', posOption[option])
                 setData(_data);
             }
         });
@@ -29,7 +29,7 @@ function SaleAnalysis(props) {
                 <Option.Item value='Năm' />
             </Option>
             {
-                data.series.length === 0 ? <div className="text-center">Không có dữ liệu</div> : <Chart options={data.options} series={data.series} type="area" height={'150%'} />
+                data.series.length === 0 ? <div className="text-center">Không có dữ liệu</div> : <Chart options={data.options} series={data.series} type="line" height={'150%'} />
             }
         </React.Fragment>
     </Section>

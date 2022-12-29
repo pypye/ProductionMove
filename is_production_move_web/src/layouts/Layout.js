@@ -71,7 +71,7 @@ function NavigationComponent(props) {
                         <Navigation.Item label="Quản lý người dùng" link='/admin/user' />
                     </Navigation.Category>
                     <Navigation.Category label="Thống kê" role={['admin']} type={props.type}>
-                        <Navigation.Item label="Thống kê sản phẩm toàn quốc" link='/admin/analysis' />
+                        <Navigation.Item label="Thống kê sản phẩm toàn quốc" link='/admin/statistic-product' />
                     </Navigation.Category>
 
                     <Navigation.Category label="Quản lý nhà máy" role={['factory']} type={props.type}>
