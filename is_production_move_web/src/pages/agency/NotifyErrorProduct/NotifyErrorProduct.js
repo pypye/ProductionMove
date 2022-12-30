@@ -45,9 +45,9 @@ function NotifyErrorProduct(props) {
                 })
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                _data = _data.filter(item => item.productCode === customerProductCode)
-                setData(_data)
-                ref.current.updateAllTable(_data)
+                // _data = _data.filter(item => item.productCode === customerProductCode)
+                // setData(_data)
+                // ref.current.updateAllTable(_data)
             } else {
                 setError("Không tìm thấy sản phẩm phù hợp trong kho để đổi trả")
             }

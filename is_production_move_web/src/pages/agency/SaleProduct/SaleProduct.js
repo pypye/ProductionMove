@@ -46,9 +46,9 @@ function SaleProduct(props) {
 
                 setData(_data)
                 ref.current.updateAllTable(_data)
-                _data = _data.filter(item => item.productCode !== productCode)
-                setData(_data)
-                ref.current.updateAllTable(_data)
+                // _data = _data.filter(item => item.productCode !== productCode)
+                // setData(_data)
+                // ref.current.updateAllTable(_data)
             } else {
                 setError("Thêm thông tin khách hàng thất bại")
             }

@@ -61,7 +61,7 @@ public class FactoryErrorAnalysisServiceImplement implements FactoryErrorAnalysi
     List<Product> productList;
     if (errorAnalysisRequest.getAgency().equals("0")) {
       productList = operationRepository.findALlByProductIdInAndStatusAndDestination(productId,
-          status(), null).stream().map(Operation::getProduct).collect(Collectors.toList());
+          status(), currentUser()).stream().map(Operation::getProduct).collect(Collectors.toList());
     } else {
       ApplicationUser agency = applicationUserRepository.findById(errorAnalysisRequest.getAgency()).orElse(null);
       productList = operationRepository.findALlByProductIdInAndStatusAndApplicationUser(productId,

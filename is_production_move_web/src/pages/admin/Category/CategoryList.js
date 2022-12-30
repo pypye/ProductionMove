@@ -10,6 +10,7 @@ function CategoryList() {
     const [data, setData] = React.useState(null)
     const [loading, setLoading] = React.useState(true)
     const [id, setId] = React.useState("")
+    const [rowId, setRowId] = React.useState("")
     const [category, setCategory] = React.useState("")
     const [error, setError] = React.useState("")
 
@@ -42,6 +43,7 @@ function CategoryList() {
 
     const onFetchEditRow = (row, i) => {
         setId(i)
+        setRowId(row.id)
         setCategory(row.category)
     }
 
@@ -59,7 +61,7 @@ function CategoryList() {
     }
 
     const onEditRow = () => {
-        UseFetch(`/backend/admin/category/update/${id}`, "PUT", { name: category }).then(res => {
+        UseFetch(`/backend/admin/category/update/${rowId}`, "PUT", { name: category }).then(res => {
             if (res.status.code === "SUCCESS") {
                 setData(prev => {
                     prev[id].category = category

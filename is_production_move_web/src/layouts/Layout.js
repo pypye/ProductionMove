@@ -36,7 +36,7 @@ function Layout(props) {
                     </div>
                     <div className='right-header'>
                         <Dropdown>
-                            <Dropdown.Main item={<Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>} />
+                            <Dropdown.Main item={<Icon.AvatarBox><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgf5GvxhVHYUqV9roWJ4I4xyszcLCUHxRpxXKfx6R-5gSQuxrApw2QADJwvxF6OLnM810&usqp=CAU" alt="" /></Icon.AvatarBox>} />
                             <Dropdown.Menu right zIndex={5}>
                                 <Dropdown.Info userName={props.companyName} userEmail={props.email} />
                                 <Dropdown.Item label="Đổi mật khẩu" onClick={onForgotPassword} />
@@ -59,10 +59,10 @@ function NavigationComponent(props) {
             <div className='info'>
                 <span>Hệ thống ProductionMove</span>
                 <a className='personal-info' href='/'>
-                    <Icon.AvatarBox><img src="https://i.stack.imgur.com/dRFs4.png" alt="" /></Icon.AvatarBox>
+                    <Icon.AvatarBox><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgf5GvxhVHYUqV9roWJ4I4xyszcLCUHxRpxXKfx6R-5gSQuxrApw2QADJwvxF6OLnM810&usqp=CAU" alt="" /></Icon.AvatarBox>
                     <div>
                         <div><strong>{props.companyName}</strong></div>
-                        <div>{props.type}</div>
+                        {/* <div>{props.type}</div> */}
                     </div>
                 </a>
             </div>

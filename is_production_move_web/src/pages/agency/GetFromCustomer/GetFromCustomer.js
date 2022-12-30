@@ -14,6 +14,16 @@ function GetFromCustomer(props) {
     const [warrantyList, setWarrantyList] = React.useState([]);
     const [error, setError] = React.useState("")
 
+    function formatDateTime(date){
+        var _date = new Date(date);
+        var _year = _date.getFullYear();
+        var _month = _date.getMonth() + 1;
+        var _day = _date.getDate();
+        var _hour = _date.getHours();
+        var _minute = _date.getMinutes();
+        var _second = _date.getSeconds();
+        return `${_day}/${_month}/${_year} ${_hour}:${_minute}:${_second}`;
+    }    
 
     const onFetchCustomerPopup = (row) => {
         setCustomerProductCode(row.productCode)
@@ -89,7 +99,7 @@ function GetFromCustomer(props) {
                                         <div><strong>Tên khách hàng:</strong> {item.customer.name}</div>
                                         <div><strong>Địa chỉ:</strong> {item.customer.address}</div>
                                         <div><strong>Số điện thoại:</strong> {item.customer.phone}</div>
-                                        <div><strong>Thời gian bán:</strong> {item.salesTime}</div>
+                                        <div><strong>Thời gian bán:</strong> {formatDateTime(item.salesTime)}</div>
                                         <div><strong>Số lần bảo hành:</strong> {item.numberOfWarranty}</div>
                                     </Section>
                                 </Popup.Content>

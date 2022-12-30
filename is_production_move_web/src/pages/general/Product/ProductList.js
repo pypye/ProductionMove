@@ -13,6 +13,7 @@ function ProductList() {
         UseFetch("/backend/product/all", "GET", null).then(res => {
             if (res.status.code === "SUCCESS") {
                 var _res = res.data.map((item) => {
+                    console.log(item)
                     var _item = {
                         id: item.id,
                         productCode: item.productCode,

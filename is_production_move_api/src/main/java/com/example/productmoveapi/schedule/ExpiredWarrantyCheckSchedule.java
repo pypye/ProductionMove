@@ -40,7 +40,7 @@ public class ExpiredWarrantyCheckSchedule {
    * @description: At 0:00 every day, the system will check the warranty period of the products
    */
 
-  @Scheduled(cron = "0 0 0 * * *")
+  @Scheduled(cron = "0 05 13 * * *")
   public void checkExpireProduct() {
     Date now = new Date();
     Calendar calendar = Calendar.getInstance();

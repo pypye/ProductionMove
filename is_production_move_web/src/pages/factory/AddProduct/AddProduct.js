@@ -83,6 +83,7 @@ function AddProduct(props) {
             if (data.status.code === "SUCCESS") {
                 alert("Thêm sản phẩm thành công")
                 onReset()
+                window.location.href = "/product"
             } else {
                 alert("Thêm sản phẩm thất bại")
             }
